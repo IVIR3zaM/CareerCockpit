@@ -113,7 +113,7 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
 - **Outputs:** the decision recorded; if extraction, `styles/cv.css` is rewritten to match
   (default stays Blue otherwise).
 - **Done when:** the choice is recorded and `styles/cv.css` reflects it.
-- **Deep logic:** iteration I06.
+- **Deep logic:** [`steps/step-03-style-choice.md`](steps/step-03-style-choice.md) (iteration I06).
 
 ### Step 4 — Populate `profile/` from the CV
 - **Purpose:** route every fact from the CV into the right `profile/` file.
