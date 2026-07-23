@@ -29,7 +29,7 @@ runtime data in their own clone — it never ships back to the product. This ste
 - The **parsed CV** from Step 2 — the raw text stashed at `onboarding/cv-source.md` (user's
   clone only). If that stash is missing (e.g. a fresh session), re-read it from wherever
   Step 2 recorded it, or ask the user for the CV again (one question).
-- The **confirmed target CV structure** recorded in `onboarding/decisions.md` (Step 2) —
+- The **confirmed target CV structure** recorded in `profile/preferences.md` (Step 2) —
   discipline, level/track, whether they manage people, and the section set. Use it to decide
   which optional `profile/` sections apply (e.g. skip `Leadership & people` for a pure IC).
 - If the user had **no CV** (Step 2 no-CV fallback), build `profile/` from a short interview

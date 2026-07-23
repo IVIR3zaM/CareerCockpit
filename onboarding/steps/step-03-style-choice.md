@@ -107,13 +107,13 @@ document.
 ## Outputs
 
 1. **The decision recorded** to the durable, committed file the other steps read:
-   **`onboarding/decisions.md`** (create if missing; append a "CV style" section). Record:
+   **`profile/preferences.md`** (create if missing; append a "CV style" section). Record:
    - `blue` (kept the default) **or** `extracted-from-cv`;
    - if extracted: a short note of what was pulled (font family + any substitution, accent
      color hex, page size/margins) so a future session knows `cv.css` is customized and why.
 2. **`styles/cv.css`** — unchanged if Blue; rewritten (values only) if extracted.
 
-Both `decisions.md` and the user's `cv.css` are their own runtime data. This step doc and
+Both `preferences.md` and the user's `cv.css` are their own runtime data. This step doc and
 the *default* `cv.css` are generic and ship with the product; the user's extracted values do
 not "ship" — they live only in that user's clone.
 
@@ -123,7 +123,7 @@ not "ship" — they live only in that user's clone.
 If the user later says "change my CV style" / "go back to Blue", **un-tick Step 3** in
 [`../CHECKLIST.md`](../CHECKLIST.md), re-run this step, and re-tick it. Reverting to Blue
 means restoring the default `cv.css` (it's in git history — `git checkout` the shipped
-version) and updating `decisions.md` back to `blue`.
+version) and updating `preferences.md` back to `blue`.
 
 ---
 
@@ -132,7 +132,7 @@ version) and updating `decisions.md` back to `blue`.
 - [ ] The user was offered **Blue vs extract-from-your-CV** and chose one.
 - [ ] If extraction was chosen: `styles/cv.css` was rewritten (values only, contract intact)
       and a render was verified to match the user's CV; if Blue: `cv.css` is left as shipped.
-- [ ] The choice is written to `onboarding/decisions.md`.
+- [ ] The choice is written to `profile/preferences.md`.
 
 Then tick Step 3 in [`../CHECKLIST.md`](../CHECKLIST.md), note the choice (`blue` /
 `extracted`) in its notes cell, and tell the user to re-prompt with **"continue

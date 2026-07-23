@@ -55,7 +55,7 @@ Make the boundaries explicit so consent is informed:
 - **Revocable.** The user can say "stop reading my email" and the agent flips the decision.
 
 ### 2. If NO (or "not now") — record the decline and move on
-Write the decline to `onboarding/decisions.md` (see Outputs) and **tick the box** — a
+Write the decline to `profile/preferences.md` (see Outputs) and **tick the box** — a
 deliberate skip is *done*, not pending (ONBOARDING.md). Do not nag; the user can enable it
 later by saying so (which un-ticks and re-runs this step).
 
@@ -96,7 +96,7 @@ connectivity, no bulk download, no content stored:
   re-run the probe. If they decline the prompt, treat it as ❌ and record it.
 
 ### 5. Record the decision (durable, committed)
-Write the outcome to **`onboarding/decisions.md`** under an **Email access** heading so every
+Write the outcome to **`profile/preferences.md`** under an **Email access** heading so every
 future session reads it and does **not** re-ask (see the block below). This is the whole point
 of the step — the decision must outlive the session and live in the repo, not agent memory
 (Golden Rule #8).
@@ -107,7 +107,7 @@ one line), the **date**, and any follow-up (`TODO(user)`) such as "grant read sc
 
 ---
 
-## What to write to `onboarding/decisions.md`
+## What to write to `profile/preferences.md`
 
 Append (create the file if absent) a section like:
 
@@ -131,7 +131,7 @@ rather than silently failing.
 
 ## Outputs
 
-- **`onboarding/decisions.md`** — an **Email access** section capturing yes/no + method + test
+- **`profile/preferences.md`** — an **Email access** section capturing yes/no + method + test
   result + date (the durable record future sessions read).
 - If declined: the decline is recorded (still an output — silence is not).
 - No changes to `profile/`; no email content stored anywhere in the repo.
@@ -143,7 +143,7 @@ rather than silently failing.
 - [ ] The user was asked the opt-in question, with read-only/never-send/revocable boundaries
       made explicit.
 - [ ] The decision (yes / no / deferred) **and** the method are recorded in a committed file
-      (`onboarding/decisions.md`) that future sessions read.
+      (`profile/preferences.md`) that future sessions read.
 - [ ] **If the user said yes:** the agent ran a minimal read-only **access test** and recorded
       the honest result (✅ / ⚠️ / ❌) — never a fabricated success.
 - [ ] No email contents or third-party names were written into the repo.

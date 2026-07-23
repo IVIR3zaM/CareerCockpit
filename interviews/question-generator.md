@@ -8,7 +8,7 @@ the wrong tool for a senior product designer's portfolio round or a staff engine
 -design round.
 
 > Where the user's discipline/level lives: `profile/basics.md` (headline/title) and their CV
-> structure recorded in onboarding (`onboarding/decisions.md`). If it's unclear, ask **one**
+> structure recorded in onboarding (`profile/preferences.md`). If it's unclear, ask **one**
 > question ("What level and discipline should I prep this round as — e.g. senior IC software,
 > staff, EM, head of design?") before generating.
 

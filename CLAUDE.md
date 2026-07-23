@@ -28,6 +28,11 @@ rules) are set.
   never a single wide-open "tell me everything." State lives in `onboarding/CHECKLIST.md` so
   it's resumable across sessions.
 - Once onboarding is complete, this manual governs everyday use (§2 workflows).
+- **Read `profile/preferences.md` at the start of every session.** It is the single durable
+  home for the user's choices — git-save mode, CV theme, email-access, the negotiated CV
+  structure — recorded during onboarding so you never re-ask. Its *Current settings* table is
+  the authoritative source for those values (e.g. the Git-save policy in §4 reads its mode
+  from there).
 
 ---
 
@@ -228,7 +233,11 @@ Leadership rounds probe people-leadership, delivery, and judgment.
    failure, prioritization, etc.). Keep it comprehensive.
 2. During a mock, map each question to the user's real history (`profile/`, especially
    `profile/stories/`). If a story is missing, elicit it and **save it to `profile/stories/`**
-   (§2.4).
+   (§2.4). The **canonical story-elicitation method** — anchor to a real experience, draw out
+   full STAR, quantify-or-ask, alias third parties, map into `answers.md` — lives in
+   `onboarding/steps/step-09-story-elicitation.md`; it is **not onboarding-only**, follow it
+   whenever you elicit a story (onboarding builds the baseline bank; mocks and debriefs deepen
+   it).
 3. Fill the prepared, STAR-structured answer under each question in
    `interviews/hiring-manager/answers.md` (keyed to the question bank), citing which
    experience it draws from.
@@ -301,11 +310,10 @@ Tailored CVs are Markdown (`cv.md`) styled by `styles/cv.css` and converted to P
 
 ### Git-save policy
 The user chooses during onboarding (git-save step) whether the agent should **auto-commit and
-push** changes or only commit **when explicitly asked**. The choice is recorded here:
-
-> **Git-save mode:** `TODO(onboarding): auto-commit-and-push | manual` *(default: auto-commit-and-push)*
-
-Rules that apply in **both** modes:
+push** changes or only commit **when explicitly asked**. The chosen **mode** (and whether a
+remote exists) lives in **`profile/preferences.md`** (the *Current settings* table) — that is
+the single source of truth for the value; **read it there.** This section holds the *rules*
+that apply regardless of the mode:
 
 1. **Never commit or push silently.** Before any commit/push, show a short **plain-English
    summary of exactly what you're about to save** (which files, one line on why) and **wait for
@@ -337,6 +345,7 @@ profile/                 # SOURCE OF TRUTH — the master CV data (populated dur
   education.md           # degrees
   certifications.md      # certifications & courses
   company-fit.md         # what the user WANTS from an employer (culture fit + deal-breakers)
+  preferences.md         # durable user choices (git-save mode, theme, email access …) — read every session
   stories/               # STAR story bank (behavioral evidence) — see _index.md
 
 applications/            # one folder per job application

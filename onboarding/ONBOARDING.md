@@ -87,10 +87,11 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
      summary and wait for your OK before any commit/push.
   2. Only if needed: "Is there a **git remote** set up yet? If not, I'll commit locally
      until you add one."
-- **Outputs:** write the chosen policy into the clone's **`CLAUDE.md`** (the Git-save policy
-  section). Record the remote-exists answer too.
-- **Done when:** `CLAUDE.md` records auto vs manual and the remote situation; the user
-  confirmed.
+- **Outputs:** write the chosen mode + remote situation into **`profile/preferences.md`**
+  (the *Current settings* table — the single home for durable values). `CLAUDE.md` §4 holds
+  the git-save *rule* and reads the mode from there; you don't edit `CLAUDE.md` for this.
+- **Done when:** `profile/preferences.md` records auto vs manual and the remote situation; the
+  user confirmed.
 - **Deep logic:** iteration I14.
 
 ### Step 2 — CV intake & template reconciliation
@@ -135,7 +136,7 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
   track replies? If yes, which tool/connector?" — if no, record the decline. **If yes, test
   that email access actually works** (a minimal read-only probe) and record the honest result.
 - **Outputs:** the yes/no + method + access-test result written to a durable committed file
-  (`onboarding/decisions.md`) so future sessions don't re-ask.
+  (`profile/preferences.md`) so future sessions don't re-ask.
 - **Done when:** the decision (either way) is recorded in a committed file; if yes, the access
   test result is recorded too.
 - **Deep logic:** [`steps/step-05-email-access.md`](steps/step-05-email-access.md) (iteration I08).

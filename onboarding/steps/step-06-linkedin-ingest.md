@@ -36,7 +36,7 @@ reconcile into it**, exactly like the CV — never a second, parallel store.
 - The user's **LinkedIn data export** (see the guide below), and/or their public profile text
   if they'd rather paste it.
 - The **`profile/`** already populated in Step 4 (the reconciliation target).
-- The **confirmed structure/level/discipline** from Step 2 (`onboarding/decisions.md`) — same
+- The **confirmed structure/level/discipline** from Step 2 (`profile/preferences.md`) — same
   rules about which optional sections apply (e.g. leadership sections only if they manage
   people).
 
@@ -51,7 +51,7 @@ Start with a single, plainly-scoped question — don't bundle the export guide i
 > roles, exact dates, extra projects/certs)? It's optional — I can guide you to a data export,
 > you can paste your profile, or we can skip it. What works?"
 
-- **Skip / not now →** record the decline in `onboarding/decisions.md` (see Outputs) and tick
+- **Skip / not now →** record the decline in `profile/preferences.md` (see Outputs) and tick
   the box. Don't nag; the user can enable it later (which un-ticks and re-runs this step).
 - **Yes →** continue to the export guide.
 
@@ -87,7 +87,7 @@ to paste.
 > Offer it plainly, e.g.: *"Two options — the full **data export** (structured, complete, but
 > you request it and wait), or the instant **Save to PDF** (one click, but it's basically
 > another CV so it fills fewer gaps). Which do you want to do?"* If they pick the PDF, ingest it
-> the same way (parse → diff → reconcile), and **note in the confirmation and `decisions.md`
+> the same way (parse → diff → reconcile), and **note in the confirmation and `preferences.md`
 > that a PDF — not the full export — was used**, so the remaining gaps are known to be from the
 > lighter source and a future session can offer the full export again.
 
@@ -181,7 +181,7 @@ honestly flagged as `TODO(user)`, the step is done — remaining TODOs don't blo
 
 ---
 
-## What to write to `onboarding/decisions.md`
+## What to write to `profile/preferences.md`
 
 Append (create the file if absent) a short record so future sessions know this ran and don't
 re-ask:
@@ -204,7 +204,7 @@ re-ask:
   confidentials generalized throughout).
 - **Conflicts** either resolved with the user or captured inline as `TODO(user): resolve CV vs
   LinkedIn — …`.
-- **`onboarding/decisions.md`** — a **LinkedIn ingest** record (ingested/declined/deferred +
+- **`profile/preferences.md`** — a **LinkedIn ingest** record (ingested/declined/deferred +
   source + result) that future sessions read.
 - No third-party names and no employer-confidential specifics anywhere in the written output.
 
@@ -220,7 +220,7 @@ re-ask:
 - [ ] Every **CV↔LinkedIn conflict** was either resolved with the user (one question at a time)
       or flagged as `TODO(user)` — none were silently guessed.
 - [ ] Third-party names are aliased and no employer-confidential specifics were written.
-- [ ] The decision/result is recorded in `onboarding/decisions.md`; if the user **skipped or
+- [ ] The decision/result is recorded in `profile/preferences.md`; if the user **skipped or
       deferred**, that is recorded and the box is still ticked (a deliberate skip is done).
 
 Then tick Step 6 in [`../CHECKLIST.md`](../CHECKLIST.md), note in its cell what changed (or

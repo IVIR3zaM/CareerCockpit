@@ -116,17 +116,17 @@ Adjust on feedback until the user agrees.
 ## Outputs
 
 1. **Confirmed target CV structure** recorded to a durable, committed file the later steps
-   read: **`onboarding/decisions.md`** (create it if missing; append a "CV structure"
+   read: **`profile/preferences.md`** (create it if missing; append a "CV structure"
    section). Record: discipline, level/track, whether they manage people, the ordered list
    of sections to use, and any discipline-specific sections (Portfolio, Publications, …).
 2. **Raw CV kept for Step 4** — stashed to `onboarding/cv-source.md` (user's clone only).
 
 Both are the user's own runtime data — never part of the shipped product. This step doc and
-`decisions.md`'s *structure* are generic; the *content* the user adds at runtime is theirs.
+`preferences.md`'s *structure* are generic; the *content* the user adds at runtime is theirs.
 
 ### No-CV fallback
 If the user has no CV: record `discipline`/`level` from a couple of targeted questions,
-propose a structure from the table above, confirm it, and note in `decisions.md` that
+propose a structure from the table above, confirm it, and note in `preferences.md` that
 `profile/` will be built from interview + LinkedIn (Steps 4/6) rather than an existing CV.
 Tick the box — a no-CV user has still completed CV intake.
 
@@ -137,7 +137,7 @@ Tick the box — a no-CV user has still completed CV intake.
 - [ ] The CV was provided (or the no-CV path was taken) and parsed for discipline/level.
 - [ ] The section structure was proposed from the discipline/level guide and **confirmed by
       the user**.
-- [ ] The confirmed structure is written to `onboarding/decisions.md`; the raw CV is stashed
+- [ ] The confirmed structure is written to `profile/preferences.md`; the raw CV is stashed
       for Step 4.
 
 Then tick Step 2 in [`../CHECKLIST.md`](../CHECKLIST.md), note the confirmed

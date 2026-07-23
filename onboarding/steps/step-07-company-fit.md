@@ -39,7 +39,7 @@ candidate" is supposed to want.
 ## Inputs
 
 - **None required** — this is a conversation. It helps to have Steps 2/4 done (the agent knows
-  the user's discipline/level and current/past roles from `onboarding/decisions.md` and
+  the user's discipline/level and current/past roles from `profile/preferences.md` and
   `profile/`), so questions can be grounded in *their* situation (e.g. "you're an EM — how much
   hands-on time do you want to keep?"). But the step can run without them.
 - If the user has already dropped culture signals earlier in onboarding (a story about why
@@ -188,7 +188,7 @@ top sections are user-elicited.
 
 ---
 
-## What to write to `onboarding/decisions.md`
+## What to write to `profile/preferences.md`
 
 Append a short record so future sessions know this step ran:
 
@@ -209,7 +209,7 @@ If the user wants to skip this step for now, record `Decision: deferred` instead
 
 - **`profile/company-fit.md`** — must-haves, deal-breakers, ways of working, and comp frame in
   the user's own words; `confirmed: true`; third parties aliased, no confidential specifics.
-- **`onboarding/decisions.md`** — a short **Company fit** record future sessions read.
+- **`profile/preferences.md`** — a short **Company fit** record future sessions read.
 
 ---
 
@@ -222,7 +222,7 @@ If the user wants to skip this step for now, record `Decision: deferred` instead
 - [ ] Third-party names are aliased and no employer-confidential specifics were written.
 - [ ] The user confirmed the read-back and `confirmed: true` is set (or the step was
       **deferred** and that is recorded).
-- [ ] The decision/result is recorded in `onboarding/decisions.md`.
+- [ ] The decision/result is recorded in `profile/preferences.md`.
 
 Then tick Step 7 in [`../CHECKLIST.md`](../CHECKLIST.md), note in its cell what was captured
 (or "deferred"), and tell the user to re-prompt with **"continue onboarding"** — next is

@@ -148,7 +148,7 @@ for most disciplines/levels:
 - **Ambiguity / prioritization** — deciding with incomplete information.
 - **Cross-functional influence** — getting something done without authority over the people.
 
-**If the user manages people (gate — check Step 2 / `decisions.md`),** add the
+**If the user manages people (gate — check Step 2 / `preferences.md`),** add the
 people-leadership themes the manager question bank probes: **difficult feedback / a
 low-performer turnaround**, **hiring / scaling a team**, **mentoring / growing someone**, and
 **disagreeing with leadership**. If the user is an IC who doesn't manage people, **skip these
@@ -186,7 +186,7 @@ added later — this step ticks at the baseline, it doesn't demand exhaustivenes
 
 ---
 
-## What to write to `onboarding/decisions.md`
+## What to write to `profile/preferences.md`
 
 Append a short record so future sessions know the loop's baseline state:
 
@@ -213,7 +213,7 @@ baseline).
   ledger, kept current.
 - **`interviews/hiring-manager/answers.md`** — each story mapped to the question(s) it
   answers, with a drafted STAR answer citing the story file.
-- **`onboarding/decisions.md`** — a short **Story elicitation** record future sessions read.
+- **`profile/preferences.md`** — a short **Story elicitation** record future sessions read.
 
 ---
 
@@ -230,7 +230,7 @@ baseline).
       attributes and no employer-confidential specifics were written; unknown metrics are
       `TODO(user)`, not invented.
 - [ ] The `Elicitation progress` ledger in `_index.md` reflects coverage, and the state is
-      recorded in `onboarding/decisions.md`.
+      recorded in `profile/preferences.md`.
 
 Then tick Step 9 in [`../CHECKLIST.md`](../CHECKLIST.md), note in its cell how many stories
 the baseline holds (or "paused at k"), and tell the user to re-prompt with **"continue
