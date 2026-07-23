@@ -179,7 +179,7 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
 - **Outputs:** STAR stories in `profile/stories/`; mappings in
   `interviews/hiring-manager/answers.md`; progress tracked so it resumes.
 - **Done when:** a baseline set of stories exists and is mapped (the loop can continue later).
-- **Deep logic:** iteration I12.
+- **Deep logic:** [`steps/step-09-story-elicitation.md`](steps/step-09-story-elicitation.md) (iteration I12).
 
 ### Step 10 — House-rules confirmation
 - **Purpose:** let the user keep/drop/customize the operating rules for their own clone.
