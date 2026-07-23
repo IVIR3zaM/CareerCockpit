@@ -1,0 +1,150 @@
+/* ============================================================
+   CV stylesheet — the canonical look for every tailored CV PDF.
+   DEFAULT THEME: Blue. This is the neutral theme CareerCockpit
+   ships with. Onboarding's style step (see styles/README.md) may
+   REPLACE these values by extracting the look of your own CV.
+
+   The typographic *structure* and the heading→CSS contract match
+   templates/cv-template.md exactly — do not rename selectors or
+   the template stops rendering. To restyle, change the values
+   (colors, fonts, sizes) — not the selectors.
+
+     - Roboto: Light(300) body @10pt, Regular(400) inline emphasis,
+       Medium(500) dates, Bold(700) headings
+     - Blue #1a56db: name + section headings (section headings are
+       LIGHT weight blue, not bold)
+     - #333 role titles (11pt bold); #666 company names & sub-headers
+     - #808080 headline next to the name; #1155CC underlined links
+     - A4, ~11mm side margins, 12pt line grid on 10pt type
+   Edit here to restyle all CVs at once.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --text: #000000;
+  --title: #333333;        /* role titles, Tech Stack line */
+  --muted: #666666;        /* company names, sub-headers, skill values */
+  --subtitle: #808080;     /* headline next to the name */
+  --accent: #1a56db;       /* blue — name & section headings (default theme) */
+  --link: #1155cc;         /* underlined hyperlinks */
+  --font-body: 'Roboto', Arial, 'Helvetica Neue', sans-serif;
+}
+
+@page {
+  size: A4;
+  margin: 9mm 11mm 11mm 11mm;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 10pt;
+  font-weight: 300;                 /* Roboto Light — the body voice of the CV */
+  line-height: 1.2;                 /* 12pt grid on 10pt type */
+  color: var(--text);
+  max-width: 100%;
+}
+
+/* Name line: "# {Full Name} *| {Headline}*"
+   → name accent bold 14pt, headline gray bold 14pt on the same line. */
+h1 {
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 4px 0;
+}
+h1 em {
+  font-style: normal;
+  color: var(--subtitle);
+}
+
+/* Contact block under the name: plain body text; labels bolded in Markdown. */
+h1 + p { margin: 0 0 10px 0; }
+
+/* Section headings (Personal Summary, Work Experience, Technical Skills…):
+   accent, 10pt, LIGHT weight (no bold, no rule). */
+h2 {
+  font-size: 10pt;
+  font-weight: 300;
+  color: var(--accent);
+  margin: 14px 0 6px 0;
+}
+
+/* Role heading: "### {Title} @ *{Company} ({City}, {Country})* · **{Month YYYY} – {…}**"
+   → title bold 11pt #333; company via em → bold 10pt #666; dates via strong → medium 10pt black. */
+h3 {
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--title);
+  margin: 12px 0 3px 0;
+}
+h3 em {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10pt;
+  color: var(--muted);
+}
+h3 strong {
+  font-weight: 500;
+  font-size: 10pt;
+  color: var(--text);
+}
+
+/* Sub-headers inside a role (e.g. "Leadership & Platform Impact"): bold 10pt #666. */
+h4 {
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 9px 0 2px 0;
+}
+
+/* "Tech Stack:" line — written as "> Tech Stack: **the stack**" (blockquote):
+   label Regular 11pt #333, stack Bold 11pt #333. */
+blockquote {
+  margin: 2px 0;
+  padding: 0;
+  border: none;
+  font-size: 11pt;
+  font-weight: 400;
+  color: var(--title);
+}
+blockquote p { margin: 0; }
+blockquote strong {
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--title);
+}
+
+/* Company names in plain paragraphs (Earlier Roles block, certs, education):
+   "*Company*" → bold gray, same voice as companies in role headings. */
+p em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+p { margin: 3px 0; }
+
+ul {
+  margin: 3px 0 6px 0;
+  padding-left: 13pt;               /* bullets at page edge, text at ~13pt indent */
+}
+li { margin: 1.5px 0; }
+
+/* Inline emphasis inside bullets: Roboto REGULAR (400) against the Light body —
+   noticeably firmer, not heavy bold. */
+li strong { font-weight: 400; color: var(--text); }
+
+/* Skill lines: "**Label:** values" — label reads black-light, values gray. */
+li em { font-style: normal; color: var(--muted); }
+
+/* Outside bullets (contact labels, cert/degree names) bold stays true bold. */
+strong { font-weight: 700; color: var(--text); }
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+/* Keep an entry and its bullets together on a page. */
+h3, h3 + p, h4, h4 + ul { break-inside: avoid; }

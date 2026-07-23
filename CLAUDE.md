@@ -259,11 +259,15 @@ bite twice.
 
 Tailored CVs are Markdown (`cv.md`) styled by `styles/cv.css` and converted to PDF.
 
-- **The ONE command (from repo root):** `npm run cv:pdf -- applications/<company-role>/cv.md`
-  (one-time setup: `PUPPETEER_SKIP_DOWNLOAD=1 npm install`). Dependencies are pinned in
-  `package.json` for hard-won reasons — **do NOT use `npx md-to-pdf` (crashes with
-  `ERR_REQUIRE_ESM`) and do NOT switch PDF engines**; `styles/README.md` documents the exact
-  failure modes and the only approved fallback.
+- **The ONE command (from repo root):** `npm run cv:pdf -- applications/<company-role>/cv.md`.
+  Dependencies are pinned in `package.json` for hard-won reasons — **do NOT use `npx md-to-pdf`
+  (crashes with `ERR_REQUIRE_ESM`) and do NOT switch PDF engines**; `styles/README.md`
+  documents the exact failure modes, the cross-platform Chrome path, and the only approved
+  fallback.
+- **Auto-install on first render (never make the user run a terminal).** The one-time setup is
+  `PUPPETEER_SKIP_DOWNLOAD=1 npm install`, but **the agent runs it automatically** the first
+  time a PDF is rendered: if `node_modules/` is missing, run the install yourself, then render.
+  Non-technical users should never be asked to open a terminal or run install/render by hand.
 - After rendering, Read the PDF back and verify: 1–2 pages, and that it matches the user's
   chosen theme (see `styles/`).
 - The CSS in `styles/cv.css` controls fonts, margins, spacing, and section styling. **Edit the
