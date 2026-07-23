@@ -196,8 +196,9 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
 - **Inputs:** all prior boxes checked.
 - **Outputs:** a "you're ready" message with the prompt menu (status / JD match / new
   application / make a CV / new story / interview prep / email update / debrief).
-- **Done when:** every step above is checked; this completion state is shown.
-- **Deep logic:** iteration I15.
+- **Done when:** every step above is checked; `CHECKLIST.md` reads **✅ complete**; this
+  completion state is shown.
+- **Deep logic:** [`steps/step-11-completion.md`](steps/step-11-completion.md) (iteration I15).
 
 ---
 
