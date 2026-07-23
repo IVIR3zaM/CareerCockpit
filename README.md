@@ -14,17 +14,58 @@ adapts the structure, CV style, and interview questions to *your* title and leve
 
 ---
 
-## Getting started (2 minutes)
+## Getting started
 
-1. **Clone this repo** somewhere private (it will hold personal data — keep it a private
-   repository).
-2. **Open it in Claude Code** and say:
+> **Make your OWN private copy first — do NOT just clone and work in place.** This template
+> is public and safe to share, but the moment you onboard, your copy fills with personal
+> data (your CV, comp, application notes). That data must live in a **private repository
+> that belongs to you.** So the very first thing you do is create your own private copy.
+
+### Step 1 — Create your own private copy
+
+Pick whichever route you prefer. Either way, the result is a **new private repo under your
+own account** — not a fork (a fork of a public repo can't be made private).
+
+**Route A — GitHub "Use this template" (easiest, gives a clean history):**
+1. On this repo's GitHub page, click **"Use this template" → "Create a new repository."**
+2. Choose **your** account as the owner, give it a name (e.g. `my-career-cockpit`), and set
+   visibility to **Private**.
+3. Clone *your new private repo* to your machine:
+   ```bash
+   git clone git@github.com:<your-username>/my-career-cockpit.git
+   ```
+
+**Route B — Clone this template, then push to a new private repo you create:**
+```bash
+# 1. Create an EMPTY private repo on github.com first (e.g. <you>/my-career-cockpit).
+# 2. Then locally:
+git clone https://github.com/<template-owner>/CareerCockpit.git my-career-cockpit
+cd my-career-cockpit
+git remote set-url origin git@github.com:<your-username>/my-career-cockpit.git
+git push -u origin main
+```
+(With the GitHub CLI, one command does it: `gh repo create my-career-cockpit --private
+--source=. --remote=origin --push`.)
+
+> ⚠️ **Do not "clone and later flip this public template to private."** That would make the
+> shared template disappear for everyone else. You always create a *separate* private repo
+> of your own — that's what the steps above do.
+
+### Step 2 — Confirm it's private
+
+Open your new repo on GitHub → **Settings → General** and check the visibility says
+**Private**. This is where all your personal data will live, so get it right before you
+onboard.
+
+### Step 3 — Onboard
+
+1. **Open your private copy in Claude Code** and say:
 
    > **onboard me**
 
-3. The agent walks you through onboarding **one step at a time**, ticking a checkbox after
-   each step. To keep each step focused and cheap on context, it will do a single step and
-   then ask you to re-prompt with **"continue onboarding"** for the next one.
+2. The agent walks you through onboarding **one step at a time**, ticking a checkbox after
+   each step. To keep each step focused and cheap on context, it does a single step and then
+   asks you to re-prompt with **"continue onboarding"** for the next one.
 
 That's the whole setup. You don't need to learn the repo layout — you talk in natural
 language and the agent files everything in the right place.
