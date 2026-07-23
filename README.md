@@ -98,5 +98,6 @@ The agent's full operating rules live in [CLAUDE.md](CLAUDE.md).
 - **The repo is the memory.** Everything durable is a committed Markdown file — versioned,
   auditable, and yours.
 
-> **Private repository.** This will contain personal data, compensation details, and
-> application notes once you onboard. Keep it private.
+> **Keep your own clone private.** This template ships empty and carries no personal data.
+> Once you onboard, your clone fills with personal data, compensation details, and
+> application notes — so make **your** copy a private repository.
