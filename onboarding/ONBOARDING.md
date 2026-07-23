@@ -103,7 +103,7 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
 - **Outputs:** a confirmed target CV structure recorded for later steps; the parsed CV held
   for Step 4.
 - **Done when:** the CV is parsed and the target structure is confirmed with the user.
-- **Deep logic:** iteration I05.
+- **Deep logic:** [`steps/step-02-cv-intake.md`](steps/step-02-cv-intake.md) (iteration I05).
 
 ### Step 3 — CV style choice (Blue vs extract-from-your-CV)
 - **Purpose:** pick the PDF look.
