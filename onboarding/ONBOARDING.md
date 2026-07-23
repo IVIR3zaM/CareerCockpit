@@ -132,11 +132,13 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
   application replies, and via which tool.
 - **Inputs:** none (a decision).
 - **Questions (one at a time):** "Do you want me to be able to read your job-search email to
-  track replies? If yes, which tool/connector?" — if no, record the decline.
-- **Outputs:** the yes/no + method written to a durable committed file (e.g.
-  `onboarding/decisions.md` or `profile/preferences.md`) so future sessions don't re-ask.
-- **Done when:** the decision (either way) is recorded in a committed file.
-- **Deep logic:** iteration I08.
+  track replies? If yes, which tool/connector?" — if no, record the decline. **If yes, test
+  that email access actually works** (a minimal read-only probe) and record the honest result.
+- **Outputs:** the yes/no + method + access-test result written to a durable committed file
+  (`onboarding/decisions.md`) so future sessions don't re-ask.
+- **Done when:** the decision (either way) is recorded in a committed file; if yes, the access
+  test result is recorded too.
+- **Deep logic:** [`steps/step-05-email-access.md`](steps/step-05-email-access.md) (iteration I08).
 
 ### Step 6 — LinkedIn export ingest
 - **Purpose:** reconcile a LinkedIn export into `profile/` to fill gaps and correct dates.
