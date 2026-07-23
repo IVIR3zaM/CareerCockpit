@@ -149,7 +149,7 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
   resolved with the user or flagged as `TODO(user)`.
 - **Done when:** the export is reconciled and conflicts are handled. (Deferrable — record
   and tick if the user skips.)
-- **Deep logic:** iteration I09.
+- **Deep logic:** [`steps/step-06-linkedin-ingest.md`](steps/step-06-linkedin-ingest.md) (iteration I09).
 
 ### Step 7 — Company-fit interview
 - **Purpose:** capture what the user wants from an employer.
