@@ -158,7 +158,7 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
   comp frame, deal-breakers — one question per turn; never one big open prompt.
 - **Outputs:** `profile/company-fit.md`.
 - **Done when:** `company-fit.md` captures must-haves and deal-breakers.
-- **Deep logic:** iteration I10.
+- **Deep logic:** [`steps/step-07-company-fit.md`](steps/step-07-company-fit.md) (iteration I10).
 
 ### Step 8 — Generate the interview question set
 - **Purpose:** produce a **complete**, role/level-aware candidate question list (IC critique
