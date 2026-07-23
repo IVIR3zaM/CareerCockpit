@@ -92,7 +92,7 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
   the git-save *rule* and reads the mode from there; you don't edit `CLAUDE.md` for this.
 - **Done when:** `profile/preferences.md` records auto vs manual and the remote situation; the
   user confirmed.
-- **Deep logic:** iteration I14.
+- **Deep logic:** [`steps/step-01-git-save.md`](steps/step-01-git-save.md) (iteration I14).
 
 ### Step 2 — CV intake & template reconciliation
 - **Purpose:** get the user's current CV and negotiate the CV *structure* that fits their
