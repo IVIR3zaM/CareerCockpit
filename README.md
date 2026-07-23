@@ -110,8 +110,28 @@ everything" question never captures what a focused prompt does.
 - **"Get me ready for the upcoming <round> interview."** → a time-boxed prep plan + mocks.
 - **"I got emails about application X — update it and tell me what to do."**
 - **"Here's how the interview went…"** → a debrief that feeds every gap back into the system.
+- **"Update CareerCockpit."** → pulls the latest product improvements into your private copy
+  **without touching your data** (see below).
 
 The agent's full operating rules live in [CLAUDE.md](CLAUDE.md).
+
+---
+
+## Staying up to date
+
+Your copy is a **private, detached** repo (that's what keeps your data yours), so it doesn't
+auto-pull from the template. When the product ships improvements — new templates, better
+onboarding, rule fixes — just say:
+
+> **update CareerCockpit**
+
+The agent checks the latest version, tells you in plain English what changed, and refreshes
+only the **engine** (templates, rules, styles, onboarding logic). It **never overwrites your
+career data** — your `profile/`, applications, stories, and answers are left exactly as they
+are. If you'd customized something the update also changes (your CV theme, a house rule),
+it asks you one question at a time instead of clobbering your version. Nothing is saved
+until you confirm. The mechanics live in [UPDATE.md](UPDATE.md); the release history is in
+[CHANGELOG.md](CHANGELOG.md).
 
 ---
 

@@ -359,4 +359,30 @@ interviews/
 
 styles/                  # CV styling (default Blue theme) + Markdown→PDF pipeline
 templates/               # reusable templates (CV, cover letter, prep plan)
+
+VERSION                  # the product release this clone is on (semver) — used by updates
+CHANGELOG.md             # what each product release changed (read during an update)
+UPDATE.md                # the flow the agent follows to update the engine (see §6)
 ```
+
+---
+
+## 6. Updating CareerCockpit (product updates without touching user data)
+
+A clone is created from a GitHub **template**, so it shares no git history with the product
+— a plain `git pull` won't work. When the user says **"update CareerCockpit"**, **"pull the
+latest version"**, or **"is there an update?"**, follow **`UPDATE.md`**.
+
+The essentials:
+- **User data is untouchable.** Updates only refresh **engine** files (templates, rules,
+  onboarding logic, styles). The user's career data (`profile/` content, `applications/`,
+  stories, research, their answers) is never overwritten — see the three-tier
+  engine-vs-data manifest in `UPDATE.md`.
+- **Never clobber a customization silently.** For files the user changed (their extracted
+  theme in `styles/cv.css`, their house-rule edits in this `CLAUDE.md`, their extended
+  question bank), the update re-applies engine changes *around* their edits and asks **one
+  targeted question at a time** on any real conflict.
+- **Confirm before saving.** The version bump and every written file are shown as a
+  plain-English summary and committed only after a yes, per the Git-save policy in §4
+  (both modes).
+- The clone's current release is in `VERSION`; what changed is in `CHANGELOG.md`.
