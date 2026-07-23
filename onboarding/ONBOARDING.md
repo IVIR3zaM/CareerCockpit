@@ -189,7 +189,7 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
   privacy strictness — keep, drop, or customize each.
 - **Outputs:** customizations written back into the clone's `CLAUDE.md`.
 - **Done when:** each rule cluster has a keep/drop/customize decision recorded in `CLAUDE.md`.
-- **Deep logic:** iteration I13.
+- **Deep logic:** [`steps/step-10-house-rules.md`](steps/step-10-house-rules.md) (iteration I13).
 
 ### Step 11 — Completion ("you're ready")
 - **Purpose:** confirm onboarding is complete and hand the user the ready-to-use prompt menu.
