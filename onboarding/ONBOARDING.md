@@ -125,7 +125,7 @@ done-criteria**. The *deep* logic for each is fleshed out in its own iteration/s
   `work-experience/`, `projects/`, `skills`, `education`, `certifications`); `TODO(user)`
   markers for every gap.
 - **Done when:** `profile/` reflects the CV and open gaps are surfaced as `TODO(user)`.
-- **Deep logic:** iteration I07.
+- **Deep logic:** [`steps/step-04-populate-profile.md`](steps/step-04-populate-profile.md) (iteration I07).
 
 ### Step 5 — Email access decision *(optional)*
 - **Purpose:** decide whether the agent may read the user's job-search email to track
