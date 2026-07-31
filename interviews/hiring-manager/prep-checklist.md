@@ -7,7 +7,7 @@ walk this list: each area is either **covered in the plan** (with a mapped story
 
 **Leadership gate:** rows marked ⟨manages-people⟩ apply only if the user manages people. For
 IC rounds, mark them ⏭ ("IC round — n/a") and add discipline-technical rows from
-[`../question-generator.md`](../question-generator.md) instead (system design, coding, design
+the `interview-question-generator` skill instead (system design, coding, design
 critique, product/analytics case). **Always generate the full question list first** (the
 generator) — this checklist covers areas, the generator produces the actual questions.
 
@@ -33,9 +33,9 @@ generator) — this checklist covers areas, the generator produces the actual qu
 | 17 | Current-trends view in your field + one concrete personal example | — | recent work in `profile/` |
 | 18 | Ways of working (agile/rituals, remote/hybrid, stakeholder mgmt) | — | — |
 | 19 | Compensation / process logistics parked for recruiter (not this round) | — | `application.md` |
-| 20 | **Discipline-technical round** (per generator): e.g. system design — **API/user-contract FIRST**, then one architecture, data model, multi-tenancy, global-scaling + trade-offs; or coding; or design critique; or product/analytics case | — | `interviews/technical/` · `../question-generator.md` |
+| 20 | **Discipline-technical round** (per generator): e.g. system design — **API/user-contract FIRST**, then one architecture, data model, multi-tenancy, global-scaling + trade-offs; or coding; or design critique; or product/analytics case | — | `interviews/technical/` · `interview-question-generator` skill |
 
 **How to use:** when building `applications/<x>/interview-prep/<round>-plan.md`, add a
 "Coverage" section listing every applicable area with ✅ (covered, where) or ⏭ (skipped/n-a,
 why). Update this checklist whenever a real interview surfaces an area not on it — that's the
-debrief loop (`CLAUDE.md` §2.6).
+debrief loop (the `interview-debrief` skill).

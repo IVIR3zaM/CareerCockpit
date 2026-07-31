@@ -34,12 +34,32 @@ npm run cv:pdf -- applications/<company-role>/cv.md
 > first PDF render** (detect a missing `node_modules/` and install before invoking the
 > render). Never ask the user to open a terminal or run install/render commands by hand.
 
-The `cv:pdf` script expands to:
+### What `cv:pdf` does that a bare render doesn't — the page budget
 
-```bash
-PUPPETEER_EXECUTABLE_PATH="<system Chrome path>" \
-  md-to-pdf --stylesheet styles/cv.css applications/<company-role>/cv.md
+`cv:pdf` runs [`cv-build.mjs`](cv-build.mjs), which makes the *same* md-to-pdf call and then
+reports what you can't get from looking at a PDF:
+
 ```
+  PDF pages: 3  (target 2)
+  content 2180px  ·  budget 1970px  (995px/page, calibrated)
+
+  ❌ OVER — CUT ~11 BULLET LINES (210px).
+  Where the weight is:      … per-section height bars …
+  Longest bullets — trimming each by one wrapped line is the cheapest cut: …
+```
+
+**This exists to kill the render-and-guess loop.** Without it, a 3-page CV turns into a dozen
+"trim a bit, re-render, still 3 pages" rounds. The render was never the bottleneck — not
+knowing *how much* to cut was. Read the output and make **one** targeted corrective pass.
+
+- `--dry` reports without writing the PDF; `--pages 1` budgets for a one-pager.
+- Exit code is `0` within budget, `1` over.
+- **⚠️ Don't verify page count by `Read`ing the PDF** — asking for `pages: "1-2"` on a 3-page
+  PDF silently returns 2 and looks like success. The `PDF pages:` line is ground truth.
+- **Re-calibrate `PAGE_PX`** in `cv-build.mjs` if `cv.css` margins/font-size change (e.g.
+  after onboarding extracts the user's own theme) or `md-to-pdf` is upgraded — the constant
+  is commented with how.
+- `npm run cv:pdf:raw -- <cv.md>` is the bare md-to-pdf escape hatch if the wrapper breaks.
 
 After rendering, **verify**: Read the PDF and check it's ~1–2 pages with the right
 design (blue headings, gray company names, Roboto — or the user's extracted theme).
@@ -47,8 +67,8 @@ design (blue headings, gray company names, Roboto — or the user's extracted th
 ### System Chrome path (cross-platform)
 
 Puppeteer is pointed at the **system Chrome** rather than downloading its own (see trap 2).
-The `PUPPETEER_EXECUTABLE_PATH` baked into `package.json`'s `cv:pdf` script must match the
-machine. Common locations:
+`cv-build.mjs` **finds it automatically** — it probes the usual locations for the current
+platform and exits with a clear message if none is found:
 
 | OS | Typical Chrome path |
 |---|---|
@@ -56,9 +76,9 @@ machine. Common locations:
 | Linux | `/usr/bin/google-chrome` (or `/usr/bin/chromium`) |
 | Windows | `C:\Program Files\Google\Chrome\Application\chrome.exe` |
 
-Check the platform with `node -e "console.log(process.platform)"` (`darwin` / `linux` /
-`win32`). If Chrome isn't at the path in `package.json`, update the `cv:pdf` script's
-`PUPPETEER_EXECUTABLE_PATH` to the correct one for this machine.
+If Chrome lives somewhere unusual, set `PUPPETEER_EXECUTABLE_PATH` — the script honors it
+over its own probing. (The `cv:pdf:raw` fallback script still has the macOS path hard-coded;
+edit it if you use that escape hatch on Linux or Windows.)
 
 ### Why it's set up this way — the traps that break naive attempts
 

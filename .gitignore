@@ -1,4 +1,9 @@
 .vscode/
-.claude/
+
+# Ignore everything under .claude/ (settings.local.json is machine-local noise) EXCEPT
+# the committed workflow skills, which are part of the product and ship with every clone.
+.claude/*
+!.claude/skills/
+
 .DS_Store
 node_modules/

@@ -5,7 +5,7 @@ Prepared answers live in [`answers.md`](answers.md), keyed by the `Q#` ids below
 from the STAR stories in `profile/stories/`.
 
 > **This bank is a seed, not the ceiling.** Before any prep, run
-> [`../question-generator.md`](../question-generator.md) to generate the **full** candidate
+> the `interview-question-generator` skill to generate the **full** candidate
 > list for the user's discipline + level + round type first; then fold anything new and
 > reusable back into this file. A fixed list under-serves ICs and non-software disciplines.
 
@@ -111,4 +111,4 @@ subset per company.
 
 > **Maintenance:** when a mock or the generator reveals a missing story, create it in
 > `profile/stories/`, then link it from the answer in `answers.md`. Add new questions here as
-> they come up in real interviews (the debrief loop, `CLAUDE.md` §2.6). Keep `Q#` ids stable.
+> they come up in real interviews (the `interview-debrief` skill). Keep `Q#` ids stable.

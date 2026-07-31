@@ -2,7 +2,7 @@
 
 Prep material, organized so it compounds across every application.
 
-- **[`question-generator.md`](question-generator.md)** — **start here for any prep.** Generates
+- **The `interview-question-generator` skill** — **start here for any prep.** Generates
   the full candidate question list for the user's discipline + level + round type. The saved
   banks are a seed; the generator is the source of the actual list.
 - **`hiring-manager/`** — behavioral / leadership rounds:

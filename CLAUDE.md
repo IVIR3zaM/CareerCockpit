@@ -13,6 +13,11 @@ for individual contributors.
 Everything is **Markdown files** — no database, no build step required. Git is the source of
 truth and the audit log.
 
+> **Detailed task procedures live in on-demand skills** under `.claude/skills/` (see §2).
+> This always-on file holds the Golden Rules, the repo map, the conversational/always-on
+> workflows, and the conventions. The skills carry the step-by-step procedures **and the
+> mandatory gates**; the Golden Rules below point into them by name.
+
 ---
 
 ## 0. First run — onboarding
@@ -23,16 +28,18 @@ rules) are set.
 
 - If `onboarding/CHECKLIST.md` has unchecked steps (or `profile/basics.md` is still a bare
   skeleton), **the repo is not onboarded yet.** Point the user to onboarding: tell them to
-  say **"onboard me"** (or "continue onboarding"), and follow `onboarding/ONBOARDING.md`.
+  say **"onboard me"** (or "continue onboarding"), then follow `onboarding/CHECKLIST.md` —
+  it carries the protocol and links the one step doc you need for this turn. Read
+  `onboarding/ONBOARDING.md` only if you need the full protocol rationale.
 - Onboarding runs **one step per re-prompt** and asks **one targeted question at a time** —
   never a single wide-open "tell me everything." State lives in `onboarding/CHECKLIST.md` so
   it's resumable across sessions.
-- Once onboarding is complete, this manual governs everyday use (§2 workflows).
-- **Read `profile/preferences.md` at the start of every session.** It is the single durable
-  home for the user's choices — git-save mode, CV theme, email-access, the negotiated CV
-  structure — recorded during onboarding so you never re-ask. Its *Current settings* table is
-  the authoritative source for those values (e.g. the Git-save policy in §4 reads its mode
-  from there).
+- Once onboarding is complete, this manual governs everyday use.
+- **Read `profile/preferences.md` at the start of every session.** It is a short table of the
+  user's durable settings — git-save mode, CV theme, comp floor, email access, whether they
+  manage people — and is the authoritative source for those values (e.g. the Git-save policy
+  in §4 reads its mode from there). The *reasoning* behind each setting lives in
+  `profile/decisions.md`; read that only when a decision needs revisiting.
 
 ---
 
@@ -48,23 +55,26 @@ rules) are set.
    actually happened. **This does NOT include resequencing the timeline:** work experience is
    ALWAYS reverse-chronological (current role first). Reordering roles by relevance instead of
    date is a CV red flag (it masks recency/gaps) — express relevance through expansion depth,
-   not order (see §2.2 step 3).
+   not order (see the `tailored-cv` skill).
 4. **One fact, one home.** When the user shares a new experience, project, or metric, route
-   it to the correct `profile/` file (see §4) so it can be reused everywhere.
+   it to the correct `profile/` file (see §2.4) so it can be reused everywhere.
 5. **Log everything.** Application status changes go into the application's status log and
    the master index (`applications/_index.md`).
 6. **Keep it PDF-ready.** Tailored CVs are Markdown that convert cleanly to PDF via the
-   pipeline in `styles/` (see §3). Don't use features that break that pipeline.
+   pipeline in `styles/` (driven by the `tailored-cv` skill). Don't use features that break
+   that pipeline.
 7. **The CV says only what the user actually did — never what the JD wants.** Every line of a
    tailored CV must map to a real experience in `profile/`. You may *select and emphasize*
    real work (through expansion depth, not by resequencing the reverse-chronological timeline
-   — see Golden Rule #3 and §2.2) so it resonates with a JD, but you may **never import a
-   skill, responsibility, metric, or framing from the JD** — e.g. don't relabel a team, a
-   role, or a project as something the JD asks for. If the JD implies something you cannot
-   trace to
+   — see Golden Rule #3) so it resonates with a JD, but you may **never import a skill,
+   responsibility, metric, or framing from the JD** — e.g. don't relabel a team, a role, or a
+   project as something the JD asks for. If the JD implies something you cannot trace to
    `profile/`, **ask the user whether it's true before writing it.** Do not infer, aspire, or
    borrow JD language on the user's behalf. When in doubt, describe the real work plainly and
-   let the genuine overlap speak — or ask.
+   let the genuine overlap speak — or ask. **This principle repeatedly fails on its own** (it
+   is stated here and *still* gets violated) — do not rely on remembering it; **enforce it
+   with the mechanical JD-echo read-back gate in the `tailored-cv` skill** after every CV,
+   cover letter, or prepared answer.
 8. **This repository is the ONLY source of truth — never your agent/internal memory.** Any
    durable fact, story, metric, preference, interview lesson, sourcing rule, or working-style
    note belongs in a **committed Markdown file in this repo** (routed per §2.4), where it is
@@ -74,7 +84,8 @@ rules) are set.
    agent's memory index is used at all, it may hold **only thin pointers back into this
    repo**, never the facts themselves. When you learn something worth keeping, **write it to
    the repo and commit it** — if you catch a fact living only in agent memory, migrate it into
-   the repo and delete it from memory.
+   the repo and delete it from memory. *(The skills under `.claude/skills/` satisfy this rule
+   — they are committed, versioned, and auditable; agent memory would not be.)*
 9. **No third-party personal data, and no company confidentiality leaks — anywhere in this
    repo (contents AND filenames).** This is a hard GDPR/privacy/confidentiality rule; it
    overrides "capture everything faithfully."
@@ -103,10 +114,64 @@ rules) are set.
      tool like `git filter-repo` + force-push, keeping a backup bundle first).
    - **Exception — never edit a `jd.md`**: it is the company's own verbatim text, captured
      as-is.
+10. **Answer the question's real intent, not its surface — and be picky about it.** Every
+    free-text question you answer on the user's behalf (application forms, screening
+    questionnaires, "why us?" boxes, recruiter emails, interview forms) fishes for a specific
+    **signal**. Name that signal, then confirm the answer **delivers** it using the strongest
+    evidence in `profile/` — not the safest story. **A merely-true, on-topic answer that
+    misses the signal never ships.** This holds when the *user* wrote the answer too: flag it,
+    don't rubber-stamp it. Enforced by the **answer-intent gate in §2.2b**.
+11. **Lead with what the role is about — not with the user's most impressive work.** A CV can
+    be fully truthful and import zero JD language (passing #7) and *still* fail by
+    **emphasizing the wrong real experience**. A screener decides in the **first ~15 lines**
+    (summary + the current role's heading and first bullets); if those lines show a **broader
+    or more senior facet than the target asks for**, the user reads as over-leveled and is cut
+    before the matching evidence below is ever seen. This is the **mirror of #7** — #7 forbids
+    importing what the user did NOT do; #11 forbids **leading with what the user DID do that
+    the JD did not ask for.** Fix it by re-weighting **within** the current role (never by
+    resequencing the timeline — #3 still holds). Enforced by the **role-fit positioning gate +
+    15-line squint test in the `tailored-cv` skill**.
+12. **Never re-apply into a prior rejection blind.** Before building a CV, drafting answers,
+    or applying to ANY company, check for a prior application/rejection (`applications/_index.md`,
+    plus their email if access was granted). Never assume a clean slate — ATSs key candidates
+    by email, so the reader sees a returning applicant. **Same reader + fundamentally the same
+    candidate = same no.** A **structural** prior reason (seniority, tenure, domain depth) is
+    not beatable by re-tailoring — don't spend a CV on it; a **fixable positioning** reason is
+    worth a retry **only if the new CV fixes that exact thing**. Surface any prior rejection
+    with its date + reason **before building anything**. Enforced by the pre-apply gate in the
+    **`new-application` skill (step 0)**.
+13. **Every rejection triggers a root-cause diagnosis — even with zero feedback.** A rejection
+    is never just logged; it is **diagnosed**, so the same *type* of rejection doesn't happen
+    twice. Run the **rejection post-mortem in the `interview-debrief` skill**: find the real
+    reason (marked KNOWN vs INFERRED) → **name the failure class** → **check recurrence** (a
+    class that recurs means the previous fix didn't hold — escalate) → **ship a correction,
+    not a note** (a `profile/` fix, a tightened gate, or a proposed new golden rule). The test
+    for every correction: *what mechanical change makes this class hard to repeat?* **A
+    principle by itself is not a fix** — #7, #10, and #11 all exist because principles get
+    forgotten; prefer a gate, a read-back, or a checklist step.
 
 ---
 
 ## 2. Core Workflows
+
+The heavy, task-specific procedures live in **on-demand skills** under `.claude/skills/`
+(auto-discovered — you don't reference a path; the harness surfaces each skill's description
+and you invoke it when its task starts). **Invoking the matching skill is NOT optional for
+the gated workflows** — the Golden Rules point into these skills for enforcement, and the
+full step-by-step (including the mandatory read-back gates) lives inside them:
+
+| When the user… | Invoke the skill | It carries |
+|---|---|---|
+| is applying to a company / pastes a JD / describes a role | **`new-application`** | repeat-applicant pre-apply gate (#12), culture-fit + comp-floor checks |
+| wants a tailored CV, or a CV rendered to PDF | **`tailored-cv`** | JD-echo gate (#7), role-fit positioning / 15-line squint gate (#11), CV→PDF pipeline + page budget |
+| wants to get ready for an interview | **`interview-prep`** | company/interviewer research, time-boxed plan, behavioral/STAR prep, coverage gate |
+| is prepping a round and needs the question set | **`interview-question-generator`** | discipline/level/round-aware generation (invoked by `interview-prep`); the bank is a seed, not the ceiling |
+| tells a story, or wants to add / refine one | **`story-elicitation`** | full STAR, quantified, and the **learning** captured after confirmation → `profile/stories/` + `answers.md` |
+| reports how an interview went, OR any rejection (incl. silent CV-screen) | **`interview-debrief`** | interview debrief + rejection post-mortem (#13) |
+
+The three workflows below **stay always-on in this file** — they trigger on unpredictable,
+conversational moments a skill description could miss (a stray form question, an offhand "oh,
+I also did X"), and one is a safety-critical gate that must never be a maybe-load.
 
 ### 2.0 Session start & "status" (user experience)
 Keep the experience **smooth and low-friction**:
@@ -123,86 +188,43 @@ Keep the experience **smooth and low-friction**:
   Never ask "which file should I put this in".
 - **Batch your questions.** When you need facts, ask them as one grouped list at the end of
   your reply — never scattered one-by-one across turns. (During onboarding, the opposite
-  applies: ask one targeted question at a time — see `onboarding/ONBOARDING.md`.)
+  applies: ask one targeted question at a time.)
 - Drop/park TODOs the user has declined twice; don't nag.
 
-### 2.1 Create a new application
-Trigger: *"I'm applying to X"*, user pastes a JD, or describes a role.
+### 2.2b Answer an application / screening question — the answer-intent gate
+Trigger: **any** free-text question you answer on the user's behalf — application-form
+questions, screening questionnaires, take-home prompts, "why us?" boxes, recruiter-email
+questions, interview forms — **whether you draft the answer or the user hands you one to
+check.** This is the mechanical enforcement of Golden Rule #10.
 
-1. Create folder `applications/<company>-<role-slug>/` (kebab-case, e.g.
-   `stripe-eng-manager-payments`).
-2. Save the raw JD to `jd.md` (verbatim). If the user only described it, capture what they
-   said and mark unknowns as `TODO`.
-3. Create `application.md` from `applications/_TEMPLATE/application.md`. Extract and fill:
-   title, team, level, comp (base/equity/bonus if stated), location & **work mode** (remote /
-   hybrid / onsite), interview **process steps**, key requirements, and source/link.
-4. Append a row to `applications/_index.md`.
-5. **Fit check:** score the role against `profile/company-fit.md` (the user's culture
-   must-haves and deal-breakers) and record matches/mismatches in `application.md`. Flag any
-   deal-breaker signals early.
-6. Ask the user if they want a tailored CV now (→ §2.2).
+Save answers to `applications/<...>/application-answers.md` (or the round's prep file for
+interview questions). Mark them SENT once submitted; **never edit a sent answer** (the same
+no-edit rule that applies to sent CVs).
 
-### 2.2 Build a tailored CV for an application
-Trigger: *"make a CV for this"*.
+For **each** question, before the set ships, run these five checks and record them inline
+(one line each) next to the answer:
+1. **Name the signal.** *What is the reader actually trying to learn?* — competence proof,
+   judgment, self-awareness, culture fit, depth on a specific thing. If the JD or the reader
+   states what "good" looks like ("I want to see depth here, not a vanilla description"),
+   quote it as the bar.
+2. **Pick the evidence deliberately.** From `profile/`, choose the story that **best delivers
+   that signal** — the strongest and most on-target, not the safest or the one already
+   drafted. If a bolder / more on-point story exists and you're steering away from it, that is
+   a decision to **surface to the user**, not make silently.
+3. **Read the draft back against the signal.** Does it hit the signal in the first few
+   sentences? Does anything in it **work against** the signal — hedges, unnecessary
+   disclaimers, "to be honest…" caveats the question never asked for, or JD-echo (#7)? Cut
+   those.
+4. **Picky check — flag, don't rubber-stamp.** If an answer is only "true and on-topic" but
+   doesn't clearly land the signal, it is **NOT ready.** Flag the specific gap to the user —
+   **including when the user wrote the answer themselves.** Better to challenge and lose a
+   minute than repeat a rejection.
+5. **Cross-reader check.** If this is a repeat application to the same company/reader, verify
+   the answer isn't re-running a pitch shape that already failed (read the status log / prior
+   answers). Same reader + same shape = same no.
 
-> **NEVER source content from a previous application's `cv.md` / `cv.notes.md` / cover
-> letter.** Those are already-sent deliverables and may hold **stale facts** — a wrong date or
-> metric copied from one application into the next is a classic, hard-to-catch error. Every
-> fact, date, metric, and framing in a new CV must come from **`profile/` (source of truth)**
-> or the JD-tailoring decision — not from another application. You may reuse the *template
-> structure* (`templates/cv-template.md`) and general positioning approach, but re-derive
-> every fact from `profile/`.
-
-1. Read the JD (`jd.md`) and the whole of `profile/`.
-2. Decide **positioning**: which 3–5 requirements matter most in this JD.
-3. Select & rank content — **the compress/expand decision is yours, made per JD.** **Order is
-   NOT yours: work experience is ALWAYS reverse-chronological (current role first).** Never
-   move an older, more-relevant role above the current one — that breaks the recruiter/ATS
-   convention and buries the user's current title (their strongest, most up-to-date evidence).
-   Express relevance through **expansion depth, not ordering**: the bullseye role gets the
-   deepest treatment (sub-headers, most bullets) *in its chronological slot*, while the current
-   role stays first even if you keep it tight.
-   - **Expand** (full treatment: sub-headers, 5–8 bullets, tech/skill stack re-ordered) the
-     roles that best evidence THIS JD's top requirements — regardless of age, but **in place**
-     (do not reorder them to the top).
-   - **Condense** weaker matches to 2–4 bullets, no sub-headers.
-   - **Collapse** the oldest/irrelevant roles into a single "Earlier Roles" block.
-   - **Omit** truly irrelevant items (never delete from `profile/` — just leave them out of
-     this CV). Re-decide all of this for every application; no fixed scheme.
-   - **NEVER CREATE A DATE GAP.** The visible timeline must be reverse-chronological **and
-     unbroken**. The "Earlier … Roles" block is a **contiguous tail** — everything older than
-     one cut-off date, nothing skipped. Never lift a *mid-sequence* role into it: the entries
-     above keep their real dates, so the hole becomes visible and reads as hiding something.
-     Don't collapse a single role into a block either — that's just a worse-formatted entry.
-     **After writing any CV, read the dates top-to-bottom and confirm each role starts on/before
-     the previous one ends.**
-4. Write the tailored CV to `applications/<...>/cv.md` using `templates/cv-template.md`,
-   **following its heading/inline conventions exactly** — they drive `styles/cv.css`, which
-   renders the user's chosen theme (see `styles/` and §3). Every generated CV must look like
-   that theme. Keep to ~1–2 pages of content.
-5. Note *why* each big choice was made in `cv.notes.md` (traceability).
-6. Offer to render a PDF (→ §3).
-
-### 2.3 Interview preparation
-Trigger: *"help me get ready for the X interview"*, *"I have Y days"*.
-
-1. Read the application, JD, and interview process steps.
-2. **Research** (use web tools): the company (product, mission, recent news, funding, tech
-   stack, values), the specific interviewer(s) if named (background, focus areas), the team,
-   and any public interview guidelines / review-site signals. Save to
-   `interviews/company-research/<company>.md` and link it from `application.md`.
-3. Build a **time-boxed plan** based on how many days/hours the user has. Write it to
-   `applications/<...>/interview-prep/<round>-plan.md`. Front-load the highest-leverage prep.
-4. For behavioral / leadership rounds → drive §2.5 **(applies only if the user manages people
-   or the round is people-leadership focused; for IC rounds, adapt to the discipline — e.g.
-   design critique, coding, system design)**.
-5. **Coverage gate (mandatory):** before presenting any prep plan, walk
-   `interviews/hiring-manager/prep-checklist.md` and append a "Coverage" section to the plan
-   marking every area ✅ (covered, where) or ⏭ (skipped, why). Pay special attention to
-   **metrics/OKRs per past role** — pull each role's "How success was measured" section from
-   `profile/work-experience/`; if it's still TODO, eliciting it from the user is part of the
-   prep, not optional.
-6. Offer **mock interviews** and update answers based on how the user responds.
+Only when all five pass for **every** question is the set ready to submit. Offer the user the
+one-line signal + evidence rationale per question so they can sanity-check before sending.
 
 ### 2.4 Intake a new experience / project ("router")
 Trigger: user talks about something they did.
@@ -221,70 +243,19 @@ Always: quantify if possible (ask for the number), then confirm where you stored
 experience often lands in **two** places (e.g. a role bullet **and** a STAR story) — that's
 expected.
 
-### 2.5 Behavioral / leadership interview prep
-**Applies when the user manages people, or the round is people-leadership focused.** For IC
-roles, skip this and prep to the discipline (design critique, coding, system design, etc.);
-the coverage gate (§2.3 step 5) and the debrief loop (§2.6) still apply.
-
-Leadership rounds probe people-leadership, delivery, and judgment.
-
-1. `interviews/hiring-manager/question-bank.md` holds the master list of likely questions
-   (conflict, PIP, raising the quality bar, hiring, firing, disagreement with leadership,
-   failure, prioritization, etc.). Keep it comprehensive.
-2. During a mock, map each question to the user's real history (`profile/`, especially
-   `profile/stories/`). If a story is missing, elicit it and **save it to `profile/stories/`**
-   (§2.4). The **canonical story-elicitation method** — anchor to a real experience, draw out
-   full STAR, quantify-or-ask, alias third parties, map into `answers.md` — lives in
-   `onboarding/steps/step-09-story-elicitation.md`; it is **not onboarding-only**, follow it
-   whenever you elicit a story (onboarding builds the baseline bank; mocks and debriefs deepen
-   it).
-3. Fill the prepared, STAR-structured answer under each question in
-   `interviews/hiring-manager/answers.md` (keyed to the question bank), citing which
-   experience it draws from.
-4. To make the user "ready": produce a focused subset + a rehearsal plan for the specific
-   company/round — gated by the coverage checklist (§2.3 step 5).
-
-### 2.6 Interview debrief (close the loop)
-Trigger: the user reports how an interview went — *always* run this, especially after a rough
-one.
-
-1. Create `applications/<...>/interview-prep/<round>-debrief.md` from
-   `applications/_TEMPLATE/interview-prep/_debrief-TEMPLATE.md` and fill it from what the user
-   tells you (ask for: questions actually asked, what went well/badly, where they were caught
-   unprepared).
-2. **Route every gap back into the system:**
-   - New/unexpected questions → add to `interviews/hiring-manager/question-bank.md`.
-   - A whole missing topic area → add to `interviews/hiring-manager/prep-checklist.md`.
-   - Missing facts/metrics → the right `profile/` file (§2.4).
-   - A new anecdote → `profile/stories/`.
-3. Update the application's status log and `applications/_index.md`.
-
-This is the mechanism that makes prep better with every real interview — a gap should never
-bite twice.
+When the user tells a story — or wants to add or refine one — use the **`story-elicitation`**
+skill: it draws out full STAR, quantifies, and captures the **learning** (what they'd do
+differently, even when it went wrong).
 
 ---
 
 ## 3. CV → PDF pipeline
 
-Tailored CVs are Markdown (`cv.md`) styled by `styles/cv.css` and converted to PDF.
-
-- **The ONE command (from repo root):** `npm run cv:pdf -- applications/<company-role>/cv.md`.
-  Dependencies are pinned in `package.json` for hard-won reasons — **do NOT use `npx md-to-pdf`
-  (crashes with `ERR_REQUIRE_ESM`) and do NOT switch PDF engines**; `styles/README.md`
-  documents the exact failure modes, the cross-platform Chrome path, and the only approved
-  fallback.
-- **Auto-install on first render (never make the user run a terminal).** The one-time setup is
-  `PUPPETEER_SKIP_DOWNLOAD=1 npm install`, but **the agent runs it automatically** the first
-  time a PDF is rendered: if `node_modules/` is missing, run the install yourself, then render.
-  Non-technical users should never be asked to open a terminal or run install/render by hand.
-- After rendering, Read the PDF back and verify: 1–2 pages, and that it matches the user's
-  chosen theme (see `styles/`).
-- The CSS in `styles/cv.css` controls fonts, margins, spacing, and section styling. **Edit the
-  CSS to change look, not the content files.** The theme ships as a neutral **default Blue**;
-  onboarding's style step may replace it by extracting the user's own CV design.
-- Keep CV Markdown clean: standard headings, bullet lists, bold for emphasis. Avoid raw HTML
-  unless it's in the template. This keeps every CV visually consistent.
-- Output PDFs go to `applications/<...>/cv.pdf` and are committed (deliverables).
+**Lives in the `tailored-cv` skill** — the `npm run cv:pdf` command, the auto-install on
+first render, the page budget, and the render-and-verify steps are all there, alongside the
+CV build procedure and its gates. Invoke that skill to build or render a CV. The styling
+contract and the failure modes behind the pinned setup are in `styles/README.md`; **edit the
+CSS to change look, not the content files.**
 
 ---
 
@@ -311,9 +282,8 @@ Tailored CVs are Markdown (`cv.md`) styled by `styles/cv.css` and converted to P
 ### Git-save policy
 The user chooses during onboarding (git-save step) whether the agent should **auto-commit and
 push** changes or only commit **when explicitly asked**. The chosen **mode** (and whether a
-remote exists) lives in **`profile/preferences.md`** (the *Current settings* table) — that is
-the single source of truth for the value; **read it there.** This section holds the *rules*
-that apply regardless of the mode:
+remote exists) lives in **`profile/preferences.md`** — that is the single source of truth for
+the value; **read it there.** This section holds the *rules* that apply regardless of the mode:
 
 1. **Never commit or push silently.** Before any commit/push, show a short **plain-English
    summary of exactly what you're about to save** (which files, one line on why) and **wait for
@@ -332,9 +302,12 @@ that apply regardless of the mode:
 ## 5. Repository Map
 
 ```
+.claude/skills/          # on-demand workflow skills (§2) — committed, not machine-local
+
 onboarding/              # First-run setup (see §0)
-  ONBOARDING.md          # the master onboarding flow the agent follows
-  CHECKLIST.md           # live, resumable onboarding state (one checkbox per step)
+  CHECKLIST.md           # live, resumable state + the protocol — START HERE for onboarding
+  ONBOARDING.md          # the protocol's rationale and the step index
+  steps/                 # one doc per step — read ONLY the step you are running
 
 profile/                 # SOURCE OF TRUTH — the master CV data (populated during onboarding)
   basics.md              # name, contact, links, headline, elevator pitch
@@ -345,7 +318,8 @@ profile/                 # SOURCE OF TRUTH — the master CV data (populated dur
   education.md           # degrees
   certifications.md      # certifications & courses
   company-fit.md         # what the user WANTS from an employer (culture fit + deal-breakers)
-  preferences.md         # durable user choices (git-save mode, theme, email access …) — read every session
+  preferences.md         # SETTINGS TABLE — durable values, read every session (kept small)
+  decisions.md           # the why/when behind each setting — read on demand, not every session
   stories/               # STAR story bank (behavioral evidence) — see _index.md
 
 applications/            # one folder per job application
@@ -375,9 +349,9 @@ latest version"**, or **"is there an update?"**, follow **`UPDATE.md`**.
 
 The essentials:
 - **User data is untouchable.** Updates only refresh **engine** files (templates, rules,
-  onboarding logic, styles). The user's career data (`profile/` content, `applications/`,
-  stories, research, their answers) is never overwritten — see the three-tier
-  engine-vs-data manifest in `UPDATE.md`.
+  skills, onboarding logic, styles). The user's career data (`profile/` content,
+  `applications/`, stories, research, their answers) is never overwritten — see the
+  three-tier engine-vs-data manifest in `UPDATE.md`.
 - **Never clobber a customization silently.** For files the user changed (their extracted
   theme in `styles/cv.css`, their house-rule edits in this `CLAUDE.md`, their extended
   question bank), the update re-applies engine changes *around* their edits and asks **one

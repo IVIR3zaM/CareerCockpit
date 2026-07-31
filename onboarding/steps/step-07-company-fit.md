@@ -1,229 +1,112 @@
-# Step 7 — Company-fit interview (deep logic)
+# Step 7 — Company-fit interview
 
-> Onboarding step doc. The one-line stub lives in [`../ONBOARDING.md`](../ONBOARDING.md)
-> (Step 7); this is the full logic the agent follows. Obey the global onboarding
-> invariants: **one step per re-prompt · one targeted question at a time · state in
-> [`../CHECKLIST.md`](../CHECKLIST.md)**. This step captures **what the user wants from an
-> employer** — culture must-haves, ways of working, comp frame, and deal-breakers — into
-> [`../../profile/company-fit.md`](../../profile/company-fit.md), in the user's own words.
+**Purpose:** capture **what the user wants from an employer** — culture must-haves, ways of
+working, comp frame, deal-breakers — into
+[`../../profile/company-fit.md`](../../profile/company-fit.md), **in their own words**.
 
----
+That small file does a lot of work later: it **fit-scores every new JD** (the
+`new-application` skill), it becomes the spine of the honest *"what are you looking for / why
+this company"* answer, and each must-have converts into a **question to ask them**.
 
-## Purpose
+The value is entirely in these being the user's *real* preferences, not tech-industry
+platitudes — so this is an **interview, not a form**. Never infer a must-have the user didn't
+state, never upgrade a mild preference into a deal-breaker (Golden Rule #2).
 
-`profile/company-fit.md` is a small file that does a lot of work later. Once it's filled it
-drives three things (per its own header):
+**Inputs:** none required. If Steps 2/4 ran, ground the questions in *their* situation. If the
+user already dropped culture signals earlier in onboarding ("why I'm leaving"), **read those
+back and ask them to confirm/refine** rather than asking cold.
 
-1. **Fit-scoring a new application.** When a JD comes in (CLAUDE.md §2.1 step 5), the agent
-   scores the role against these must-haves and deal-breakers and flags mismatches — the user
-   is job-searching *toward* this culture and *away* from something, so a deal-breaker signal
-   should surface early.
-2. **The honest "what are you looking for / why this company" answer.** These are the genuine
-   reasons the user is moving; they become the spine of that interview answer instead of a
-   generic script.
-3. **The vetting agenda — questions to ask *them*.** Each must-have and deal-breaker converts
-   into a question that tests whether the company actually has it.
-
-The value is entirely in it being **the user's real preferences in their own words**, not a
-list of tech-industry platitudes. So this step is an **interview**, not a form: focused
-questions, one at a time, and you write down *what the user says* — never what a "good
-candidate" is supposed to want.
-
-> **Golden Rule #2 applies here too: never fabricate.** Don't infer must-haves the user didn't
-> state, don't upgrade a mild preference into a deal-breaker, and don't borrow culture language
-> from elsewhere. If the user is vague, ask a sharper question; if they don't have an opinion
-> on something, leave it out.
-
----
-
-## Inputs
-
-- **None required** — this is a conversation. It helps to have Steps 2/4 done (the agent knows
-  the user's discipline/level and current/past roles from `profile/preferences.md` and
-  `profile/`), so questions can be grounded in *their* situation (e.g. "you're an EM — how much
-  hands-on time do you want to keep?"). But the step can run without them.
-- If the user has already dropped culture signals earlier in onboarding (a story about why
-  they're leaving a role, a comment while populating `profile/`), **reuse those** — read them
-  back and ask the user to confirm/refine rather than asking cold.
-
----
-
-## The flow: frame → walk the bank one question at a time → confirm
-
-### 1. Frame it in one short opener (not a wide-open prompt)
-Don't start with "tell me everything you want in a company" — that's exactly the wide-open
-prompt the protocol bans, and it produces platitudes. Open with the purpose and the shape:
+## 1. Frame it in one short opener
 
 > "I want to capture what *you* actually want from your next employer — the things that would
 > make you take or refuse a role. I'll ask a handful of focused questions, one at a time, and
 > write your answers into `profile/company-fit.md`. Ready? First one:"
 
-Then ask the questions below **one per turn**, waiting for each answer. Adapt the wording to
-the user's discipline/level. Skip a question if the user has clearly already answered it; probe
-deeper if an answer is thin.
+Then ask **one question per turn**, adapting wording to their discipline/level. Skip what's
+already answered; sharpen a thin answer ("what would that look like day-to-day?").
 
-### 2. The question bank (ask sequentially — a floor, not a script)
-Grouped by theme. Ask the ones that fit; follow a thin answer with a sharpening follow-up
-("what would that look like day-to-day?"). **One question per turn.**
+## 2. The question bank (a floor, not a script)
 
-**A. The push — why moving.** *(Often the richest source; ask first.)*
+**A. The push — why moving** *(often the richest source; ask first)*
 - "What's making you look right now — what's not working in your current or most recent role?"
   *(A deal-breaker usually hides in the answer — the thing they won't repeat.)*
 - "What's the one thing that, if a new company had it, would matter most to you?"
 
-**B. Culture & how teams are run.**
+**B. Culture & how teams are run**
 - "Describe a team you did your best work on — what made it work?"
-- "How should decisions get made — direction set top-down and handed to you, or teams shaping
-  *what* gets built, not just *how*?"
-- "How should the company measure success — shipping features/output, or customer/business
-  outcomes?"
-- "How is failure handled where you want to work — blameless learning, or someone takes the
-  blame?"
+- "How should decisions get made — direction handed down, or teams shaping *what* gets built,
+  not just *how*?"
+- "How should success be measured — shipping output, or customer/business outcomes?"
+- "How should failure be handled — blameless learning, or someone takes the blame?"
 
-**C. Ways of working.**
-- "Remote, hybrid, or onsite — and is that a preference or a hard requirement?"
-- "What's your pace/hours boundary — what does sustainable look like for you?"
-- "How much do you want to stay hands-on vs. lead/coordinate?" *(Especially for senior/staff/
-  manager tracks — calibrate to their level.)*
+**C. Ways of working**
+- "Remote, hybrid, or onsite — preference or hard requirement?"
+- "What's your pace/hours boundary — what does sustainable look like?"
+- "How much do you want to stay hands-on vs. lead/coordinate?"
 - "Team size / stage — startup scrappiness, scale-up, or big-company structure?"
 
-**D. Comp frame.** *(Frame, not a number — see the privacy note below.)*
-- "What's your comp frame — base floor, equity appetite, cash-heavy vs. upside-heavy? I'll
-  record the *shape*, not a figure, unless you want the number saved."
+**D. Comp frame and target roles** *(these fill two settings — see Record below)*
+- "What's your comp frame — and is there a **hard floor on base** you won't go under? I'll
+  record the shape; tell me if you want the actual number saved."
+- "Which levels and domains are you actually targeting — and is there anything you'd want me
+  to **rule out** or automatically down-rank when I screen a role?"
 
-**E. Deal-breakers — the hard no's.**
+**E. Deal-breakers — the hard no's**
 - "What would make you turn a role down even if everything else looked great?"
-- "Any domains or business models that are off the table for you?" *(e.g. someone might rule
-  out a whole industry — capture it plainly.)*
+- "Any domains or business models that are off the table?"
 - "Anything you've experienced that you refuse to repeat?"
 
-**F. Evidence (optional, powerful later).**
-- "Have you written or spoken publicly about how you think teams should work — an article, a
-  talk, a post? If so, it's great backing for the 'what are you looking for' answer."
+**F. Evidence** *(optional, powerful later)*
+- "Have you written or spoken publicly about how teams should work? It's great backing for the
+  'what are you looking for' answer."
 
-> **Manager/leadership questions are gated.** The "how much hands-on vs. lead," team-shape, and
-> "how is failure handled across a team" angles land hardest for people who manage or lead.
-> If Step 2 recorded the user as an IC who doesn't manage people, keep those lighter and
-> centre their own working conditions instead. Never assume a management frame.
+> **Leadership angles are gated.** "Hands-on vs. lead" and team-shape questions land hardest
+> for people who manage. If Step 2 recorded a pure IC, keep those light and centre their own
+> working conditions. Never assume a management frame.
 
-### 3. Write each answer straight into `company-fit.md` as you go
-Don't wait until the end. After each substantive answer, route it into the file (see the
-structure below) in **the user's own words** — quote/paraphrase them, don't rewrite into
-corporate language. This keeps state durable if the session ends mid-interview (the file itself
-is the progress marker; you resume by reading which sections still say `TODO(user)`).
+## 3. Write as you go, don't wait for the end
 
-### 4. Confirm (the one place batching is allowed)
-When the bank is walked (or the user wants to stop), read back a compact summary — the batch
-the protocol permits:
+After each substantive answer, route it into `company-fit.md` **in the user's own words** —
+quote or paraphrase, don't rewrite into corporate language. The file *is* the progress marker:
+a session that ends mid-interview resumes by reading which sections still say `TODO(user)`.
 
-> "Here's your company-fit as I captured it:
-> **Must-haves:** `<list>`. **Deal-breakers:** `<list>`. **Ways of working:** `<remote/pace/
-> hands-on>`. **Comp frame:** `<shape>`. Did I get your words right, and is anything missing or
-> too strong?"
+Fill the existing skeleton's sections: *Must-haves · Deal-breakers · Ways of working (work
+mode, pace, hands-on vs leading, team size/stage) · Comp frame · Evidence*. Keep the **How to
+use this** section as shipped — it tells future sessions how to apply the file.
 
-Fix on feedback. Set the file's frontmatter `confirmed: true` once the user signs off.
+**Privacy on write:** alias anyone named in a push-factor story, keep employer specifics
+generic, and record comp as a **shape** unless the user explicitly wants a number stored (and
+never a past employer's confidential comp data). The banned-phrasing rule bites at *output*
+time, not intake — capture the raw preference plainly here.
 
----
+## 4. Confirm (the one place batching is allowed)
 
-## The file structure (`profile/company-fit.md`)
+> "Here's your company-fit as I captured it: **Must-haves:** `<list>`. **Deal-breakers:**
+> `<list>`. **Ways of working:** `<remote/pace/hands-on>`. **Comp frame:** `<shape>`. Did I
+> get your words right, and is anything missing or too strong?"
 
-Fill the skeleton that already exists in the repo. Shape:
+Set `confirmed: true` in the frontmatter on sign-off.
 
-```markdown
----
-title: What I'm looking for in a company (culture fit & deal-breakers)
-confirmed: true            # set true once the user signs off
----
+## Record
 
-# What I'm Looking For in a Company
+- `profile/company-fit.md` → the elicited content, `confirmed: true`.
+- `profile/preferences.md` → **Comp floor** and **Target-role filter** (the two settings the
+  `new-application` skill reads on every JD).
+- `profile/decisions.md` → `## Company fit (Step 7)`: date, how many must-haves/deal-breakers,
+  the reasoning behind the floor and any ruled-out domains, and anything deferred.
 
-<!-- The throughline in one line: what you're moving toward (and away from). -->
+Deferring is allowed — record `deferred`, leave the skeleton, tick the box, and note it's thin.
 
-## Must-haves (what I want)
-- {the user's own words — culture, decision-making, outcome vs output, ways of working}
+## Done when
 
-## Deal-breakers (what I'm avoiding / won't repeat)
-- {the hard no's — the things that turn a role down on their own}
+- [ ] A **sequence of targeted questions** (not one wide-open prompt) covered must-haves and
+      deal-breakers at minimum.
+- [ ] Answers are in `company-fit.md` in **their own words** — nothing invented or borrowed
+      from generic culture language.
+- [ ] Third parties aliased; no employer-confidential specifics.
+- [ ] The read-back was confirmed and `confirmed: true` set (or the step was deferred and
+      that's recorded).
+- [ ] **Comp floor** and **Target-role filter** are set in `preferences.md`.
 
-## Ways of working
-- **Work mode:** {remote / hybrid / onsite — preference or hard requirement}
-- **Pace / boundaries:** {…}
-- **Hands-on vs. leading:** {… — if applicable to their track}
-- **Team size / stage:** {…}
-
-## Comp frame
-- {shape only — base floor / equity appetite / cash-vs-upside. A number only if the user
-  explicitly wants it stored.}
-
-## How to use this
-- **Fit-scoring a new JD:** flag matches/mismatches against must-haves and deal-breakers in
-  the application's `application.md`.
-- **"What are you looking for?"** → lead with the genuine must-haves; it's why you're moving.
-- **Questions to ask them** → turn each must-have / deal-breaker into a question that vets
-  whether the company actually has it.
-
-## Evidence (my own words / track record)
-- {articles / talks / stories that demonstrate the culture the user wants — optional}
-```
-
-Keep the "How to use this" section (it tells future sessions how to apply the file). Only the
-top sections are user-elicited.
-
----
-
-## Privacy & house rules on write
-
-- **No third-party names (Golden Rule #9 / CLAUDE.md §0.9).** If a push-factor story names a
-  manager, colleague, or report, alias them (`a peer`, `my skip-level`, `a report`) before
-  writing — in contents *and* any `[[links]]`. Don't record sensitive attributes of anyone.
-- **No employer-confidential specifics.** A deal-breaker can describe *what happened* without
-  naming a real internal metric, unreleased product, or customer. Keep it generic.
-- **Comp is a frame, not a leaked figure by default.** Record the *shape*; store an actual
-  number only if the user explicitly asks — and never a past employer's confidential comp data.
-- **Banned outward-facing phrasing still applies** (CLAUDE.md §4). The underlying *preference*
-  is captured faithfully, but when this file later feeds an interview answer, the agent must
-  phrase trait-claims as observable behaviours ("credit is shared", "team-first", "blameless")
-  rather than self-describing adjectives. Capture the real preference here; the wording rule
-  bites at output time, not intake — so it's fine for the raw preference to live here plainly.
-
----
-
-## What to write to `profile/preferences.md`
-
-Append a short record so future sessions know this step ran:
-
-```markdown
-## Company fit
-- **Decision:** captured — recorded {YYYY-MM-DD}
-- **Result:** {N} must-haves, {M} deal-breakers written to `profile/company-fit.md`
-  (`confirmed: true`).
-- **Open:** {TODO(user): <anything the user deferred> | none}
-```
-
-If the user wants to skip this step for now, record `Decision: deferred` instead and leave
-`company-fit.md` as its `TODO(user)` skeleton — a deliberate skip is done, but note it's thin.
-
----
-
-## Outputs
-
-- **`profile/company-fit.md`** — must-haves, deal-breakers, ways of working, and comp frame in
-  the user's own words; `confirmed: true`; third parties aliased, no confidential specifics.
-- **`profile/preferences.md`** — a short **Company fit** record future sessions read.
-
----
-
-## Done-criteria (tick the box when all true)
-
-- [ ] The user was asked a **sequence of targeted questions** (not one wide-open prompt), one
-      per turn, covering must-haves and deal-breakers at minimum.
-- [ ] Their answers were written to `profile/company-fit.md` in **their own words**; nothing
-      was invented or borrowed from generic culture language.
-- [ ] Third-party names are aliased and no employer-confidential specifics were written.
-- [ ] The user confirmed the read-back and `confirmed: true` is set (or the step was
-      **deferred** and that is recorded).
-- [ ] The decision/result is recorded in `profile/preferences.md`.
-
-Then tick Step 7 in [`../CHECKLIST.md`](../CHECKLIST.md), note in its cell what was captured
-(or "deferred"), and tell the user to re-prompt with **"continue onboarding"** — next is
-**Step 8 (generate the interview question set)**.
+Tick Step 7 in [`../CHECKLIST.md`](../CHECKLIST.md) noting what was captured → next is **Step
+8 (generate the interview question set)**.

@@ -4,7 +4,7 @@ For technical/craft rounds: system design, coding, architecture discussion, tech
 deep-dives on past work, design critiques, product/analytics cases, and "technical leadership"
 behavioral questions — **whatever the user's discipline demands** (software, design, product,
 data, infra). Always **generate the full candidate question list first** via
-[`../question-generator.md`](../question-generator.md), then build the plan.
+the `interview-question-generator` skill, then build the plan.
 
 Create one file per application/round as needed, e.g. `<company>-system-design.md` or
 `<company>-portfolio-round.md`, using the plan template in

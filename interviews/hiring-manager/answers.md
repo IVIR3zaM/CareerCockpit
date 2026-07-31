@@ -4,7 +4,7 @@ STAR-structured answers keyed to [`question-bank.md`](question-bank.md). Each an
 the `profile/stories/` file** (or role/project) it draws from, so it stays truthful and
 reusable — never invent facts to make an answer land (Golden Rule: never fabricate).
 
-Fill these during mock interviews (`CLAUDE.md` §2.5): the agent asks the question, the user
+Fill these during mock interviews (the `interview-prep` skill): the agent asks the question, the user
 answers from real experience, the agent structures and refines it here, and creates any
 missing story in `profile/stories/` (the story-elicitation loop).
 

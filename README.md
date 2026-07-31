@@ -104,12 +104,14 @@ everything" question never captures what a focused prompt does.
 
 - **"status"** → where every application stands, what's next, what's missing.
 - **"Is this JD a match? [link or pasted text]"** → fit check against what you want.
-- **"I'm applying to <company> for <role> — here's the JD."** → creates the application.
+- **"I'm applying to <company> for <role> — here's the JD."** → creates the application, and
+  checks first whether you've applied there before.
 - **"Make a CV for this one."** → a tailored, PDF-ready CV.
 - **"I have a new story to tell."** → routed into your profile / story bank.
 - **"Get me ready for the upcoming <round> interview."** → a time-boxed prep plan + mocks.
 - **"I got emails about application X — update it and tell me what to do."**
-- **"Here's how the interview went…"** → a debrief that feeds every gap back into the system.
+- **"Here's how the interview went…"** / **"I got rejected."** → a debrief and a root-cause
+  post-mortem that feed every gap back into the system.
 - **"Update CareerCockpit."** → pulls the latest product improvements into your private copy
   **without touching your data** (see below).
 
@@ -145,6 +147,7 @@ until you confirm. The mechanics live in [UPDATE.md](UPDATE.md); the release his
 | `styles/` | CV styling + the Markdown→PDF pipeline |
 | `templates/` | Reusable templates (CV, cover letter, prep plan) |
 | `onboarding/` | The onboarding flow and its checklist/state |
+| `.claude/skills/` | The agent's workflow procedures (applications, CVs, prep, debriefs) |
 
 ---
 

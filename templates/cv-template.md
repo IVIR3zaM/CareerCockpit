@@ -17,7 +17,7 @@ SECTIONS ARE DISCIPLINE/LEVEL-DEPENDENT: use "Leadership Focus" only if you mana
 use "Selected Work" / "Portfolio" for design/IC roles; keep only what fits and delete the
 rest. Never import a section a JD implies but your profile/ can't back.
 
-COMPRESSION IS A PER-JD DECISION (agent's call, CLAUDE.md §2.2): the roles that best
+COMPRESSION IS A PER-JD DECISION (agent's call, `tailored-cv` skill): the roles that best
 match THIS JD get the full treatment (sub-headers, 5–8 bullets); weaker matches get
 2–4 bullets, no sub-headers; oldest/irrelevant roles collapse into the single
 "Earlier Roles" block. Never a fixed scheme — re-decide per JD. Order is ALWAYS

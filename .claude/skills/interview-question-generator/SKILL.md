@@ -1,16 +1,23 @@
-# Interview Question Generator — role/level aware
+---
+name: interview-question-generator
+description: Generate the full discipline/level/round-aware candidate question list for an interview BEFORE opening the saved question bank — the bank is a seed, not the ceiling. Use at the start of any interview prep to build the question set, then cut to a focused subset for the time available. Feeds the interview-prep and story-elicitation skills, and onboarding's question-set step.
+---
 
-**The rule this file exists to enforce:** when you prep the user for an interview, you
-**generate the full candidate question list FIRST** — tailored to the user's discipline and
-level and to the specific round — *before* you open `hiring-manager/question-bank.md` or any
-saved bank. The saved banks are a **seed, not the ceiling**. A fixed EM behavioral list is
-the wrong tool for a senior product designer's portfolio round or a staff engineer's system
--design round.
+# Interview question generator — discipline/level/round aware
 
-> Where the user's discipline/level lives: `profile/basics.md` (headline/title) and their CV
-> structure recorded in onboarding (`profile/preferences.md`). If it's unclear, ask **one**
-> question ("What level and discipline should I prep this round as — e.g. senior IC software,
-> staff, EM, head of design?") before generating.
+**The rule this skill exists to enforce:** when prepping a round, **generate the full
+candidate question list FIRST** — tailored to discipline, level, and round — *before* opening
+`interviews/hiring-manager/question-bank.md` or any saved bank. The saved banks are a **seed,
+not the ceiling**. A fixed manager-behavioral list is the wrong tool for a senior product
+designer's portfolio round or a staff engineer's system-design round.
+
+> Where the user's discipline/level lives: `profile/basics.md` (headline/title) and the CV
+> structure recorded during onboarding (`profile/preferences.md`). If it's unclear, ask
+> **one** question ("What level and discipline should I prep this round as — e.g. senior IC
+> software, staff, EM, head of design?") before generating.
+
+Invoked by the `interview-prep` skill at the start of prep. A missing story for a generated
+question → hand off to the `story-elicitation` skill.
 
 ---
 
@@ -25,25 +32,25 @@ the wrong tool for a senior product designer's portfolio round or a staff engine
      (system design, coding, design critique, analytics case, PM case) · cross-functional/panel
      · leadership/values · founder/exec.
 2. **Generate a complete list** by pulling from every relevant theme block below for those
-   coordinates — aim for breadth first (15–40 candidate questions), then cut to a focused
-   subset for the time the user has.
-3. **De-duplicate against the saved bank.** Anything the generator produces that isn't already
-   in `hiring-manager/question-bank.md` (and is reusable, not company-specific) → **add it**,
-   with its theme tag, so the bank compounds over time.
+   coordinates — breadth first (15–40 candidate questions), then cut to a focused subset for
+   the time the user has.
+3. **De-duplicate against the saved bank.** Anything reusable (not company-specific) that
+   isn't already in `interviews/hiring-manager/question-bank.md` → **add it**, with its theme
+   tag, so the bank compounds over time.
 4. **Map each question to evidence** in `profile/` (especially `profile/stories/`). Missing
-   story → elicit it and save it (`CLAUDE.md` §2.4). This is also the story-elicitation loop.
-5. **Run the coverage gate** (`hiring-manager/prep-checklist.md`) so no whole area is silently
-   skipped.
+   story → elicit it via the `story-elicitation` skill.
+5. **Run the coverage gate** (`interviews/hiring-manager/prep-checklist.md`) so no whole area
+   is silently skipped.
 
 ---
 
 ## The people-leadership gate
 
 Blocks marked **⟨manages-people⟩** apply **only if the user manages people** (EM, design/
-product/data lead, head/director). For an IC round, **skip them** and lean on the IC-technical
-and universal blocks instead. Never assume the user is a manager; read their title from
-`profile/basics.md`. Conversely, a staff/principal IC still gets *influence* and *mentoring*
-questions — just not *hiring/firing/PIP* ones.
+product/data lead, head/director — recorded in `profile/preferences.md` → *Manages people*).
+For an IC round, **skip them** and lean on the IC-technical and universal blocks instead.
+Never assume the user is a manager. Conversely, a staff/principal IC still gets *influence*
+and *mentoring* questions — just not *hiring/firing/PIP* ones.
 
 ---
 
@@ -159,9 +166,9 @@ For a given round, produce:
 1. **The full candidate list** (generated, 15–40), grouped by theme.
 2. **The focused subset** for the user's available time, each mapped to a `profile/` story or
    marked `TODO(user)` if evidence is missing.
-3. **New reusable questions appended** to `hiring-manager/question-bank.md`.
-4. A **Coverage** section per `prep-checklist.md`.
+3. **New reusable questions appended** to `interviews/hiring-manager/question-bank.md`.
+4. A **Coverage** section per `interviews/hiring-manager/prep-checklist.md`.
 
-> Privacy: never store a real interviewer's name in generated notes — alias them by role ("the
-> hiring manager", "the panel's staff engineer"). Company-specific questions live in the
-> per-application prep files, not in the reusable bank.
+> Privacy: never store a real interviewer's name in generated notes — alias them by role
+> ("the hiring manager", "the panel's staff engineer"). Company-specific questions live in
+> the per-application prep files, not in the reusable bank.

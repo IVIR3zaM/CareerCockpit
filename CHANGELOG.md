@@ -16,6 +16,44 @@ Versioning is [semantic](https://semver.org/): `MAJOR.MINOR.PATCH`.
 
 ---
 
+## [1.1.0] — 2026-07-31
+
+**New capabilities**
+
+- **Workflow skills** (`.claude/skills/`) — the heavy procedures moved out of the always-on
+  manual into six on-demand skills that load only when their task starts:
+  `new-application`, `tailored-cv`, `interview-prep`, `interview-question-generator`,
+  `story-elicitation`, `interview-debrief`.
+- **Four new Golden Rules**, each backed by a mechanical gate rather than a principle to
+  remember: **#10** answer-intent (every application/screening answer must hit the signal the
+  reader is fishing for), **#11** role-fit positioning (lead with what the role is about, not
+  your most impressive work — enforced by a 15-line squint test), **#12** the
+  repeat-applicant gate (never re-apply into a prior rejection blind), **#13** a mandatory
+  root-cause post-mortem on **every** rejection, including silent CV-screen ones.
+- **CV page-budget renderer** (`styles/cv-build.mjs`, now behind `npm run cv:pdf`) — reports
+  the PDF's true page count plus exactly how many bullet lines to cut and where the weight
+  is, so a long CV is fixed in one pass instead of a dozen render-and-guess rounds. Finds
+  system Chrome automatically on macOS/Linux/Windows. `npm run cv:pdf:raw` is the old bare
+  command.
+- **New settings** captured during onboarding: comp floor, target-role filter, discipline/
+  level, and whether you manage people — read by the application and prep workflows.
+
+**Changes to review**
+
+- **`profile/preferences.md` is now settings only**, and the reasoning moved to a new
+  **`profile/decisions.md`**. Preferences is loaded every session, so keeping it to a
+  scannable table (and the growing rationale out of it) keeps every prompt cheaper. Your
+  existing values are untouched; the update only adds the new file.
+- **`interviews/question-generator.md` became the `interview-question-generator` skill.**
+  If you edited that file, the update keeps it and asks before migrating your additions.
+- **Onboarding is ~45% smaller and much cheaper per turn.** `CHECKLIST.md` is now the entry
+  point (state + protocol in one place), `ONBOARDING.md` holds only the rationale, and the
+  step docs no longer restate the Golden Rules or the protocol — so a normal onboarding turn
+  reads roughly a third of what it used to. Step 8 gained its own doc; Steps 8 and 9 now
+  delegate to the skills. **Your tick state is preserved.**
+
+---
+
 ## [1.0.0] — 2026-07-23
 
 First public release.

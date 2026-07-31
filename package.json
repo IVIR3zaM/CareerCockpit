@@ -3,7 +3,8 @@
   "private": true,
   "description": "Markdown → PDF pipeline for tailored CVs. See styles/README.md for usage, the cross-platform Chrome path, and why versions are pinned.",
   "scripts": {
-    "cv:pdf": "PUPPETEER_EXECUTABLE_PATH=\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" md-to-pdf --stylesheet styles/cv.css"
+    "cv:pdf": "node styles/cv-build.mjs",
+    "cv:pdf:raw": "PUPPETEER_EXECUTABLE_PATH=\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" md-to-pdf --stylesheet styles/cv.css"
   },
   "devDependencies": {
     "md-to-pdf": "5.2.4",
