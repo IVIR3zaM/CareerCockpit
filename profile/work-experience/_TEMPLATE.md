@@ -31,6 +31,15 @@ tags: [ ]                      # domains/skills for JD matching, e.g. [platform,
 <!-- Architecture, tech, or craft decisions you owned or influenced. -->
 - TODO(user)
 
+## Distributed / ways of working
+<!-- Where the team actually sat and how that shaped the work. Interviewers ask this at nearly
+     every company now (question-bank Q49), and it cannot be improvised — it's a fact, not a
+     narrative. Record: which sites/countries, the rough timezone spread, co-located vs. hybrid
+     vs. fully remote, and the MECHANISMS that made it work (written decisions, the meeting
+     cadence, overlap hours, how escalation and on-call crossed sites). Note plainly where the
+     setup was informal — that's a legitimate answer; inventing a policy is not. -->
+- TODO(user)
+
 ## How success was measured
 <!-- The operating system of the role — interviewers probe this hard.
      If there were NO formal OKRs/KPIs (e.g. early startup, pre-PMF), say so explicitly

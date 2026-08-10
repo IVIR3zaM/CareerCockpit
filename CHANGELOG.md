@@ -16,6 +16,87 @@ Versioning is [semantic](https://semver.org/): `MAJOR.MINOR.PATCH`.
 
 ---
 
+## [1.3.0] — 2026-08-10
+
+**New capabilities** — questions that showed up in real rounds and weren't in the engine yet.
+Every one is gated by the **target role**, per the ⭐ rule in `CLAUDE.md`.
+
+- **10 new questions in `interviews/hiring-manager/question-bank.md`**, each with the trap that
+  makes it fail and, where the bar differs by level, both versions:
+  - **Q14b / Q14c ⟨senior IC and up⟩** — influencing **what** got built (not just how), and
+    reconciling conflicting **non-engineering** stakeholders. *"We collaborated closely with
+    Product"* does not answer either one.
+  - **Q44** — *the best person you've worked with, someone else in your top five, and the
+    difference.* Two fatal traps: telling a **growth story** (the question asks what the
+    *absolute best* looks like) and a vanilla virtue list.
+  - **Q45** — *the most recent thing you built or shipped.* For a **lead** target it probes
+    hands-on honesty and a small real thing with stated limits scores well; for an **IC** target
+    it's the core of the round.
+  - **Q46** — *communicating a difficult decision or change of direction.* The bar is the
+    **mechanism** by which people came with you; a story ending in regret or attrition belongs
+    to "tell me about a failure" instead.
+  - **Q47 + Q50** — a new **AI in the workflow** section, deliberately in **two halves**:
+    capability (*make a small team ship like 3×*) and **measurement** (*we spent on AI and the
+    KPIs didn't move — why?*). The second is the successor to "how do you use AI", is asked by
+    whoever owns the spend, and **reads like a tooling question while being a measurement
+    question** — the answer diagnoses (which KPIs, three readings not two; the bill's
+    denominator; the human-review ceiling) before it prescribes.
+  - **Q48** — **the step-up question**, which fires whenever the target role is broader than the
+    user's current scope (IC→first lead, senior→staff, EM→head/VP, one function→several). Answer
+    **as an owner** for functions never personally practised, not as a practitioner.
+  - **Q49** — remote / **distributed** ways of working: expect it nearly everywhere, answer with
+    mechanism rather than preference, and treat missing site/timezone facts as a `TODO(user)`
+    rather than something to improvise.
+  - **Q34b** — the standing question to **ask them**: which success/team-health metrics this team
+    actually follows. Asked early, while the answer can still change the user's decision.
+  - **Q22** now carries the two ways an ambiguity answer fails.
+- **3 new sharpness probes** (`sharpness-probes.md`, still **management/lead rounds only**):
+  **§5.6** the highest-ambiguity *decision* — with the two failure shapes, including the common
+  one of answering with a method for **reducing** the unknown (shrinking uncertainty is not
+  deciding under it, and that's a different question); **§5.7** pushing back **upward**, distinct
+  from the sideways and downward versions already there; **§6.6** how AI changed the way the team
+  works — a workflow with a named bottleneck, not a tool list. Plus the *high performer **or** low
+  performer* variant at §1.2, new recall-card rows, and a third kind of gap in §9 (**missing
+  story types** — in-team disagreement, real ambiguity, upward pushback — which a paraphrase of a
+  cross-team story does not cover).
+- **🚨 A first round is not soft** (`sharpness-probes.md` §7). Talent partners and recruiters do
+  run these probes — sometimes several of them, with no comp conversation at all. The
+  level/coherence table is now labelled the **floor**, not the ceiling, and a round-1 prep plan
+  is built for depth.
+- **Three new coverage rows** in `prep-checklist.md`, so none of this can be silently skipped:
+  **delivery predictability** (decoded: when a scaling company says "predictability" it usually
+  means *they've been missing dates* — measure before process), **AI ROI & measurement** (the
+  capability row does not cover it), and a **delivery gate** on how answers land — headline
+  first, say the motivation out loud, and the **concern-coverage check**: when an interviewer
+  names what they care about, that *is* the rubric, so write it down live and confirm every item
+  before the call ends. Also new rows for bar calibration + hands-on recency, distributed ways of
+  working, and product influence / stakeholder management.
+- The **`interview-question-generator`** skill generates all of the above, so they appear in the
+  candidate list before the bank is ever opened.
+- **New `## Distributed / ways of working` section** in `profile/work-experience/_TEMPLATE.md` —
+  Q49 asks for a **fact** (which sites, what timezone spread, which mechanisms), and there was
+  nowhere in the engine for that fact to live, which is exactly how the question gets improvised.
+  Existing role files are untouched; add the section when you next fill one in.
+
+**Updating to this release**
+
+- **Your data is untouched.** This release only adds engine questions, probes, checklist rows and
+  one template section. No file is renamed, split or deleted, and no setting of yours changes.
+- ⚠️ **If you've been adding your own questions from real interviews, expect id collisions** —
+  1.3.0 claims **Q44–Q50**, checklist rows **21–23** and probes **§5.6/§5.7/§6.6**, and those are
+  exactly the numbers a user's own additions land on. The update matches entries **by what they
+  ask, not by their number**, keeps your numbering, and appends an upstream entry under a free id
+  when yours is taken — because `answers.md` and your prep plans cite those numbers. See the
+  `1.2.0 → 1.3.0` block in [`UPDATE.md`](UPDATE.md).
+- **One optional offer:** the new `## Distributed / ways of working` template section only pays
+  off once the fact is in your real role files. The update offers to append the empty section to
+  each — an empty section only, never an inferred site or timezone. Decline and Q49 simply shows
+  up as a `TODO(user)` at your next prep.
+- Your **§8 recall card and §9 gap table stay yours** — the new probes are added, but their
+  placeholder card rows are not pasted over an armed card.
+
+---
+
 ## [1.2.0] — 2026-08-10
 
 **New capabilities**

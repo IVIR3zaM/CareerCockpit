@@ -91,8 +91,21 @@ a fixed script — phrase them naturally and add level-appropriate depth.
 - A time you influenced an outcome without formal authority. _(influence-without-authority)_
 - The hardest problem you've worked on and how you approached ambiguity. _(ambiguity)_
 - What would you do in your first 30/60/90 days? _(planning)_
-- Questions you have for us. _(always prep 3–4 sharp ones)_
+- Questions you have for us. _(always prep 3–4 sharp ones — including the standing one: **which
+  success / team-health metrics does this team actually follow?** Q34b)_
 - Current-trends view in your field + one concrete personal example. _(e.g. AI in the workflow)_
+- **The most recent thing you built/shipped, and why.** _(Q45 — for a lead target this probes
+  whether they're still hands-on and an honest limit scores fine; for an IC target it's the core
+  of the round and must go deep.)_
+- **The best person you've worked with in your discipline, someone else in your top five, and the
+  difference.** _(Q44 — bar calibration. ⚠️ Not a growth story, and not a virtue list.)_
+- **Remote / distributed ways of working.** _(Q49 — expect it nearly everywhere. Answer with
+  mechanism, not preference. Evidence lives in `profile/work-experience/`; if the sites and
+  timezone spreads aren't recorded there, this is a `TODO(user)`, not an improvisation.)_
+- **The step-up question** — *"this role owns more than you own today; can you do it?"* _(Q48 —
+  generate it whenever the **target** role is broader or more senior than the user's current
+  scope: IC→first lead, senior→staff, EM→head/VP, one function→several. Answer as an **owner**
+  for functions never personally practised, not as a practitioner.)_
 
 ### IC-technical — software
 - System design for the level (component vs service vs multi-region/global scale). _(system-design)_
@@ -131,6 +144,14 @@ a fixed script — phrase them naturally and add level-appropriate depth.
 - Delivering a critical project under a tight deadline. _(delivery-under-pressure)_
 - Managing tech debt vs feature pressure. _(prioritization)_
 - Designing a process/policy/standard, especially cross-functional. _(strategy, quality-bar)_
+- **Communicating a difficult decision or a change of direction so people come with you.** _(Q46 —
+  the bar is the mechanism, not the decision. ⚠️ Never use a story ending in regret/attrition
+  here; that belongs to "tell me about a failure".)_
+- **Delivery predictability** — how you make dates trustworthy. _(delivery-predictability. Fires
+  at any scaling, sales-driven or commitment-heavy company; when they say "predictability" they
+  usually mean **they've been missing dates**, not uptime. Order: measure first — cycle time,
+  date-hold rate, where work waits — then the process change the data justifies, then the
+  two-sided payoff (trustworthy dates out, a defensible "not this quarter" in).)_
 
 ### People leadership & growth ⟨manages-people⟩
 - Giving someone difficult feedback. _(difficult-feedback)_
@@ -149,9 +170,19 @@ a fixed script — phrase them naturally and add level-appropriate depth.
 - Conflict with a peer or cross-functional partner. _(cross-functional)_
 - Saying no / pushing back on a stakeholder. _(prioritization)_
 - A time you were criticized or blamed and turned it around. _(conflict)_
+- **Influencing the roadmap** — changing *what* got built or its priority, and how you persuaded
+  the decision-maker. _(Q14b, product-influence. "We collaborated closely with Product" does not
+  answer it; name what changed and who had to be moved. Prefer an example where the change
+  landed **outside** the user's own team — thin cross-team influence is a common senior+
+  rejection reason.)_
+- **Conflicting demands from several non-engineering stakeholders** (Product vs Compliance vs Ops)
+  and how you reached a shared outcome. _(Q14c, stakeholder-management)_
 
 ### Strategy, scope & ambiguity (staff/lead and up)
-- Operating in a highly ambiguous situation. _(ambiguity)_
+- Operating in a highly ambiguous situation. _(ambiguity. ⚠️ Two failure shapes to warn about in
+  the plan: describing an ambiguous *environment* answers "how often", not "which one"; and a
+  method for **reducing** the unknown before committing answers a different question — shrinking
+  uncertainty is not deciding under it.)_
 - Setting technical or organizational strategy. _(strategy)_
 - Scaling/restructuring a team or org. ⟨manages-people⟩ _(scaling-team)_
 - Aligning multiple teams toward a shared goal. _(cross-functional)_
@@ -168,6 +199,26 @@ a fixed script — phrase them naturally and add level-appropriate depth.
   on the right things. _(metrics, ambiguity)_
 - Setting goals for individuals and evaluating performance. ⟨manages-people⟩ _(metrics)_
 - What you report upward and how you deliver status / bad news. _(metrics, disagree-with-leadership)_
+
+### AI in the workflow — capability *and* measurement ⟨lead/manager; also staff+ IC in platform roles⟩
+> Generate **both** halves. A round that only prepped capability walks into the measurement
+> question, and at any company 12+ months into AI adoption the measurement half is the one asked.
+> For a junior/mid IC round, generate only the simple version: *"how do you use AI in your work?"*
+
+- **Capability** — how a small team ships like one several times its size. _(Q47. Mechanism from
+  the user's own practice, not enthusiasm: where AI shortens a loop · what stopped being done by
+  hand · and the one most candidates miss, **deciding what not to build**. ⚠️ Don't let
+  personal-project scale blur into an at-work claim, or an intended practice into a running one.)_
+- **How AI changed the way the team works.** _(sharpness probe §6.6 — the workflow step by step,
+  the named bottleneck, a dated next step. Label anything planned as direction, not delivered.)_
+- **⭐ Measurement / ROI** — *"we invested in AI, our teams shipped AI-driven work, and our KPIs
+  didn't move. Why?"* _(Q50. **Diagnose before prescribing.** Ask which KPIs and read the answer:
+  business KPIs flat + output rose ⇒ a **prioritization** failure; business KPIs flat + output
+  unmeasured ⇒ the metric can't see the gain; **output itself flat** ⇒ the gain is consumed
+  before it lands, human review first. ⚠️ Don't reflexively say "you're measuring the wrong
+  thing" — if they measure output and it's flat, their metric is working. Then: the bill's
+  denominator (cost per outcome), the review bottleneck, the capability side, and close on
+  outcome over output. ⚠️ No unmeasured productivity percentages.)_
 
 ### Self-awareness & philosophy
 - Hardest decision you've made in this role. _(judgment)_

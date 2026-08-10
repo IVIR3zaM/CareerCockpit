@@ -134,6 +134,12 @@ from title-holders instantly.
 - **Good:** Names the **axis** (*"strongest at turning an ambiguous ask into a scoped plan"*),
   and for the struggler: the specific gap, what you're doing, and by when.
 - **Bad:** *"Everyone's great."* / Ranking by raw output only. / Naming a struggler with no plan.
+- **Common variant — *"tell me about a high performer OR a low performer"* (offered as a
+  choice).** Taking the **low performer** is the stronger play: it's the half that tests whether
+  you manage or just administer. **Telling it as still ongoing is a feature, not a weakness** —
+  a situation that is genuinely unresolved, with the next checkpoint named, reads as real
+  management, where a tidy resolved arc often reads as rehearsed. Either way, name the **axis**,
+  not a global rating.
 - 🔒 **Privacy (Golden Rule #9):** in the repo, refer to people by role alias only — never a
   real name, in any file.
 
@@ -360,6 +366,33 @@ Hands-on and lead reqs weight this block heavily.
 - **Bad:** *"It depends"* with no follow-through. / Choosing quality without acknowledging the
   debt you just took on.
 
+### 5.6 "What's the highest-ambiguity problem you've faced?" ⭐⚠️
+- **Signal:** Can you make progress and **commit** when nobody can tell you what "right" looks
+  like? The probe is about a *decision*, not about tolerance for messiness.
+- **Good:** **One** decision. What was unknown *and unknowable at the time* · what you decided
+  anyway · what it cost · how the ending actually went (including if you were later overruled —
+  tell that straight; it scores better than a tidy win).
+- **Bad — two failure shapes, and both are extremely common:**
+  - *"Most of my work is ambiguous"* / describing an ambiguous **environment**. That answers
+    **how often**, not **which one**. The interviewer wanted a story and got a self-assessment.
+  - Answering with a method for **reducing** the unknown before committing. That is the honest
+    answer to *"how do you commit to a date when you don't know the work?"* — **a different
+    question.** Shrinking uncertainty is not deciding under it, and this probe wants the second.
+- 💡 The deep-STAR twin is `question-bank.md` **Q22/Q26**; the same two failure shapes are
+  flagged there.
+
+### 5.7 "When did you last push back on higher leadership and change direction?" ⭐
+*(Distinct from §3.1 and §5.3, which are sideways or downward. This one is **upward**, where the
+cost of being wrong is yours.)*
+- **Signal:** Do you have a spine *and* a method? They're checking you neither roll over nor
+  freelance around your own leadership.
+- **Good:** What leadership believed and **why that was reasonable from where they sat** · what
+  you knew that they didn't · how you raised it (the forum, the artifact, who you brought) · the
+  outcome, including what you conceded.
+- **Bad:** A story where leadership was simply stupid — that reads as a future problem for the
+  person interviewing you. / "Pushback" that was really just voicing an opinion and complying. /
+  Going around them rather than to them.
+
 ---
 
 ## §6. Do you have a model, or just experience?
@@ -399,12 +432,33 @@ Hands-on and lead reqs weight this block heavily.
 - **Good:** The timeline, what nearly went wrong, your role — **including where you were slow.**
 - **Bad:** A summary that could have been written from the changelog.
 
+### 6.6 "How has AI changed the way your team works?" ⭐
+- **Signal:** Do you have a **model** of AI in your craft, or a subscription? The tell is whether
+  you can describe a **workflow with a named bottleneck**, versus listing tools.
+- **Good:** The actual sequence, step by step, with the constraint you've hit and a **dated next
+  step.** Concrete beats visionary here. Naming the ceiling honestly (*"while a human reviews
+  every line, human review is the bottleneck"*) is what separates a practitioner from an
+  enthusiast.
+- **Bad:** Tool names (*"we use Copilot/Claude"*). / A productivity percentage you can't source. /
+  Describing the ambition as if it shipped.
+- ⚠️ **Fact guards (Golden Rule #2):** label anything planned as **scheduled/direction, not
+  delivered**, and never quote a productivity number that was never measured.
+- 💡 **This is the capability half only.** The measurement half — *"we spent on AI and the KPIs
+  didn't move"* — is `question-bank.md` **Q50**, and at a company already invested in AI it is
+  the half that gets asked. Prep both.
+
 ---
 
 ## §7. The recruiter / talent-screen variants (different bar, same trick)
 
-Recruiters and talent partners don't test depth — they test **coherence and level**. Failure
-here is almost never technical; it's a level mismatch or a rambling answer.
+> 🚨 **Never assume round 1 is soft.** A talent partner or recruiter **can and does run the
+> probes in this file** — §1.2 (performers), §5.6 (ambiguity), §5.7 (upward pushback), §6.3
+> (how you know the team is doing well), §6.6 (AI) — with **no comp or logistics discussion at
+> all.** Prep a first round as a **depth** round; the level/coherence table below is the
+> **floor**, not the ceiling. Treating it as logistics-only is how a screen gets lost.
+
+Recruiters and talent partners **often** test coherence and level rather than depth — but they
+may test both. Failure at this round is usually a level mismatch or a rambling answer.
 
 | Question | What they're checking | Fail mode |
 |---|---|---|
@@ -447,6 +501,10 @@ to one screen — it's a recognition index, not a script.)*
 | Your bar for talent / level boundaries (§6.1) | `TODO(prep)` |
 | An incident or a control gap (§3.4) | `TODO(prep)` |
 | Conflict, in-team (§3.2) and cross-team | `TODO(prep)` |
+| Pushing back **up** at leadership (§5.7) | `TODO(prep)` |
+| The highest-ambiguity decision (§5.6) | `TODO(prep)` |
+| How you know the team is doing well (§6.3) | `TODO(prep)` |
+| AI in the workflow (§6.6) | `TODO(prep)` |
 | Explaining the system simply (§4.1) | the scripted line — say it, then stop |
 
 **Opening fact, always:** `TODO(prep)` — the one-line scope sentence, weighted for **this**
@@ -459,12 +517,17 @@ role (§1.1, Golden Rule #11).
 *(Per-user. Starts empty. Every probe with no fact behind it lands here, and the
 `interview-prep` coverage gate surfaces it.)*
 
-Two kinds of gap, and they are not fixed the same way:
+Three kinds of gap, and they are not fixed the same way:
 
 - **Recency gaps** (§2.1, §3.4) — closed only by **doing something**, not by phrasing it
   better. A small recent instance beats a large old one.
 - **Missing numbers** (§3.3, §3.6, §6.3, §6.4) — a lookup. Get the figure, then record it in
   the relevant `profile/work-experience/` file so it's reusable.
+- **Missing stories** (§3.2, §5.6, §5.7) — the *type* of story is absent from the bank, not just
+  unpolished. These three are the usual blanks: an **in-team** disagreement (most conflict
+  stories are cross-team or upward), a decision made **under real ambiguity**, and a **genuinely
+  upward** pushback. Fix by running the `story-elicitation` skill on a real instance — a
+  paraphrase of a cross-team story does not cover the in-team probe.
 
 | # | Probe | What's missing | Kind | Status |
 |---|---|---|---|---|

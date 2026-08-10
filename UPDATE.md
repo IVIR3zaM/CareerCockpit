@@ -71,7 +71,17 @@ and your edit touch the same thing, ask one targeted question.
 | `onboarding/CHECKLIST.md` | your tick state | **re-key by step number**, not by row text — the table's columns can change between releases. Carry each step's tick **and** its notes cell onto the new row; append genuinely new steps as unchecked; never re-open a completed box |
 | `interviews/hiring-manager/question-bank.md` | questions you added | **additive** — add new upstream seed questions that aren't present; keep all of yours. **Exception:** pointer/reference lines a release rewrites (e.g. a renamed file) are updated in place, or they dangle — see *Migrations* |
 | `interviews/hiring-manager/prep-checklist.md` | rows you added from debriefs | **additive** — same as above, same pointer-line exception |
-| `interviews/hiring-manager/sharpness-probes.md` | probes you added from debriefs, your `→ **Yours:**` lines, your §8 recall card, your §9 gap table | **additive** — add new upstream probes that aren't present; **never touch §8 or §9, and never remove or reword a `→ **Yours:**` line** |
+| `interviews/hiring-manager/sharpness-probes.md` | probes you added from debriefs, your `→ **Yours:**` lines, your §8 recall card, your §9 gap **table** | **additive** — add new upstream probes that aren't present; **never touch §8, and never remove or reword a `→ **Yours:**` line**. §9 is mixed: its explanatory prose is engine and merges; its table rows are yours and never do |
+
+> **⚠️ The additive rule matches on MEANING, never on an identifier.** These three files are
+> numbered (`Q44`, row `21`, probe `§5.6`) and users add their own entries using the next free
+> number — so an upstream release and a user's own additions **routinely claim the same id for
+> different content**. Matching by id silently drops the upstream entry or creates a duplicate.
+> For every incoming entry: find the existing one that **asks the same thing**, whatever its id,
+> and merge into it; if there is none but the id is taken, append under the next free id and leave
+> a one-line comment recording the mapping. **Never renumber a user's entry** — `answers.md`,
+> prep plans and debriefs in `applications/` all cite these numbers, and a renumber orphans every
+> one of those references.
 | `applications/_archive/_index.md` | every archived row and every ledger entry | **header/scaffolding only** — refresh the intro, the warning block and the column headers; the rows and the ledger are your data and are never rewritten, reordered, or condensed |
 
 ### Tier C — **Yours** (never touch)
@@ -230,6 +240,61 @@ index until they migrate.
    are per-user and get filled during the next `interview-prep` run. Nothing to do now. If the
    user's **Target track is `IC`**, say plainly that this file is for management/lead rounds
    only and will simply never load for them.
+
+### 1.2.0 → 1.3.0
+
+1.3.0 adds **content** to three Tier-B files, so the additive rules mostly carry it. The one
+thing they **cannot** express is the hazard that makes this release worth a migration block:
+
+> 🚨 **Identifier collisions.** 1.3.0 ships **Q14b, Q14c, Q34b, Q44–Q50**, **prep-checklist rows
+> 21–23** and **sharpness-probe §5.6, §5.7, §6.6**. A user who has been logging real interviews
+> has **almost certainly used those same ids for different questions** — the bank tells them to
+> add questions as they come up, and the obvious next id after Q43 is Q44. So a plain additive
+> merge does the wrong thing twice: it either sees "Q44 exists" and **silently drops upstream's
+> Q44**, or it writes a **second Q44** and leaves the file with two.
+
+**The rule: match on the question's MEANING, never on its id — and never renumber the user's.**
+`interviews/hiring-manager/answers.md` is Tier C and keyed by `Q#`; renumbering a user's question
+silently orphans their prepared answer. So:
+
+1. **Reconcile the question bank by meaning.**
+   - For each 1.3.0 question, look for an existing entry **asking the same thing**, whatever its
+     id. Found → the user already has it: **keep their id, their wording and their notes**, and
+     only fold in the parts of the upstream note they don't have (the trap, the level split).
+     Say which of their questions you matched to which upstream one.
+   - Not found, and the upstream id is **free** → add it as shipped.
+   - Not found, but the upstream id is **taken by a different question** → keep the user's entry
+     untouched and add the upstream one under the **next free suffixed id** (`Q44` taken →
+     `Q44a`/`Q51`, following whatever suffix style the file already uses). **Record the mapping
+     in one line at the end of the section** so a later release can still find it, e.g.
+     `<!-- upstream 1.3.0 Q44 (bar calibration) lives here as Q51 — id was taken -->`.
+   - Add the header's **applicability-marker legend** (`⟨senior IC and up⟩`, the lead/staff+ marker,
+     *conditional*) if absent — the new questions reference it, and without it the markers read
+     as noise.
+2. **Same treatment for `prep-checklist.md` rows 21–23** (delivery predictability · AI ROI &
+   measurement · the delivery gate) **and for probes §5.6, §5.7, §6.6.** Match by subject, keep
+   the user's numbering, append under a free number when theirs is taken. Prep plans and debriefs
+   cite these by number — a renumber breaks every back-reference in `applications/`.
+3. **Do NOT write the new §8 recall-card rows into a filled §8.** §8 and §9 stay untouchable
+   (Tier B). Upstream's four new rows are `TODO(prep)` placeholders, and pasting placeholders into
+   a card the user has armed is a regression. Instead **say which new probes are unarmed** (§5.6
+   ambiguity, §5.7 upward pushback, §6.6 AI) so the next `interview-prep` run fills them.
+   - §9 is mixed and the distinction matters: the **explanatory prose** above its table is engine
+     — 1.3.0 adds a third kind of gap (**missing story types**) and that paragraph should be
+     merged in. The **table rows** are the user's and are never rewritten.
+4. **`profile/work-experience/_TEMPLATE.md` gains `## Distributed / ways of working`.** The
+   template is Tier A, so it refreshes on its own — but the template is not where the answer
+   lives, and **Q49 is unanswerable until the fact is in the real role files**, which are Tier C.
+   - **Offer**, as its own confirmation line item, to append the empty section with a
+     `TODO(user)` to each `profile/work-experience/<role>.md`. That is a permitted Tier-C
+     restructure: **a new empty section only — never infer or write a site, a timezone or a
+     working practice.** The user answers per role, or declines.
+   - Declined, or left as TODOs → say plainly that Q49 will surface as a `TODO(user)` at the next
+     prep rather than an improvised answer. That is the intended behaviour, not a failure.
+   - *Already has the section in every role file? Do nothing.*
+5. **Nothing else moves.** No file is renamed, split or deleted in 1.3.0, and no Tier-C **value**
+   changes. If the user declines every optional step above, the engine refresh is still complete
+   and correct — bump `VERSION` and say which offers they passed on.
 
 ---
 
