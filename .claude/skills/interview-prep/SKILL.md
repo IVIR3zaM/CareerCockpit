@@ -50,7 +50,8 @@ questions are gated on the **target role**, not the user's current job (`CLAUDE.
 prep them in full whenever the role being interviewed for manages people — **including when
 the user doesn't manage people yet and this is their first such round.** For an **IC target
 role**, lean on technical judgment, ownership, influence-without-authority, and craft instead;
-never assume a management frame.
+never assume a management frame. With no specific application in play (a general "get me
+ready"), read `profile/preferences.md` → *Target track* instead.
 
 **First-time manager?** Prep the full leadership set, then do one extra pass: for each
 question the user can't answer from real management experience, prep the **honest adjacent

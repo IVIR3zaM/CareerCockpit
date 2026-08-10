@@ -19,7 +19,8 @@
 > [`question-bank.md`](question-bank.md) instead.
 >
 > **Gate on the TARGET ROLE, not on the user's own history** (`application.md` → role/level,
-> and what the JD asks for):
+> and what the JD asks for; with no application in play, `profile/preferences.md` →
+> *Target track*):
 > - Currently an IC, applying for their **first** lead role → **the probes apply.** They will
 >   be asked, and the honest answers will be smaller-scope ones.
 > - Currently a manager, applying for an **IC** role → **the probes do not apply.** Prepping

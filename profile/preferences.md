@@ -18,6 +18,7 @@ from here). Per Golden Rule #8, the repo is the source of truth — never agent 
 | **CV theme** | `blue` *(default)* — `blue` \| `extracted-from-cv` | Step 3 |
 | **Email access** | `TODO(onboarding): granted (method) \| declined` | Step 5 |
 | **Comp floor** | `TODO(user): hard floor on base + any flex band` | Step 7 |
+| **Target track** | `TODO(onboarding): management/lead \| IC \| both` | Step 7 |
 | **Target-role filter** | `TODO(user): levels/domains to pursue or rule out` | Step 7 |
 | **Banned phrases** | *(default list in `CLAUDE.md` §4)* | Step 10 |
 
@@ -27,7 +28,15 @@ from here). Per Golden Rule #8, the repo is the source of truth — never agent 
 > Contains **no third-party personal data.** For email or contacts, record the choice and
 > method only — never message contents or a third party's real name.
 
-**Why the settings matter to a workflow:** *Manages people* gates every people-leadership
-question and story theme · *Comp floor* and *Target-role filter* drive the `new-application`
-skill's pre-apply checks · *Discipline / level* drives the `interview-question-generator`
-skill.
+**Why the settings matter to a workflow:** *Target track* decides whether leadership material
+is prepared at all when there's no specific application in play (onboarding's question set,
+the story bank, a general "get me ready") · *Manages people* says what evidence **exists**, so
+it drives honest gap-flagging — it does **not** decide what gets prepared · *Comp floor* and
+*Target-role filter* drive the `new-application` skill's pre-apply checks · *Discipline /
+level* drives the `interview-question-generator` skill.
+
+> ⭐ **Track vs. status — don't confuse them.** *Target track* is where the user is **going**;
+> *Manages people* is where they **are**. An IC targeting management gets the full leadership
+> preparation with honest gaps named (`CLAUDE.md` preamble). When a specific application is in
+> play, **the target role in `application.md` wins over both** — this setting is the fallback
+> for when there isn't one yet.

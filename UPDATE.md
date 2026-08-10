@@ -210,14 +210,26 @@ index until they migrate.
    - **Do not mark anything `ghosted` during the migration.** Ghosting is inferred, so it needs
      the user's confirmation per application; instead, report which live rows are 45+ days
      silent and offer to close them out afterwards, one at a time.
-2. **Mention the two new/tightened gates** so the user isn't surprised on their next CV or
+2. **Add the `Target track` row to `profile/preferences.md`.** Tier C, so **confirm before
+   writing** — but it is a restructure (a new empty row), never a value change:
+   - Append `| **Target track** | TODO(onboarding): management/lead \| IC \| both | Step 7 |`
+     after the *Comp floor* row. Leave every existing row exactly as-is.
+   - **Do not infer the value from their current title or from *Manages people*.** That is the
+     precise mistake this setting exists to prevent — an IC targeting their first manager role
+     and a manager returning to IC work both get the wrong preparation when it's assumed.
+   - **Tell the user what it gates and offer to set it now in one question:** *"Are you
+     targeting management/lead roles, individual-contributor roles, or both?"* If they'd
+     rather not decide now, leave the `TODO` — the workflows ask on first use. Record the
+     answer and the reasoning in `profile/decisions.md`.
+   - *Already has a `Target track` row? Do nothing.*
+3. **Mention the two new/tightened gates** so the user isn't surprised on their next CV or
    application (no action needed, nothing of theirs changes): `cv.notes.md` must now carry the
    written #11 squint-test sections or the PDF render is blocked (`tailored-cv` step 6b), and
    `new-application` gained the core-capability gate (step 6b) before a CV is built.
-3. **Point out that §8/§9 of `sharpness-probes.md` start empty** — the recall card and gap list
+4. **Point out that §8/§9 of `sharpness-probes.md` start empty** — the recall card and gap list
    are per-user and get filled during the next `interview-prep` run. Nothing to do now. If the
-   user is an **IC and targeting IC roles**, say plainly that this file is for management/lead
-   rounds only and will simply never load for them.
+   user's **Target track is `IC`**, say plainly that this file is for management/lead rounds
+   only and will simply never load for them.
 
 ---
 

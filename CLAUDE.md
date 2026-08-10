@@ -24,6 +24,10 @@ adjacent roles). Nothing here assumes a specific job title.
 >   genuinely doesn't have, **say so plainly, surface it as a gap, and prep the honest
 >   adjacent version** (mentoring and technical leadership instead of headcount and
 >   promotions) — don't quietly skip the topic *or* invent the experience.
+> - **No specific application in play** (onboarding, a general "get me ready", the story
+>   bank)? Fall back to `profile/preferences.md` → ***Target track*** (`management/lead | IC |
+>   both`). A live `application.md` always wins over it; if the track is unset, ask once and
+>   record it there.
 > - Ambiguous target (a "lead" title with no reports and no technical authority in the JD)?
 >   **Ask the user** which it is; don't guess.
 

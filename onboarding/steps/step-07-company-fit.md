@@ -45,9 +45,21 @@ already answered; sharpen a thin answer ("what would that look like day-to-day?"
 - "How much do you want to stay hands-on vs. lead/coordinate?"
 - "Team size / stage — startup scrappiness, scale-up, or big-company structure?"
 
-**D. Comp frame and target roles** *(these fill two settings — see Record below)*
+**D. Comp frame and target roles** *(these fill three settings — see Record below)*
 - "What's your comp frame — and is there a **hard floor on base** you won't go under? I'll
   record the shape; tell me if you want the actual number saved."
+- **Target track — ask this one explicitly, every time, and don't infer it from their current
+  title:**
+  > "Are you targeting **management/lead** roles, **individual-contributor** roles, or
+  > **both**?"
+
+  It decides whether leadership material gets prepared at all when no specific application is
+  in play. **The answer is often not their current job** — an IC aiming for their first
+  engineering-manager role, or a burnt-out manager going back to IC work, are both common and
+  both get the *wrong* preparation if this is assumed. If they say management/lead and Step 2
+  recorded *Manages people* = no, that is **not** a contradiction to resolve — record both,
+  and say plainly that you'll prep the full leadership set and flag honestly where they don't
+  have the experience yet (never invent it). If they're unsure, `both` is the safe value.
 - "Which levels and domains are you actually targeting — and is there anything you'd want me
   to **rule out** or automatically down-rank when I screen a role?"
 
@@ -60,9 +72,11 @@ already answered; sharpen a thin answer ("what would that look like day-to-day?"
 - "Have you written or spoken publicly about how teams should work? It's great backing for the
   'what are you looking for' answer."
 
-> **Leadership angles are gated.** "Hands-on vs. lead" and team-shape questions land hardest
-> for people who manage. If Step 2 recorded a pure IC, keep those light and centre their own
-> working conditions. Never assume a management frame.
+> **Leadership angles follow the TARGET track, not the current title.** "Hands-on vs. lead"
+> and team-shape questions land hardest for people who manage **or intend to** — so ask the
+> target-track question (block D) before deciding how deep to go. For someone targeting IC
+> work only, keep those light and centre their own working conditions. Never assume a
+> management frame, and never assume its absence either.
 
 ## 3. Write as you go, don't wait for the end
 
@@ -82,18 +96,21 @@ time, not intake — capture the raw preference plainly here.
 ## 4. Confirm (the one place batching is allowed)
 
 > "Here's your company-fit as I captured it: **Must-haves:** `<list>`. **Deal-breakers:**
-> `<list>`. **Ways of working:** `<remote/pace/hands-on>`. **Comp frame:** `<shape>`. Did I
-> get your words right, and is anything missing or too strong?"
+> `<list>`. **Ways of working:** `<remote/pace/hands-on>`. **Comp frame:** `<shape>`.
+> **Target track:** `<management-lead | IC | both>`. Did I get your words right, and is
+> anything missing or too strong?"
 
 Set `confirmed: true` in the frontmatter on sign-off.
 
 ## Record
 
 - `profile/company-fit.md` → the elicited content, `confirmed: true`.
-- `profile/preferences.md` → **Comp floor** and **Target-role filter** (the two settings the
-  `new-application` skill reads on every JD).
+- `profile/preferences.md` → **Comp floor**, **Target-role filter** (both read by the
+  `new-application` skill on every JD) and **Target track** (`management/lead | IC | both`).
 - `profile/decisions.md` → `## Company fit (Step 7)`: date, how many must-haves/deal-breakers,
-  the reasoning behind the floor and any ruled-out domains, and anything deferred.
+  the reasoning behind the floor and any ruled-out domains, **why the target track is what it
+  is** (especially when it differs from their current role — that's the interesting case), and
+  anything deferred.
 
 Deferring is allowed — record `deferred`, leave the skeleton, tick the box, and note it's thin.
 
@@ -106,7 +123,9 @@ Deferring is allowed — record `deferred`, leave the skeleton, tick the box, an
 - [ ] Third parties aliased; no employer-confidential specifics.
 - [ ] The read-back was confirmed and `confirmed: true` set (or the step was deferred and
       that's recorded).
-- [ ] **Comp floor** and **Target-role filter** are set in `preferences.md`.
+- [ ] **Comp floor**, **Target track** and **Target-role filter** are set in `preferences.md`.
+      *(Target track was **asked**, not inferred from their current title — Step 8 reads it to
+      decide whether to generate the leadership question blocks at all.)*
 
 Tick Step 7 in [`../CHECKLIST.md`](../CHECKLIST.md) noting what was captured → next is **Step
 8 (generate the interview question set)**.

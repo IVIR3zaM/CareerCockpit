@@ -58,7 +58,10 @@ question → hand off to the `story-elicitation` skill.
 
 Blocks marked **⟨manages-people⟩** are gated on **the role being interviewed for**, not on the
 user's current job (`CLAUDE.md` preamble — *the cockpit serves the role the user is going
-for*). Read the target from `application.md` and the JD:
+for*). Read the target from `application.md` and the JD; when there's **no specific
+application in play** (onboarding, a general "get me ready"), fall back to
+`profile/preferences.md` → ***Target track*** (`management/lead | IC | both`), and ask the user
+if it's unset:
 
 - **Target is a people-management role** (EM, design/product/data lead, head/director) →
   **generate these blocks in full**, whether or not the user manages people today. An IC

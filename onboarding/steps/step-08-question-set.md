@@ -8,9 +8,9 @@ list. The shipped `interviews/hiring-manager/question-bank.md` is a **seed, not 
 generation procedure. The skill is the single home for the theme blocks and the
 people-leadership gate; this doc only adds what onboarding needs.
 
-**Inputs:** **Discipline / level**, **Manages people** and the **target-role filter** from
-`profile/preferences.md` (Step 2), the *Target roles* line in `profile/basics.md`, and
-`profile/` from Step 4.
+**Inputs:** **Discipline / level** and **Manages people** (Step 2), **Target track** and the
+**target-role filter** (Step 7) — all from `profile/preferences.md` — plus `profile/` from
+Step 4.
 
 ## What onboarding adds to the generation pass
 
@@ -28,16 +28,16 @@ people-leadership gate; this doc only adds what onboarding needs.
 4. **Mark evidence gaps, don't fill them.** Map each question to a `profile/` story where one
    exists; everything unmapped becomes the **input queue for Step 9**. Do not elicit stories
    here — that's the next step, and it runs one story per re-prompt.
-5. **Respect the people-leadership gate — and read it off the TARGET roles.** The gate keys on
+5. **Respect the people-leadership gate — and read it off *Target track*.** The gate keys on
    the roles the user is **pursuing**, not the one they hold (`CLAUDE.md` preamble). There's no
-   `application.md` yet, so the target comes from *Target roles* in `profile/basics.md` and the
-   target-role filter in `preferences.md` — if those are unset or ambiguous, **ask once**:
+   `application.md` yet, so the value comes from **`profile/preferences.md` → *Target track***
+   (set in Step 7). If it's still `TODO(onboarding)`, **ask once and record it there**:
    > "Are you targeting management/lead roles, individual-contributor roles, or both?"
-   - Targeting **management/lead roles** → generate the ⟨manages-people⟩ blocks **in full**,
-     even if *Manages people* = no. This is exactly the user who needs them most, and skipping
-     them here means Step 9 never elicits a single leadership story.
-   - Targeting **IC roles only** → skip those blocks; no hiring/firing/PIP questions.
-   - **Both** → generate both sets and say which questions belong to which track.
+   - **`management/lead`** → generate the ⟨manages-people⟩ blocks **in full, even if *Manages
+     people* = no.** That user needs them most, and skipping here means Step 9 never elicits a
+     single leadership story — the gap then shows up in the round instead.
+   - **`IC`** → skip those blocks; no hiring/firing/PIP questions.
+   - **`both`** → generate both sets and label which questions belong to which track.
    Where the user has no management experience to answer a generated question, that is an
    **evidence gap for Step 9**, not a reason to drop the question (step 4 above).
 

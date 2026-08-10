@@ -72,6 +72,12 @@ Versioning is [semantic](https://semver.org/): `MAJOR.MINOR.PATCH`.
   - The reverse also holds: a manager targeting an **IC** role no longer gets management
     material pushed at them, which was quietly feeding the Golden Rule #11 over-leveling
     failure.
+  - **New setting: `Target track`** (`management/lead | IC | both`) in
+    `profile/preferences.md`, asked outright in onboarding's Step 7 — never inferred from your
+    current title. A live application's target role always wins over it; the setting is what
+    the workflows read when there's no application in play (onboarding's question set, the
+    story bank, a general "get me ready"). The update adds the row as an unset `TODO` and
+    offers to fill it in one question.
 - **Golden Rule #11 now gates your written answers too** — `CLAUDE.md` §2.2b gained a sixth
   check. The screener reads your CV *and* your free-text answers in one sitting, so a
   positioning gate that only ran on the CV left the answers as an open door to the same
