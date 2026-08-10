@@ -71,6 +71,8 @@ and your edit touch the same thing, ask one targeted question.
 | `onboarding/CHECKLIST.md` | your tick state | **re-key by step number**, not by row text — the table's columns can change between releases. Carry each step's tick **and** its notes cell onto the new row; append genuinely new steps as unchecked; never re-open a completed box |
 | `interviews/hiring-manager/question-bank.md` | questions you added | **additive** — add new upstream seed questions that aren't present; keep all of yours. **Exception:** pointer/reference lines a release rewrites (e.g. a renamed file) are updated in place, or they dangle — see *Migrations* |
 | `interviews/hiring-manager/prep-checklist.md` | rows you added from debriefs | **additive** — same as above, same pointer-line exception |
+| `interviews/hiring-manager/sharpness-probes.md` | probes you added from debriefs, your `→ **Yours:**` lines, your §8 recall card, your §9 gap table | **additive** — add new upstream probes that aren't present; **never touch §8 or §9, and never remove or reword a `→ **Yours:**` line** |
+| `applications/_archive/_index.md` | every archived row and every ledger entry | **header/scaffolding only** — refresh the intro, the warning block and the column headers; the rows and the ledger are your data and are never rewritten, reordered, or condensed |
 
 ### Tier C — **Yours** (never touch)
 Everything containing your career data. An update never reads these for overwrite.
@@ -80,6 +82,8 @@ Everything containing your career data. An update never reads these for overwrit
 - `profile/work-experience/*.md` (real roles — every non-`_TEMPLATE` file)
 - `profile/projects/*.md`, `profile/stories/*.md`, `profile/stories/_index.md`
 - `applications/_index.md` and every real `applications/<company-role>/**`
+- `applications/_archive/<company-role>/**` — archived applications are **read-only history**;
+  an update never touches them, not even to repair a link
 - `interviews/company-research/*.md` (real research — every non-`_TEMPLATE` file)
 - `interviews/hiring-manager/answers.md` (your prepared answers)
 
@@ -175,6 +179,45 @@ Run these **in order**, before the per-tier pass:
    Blue theme, so its "cut ~N bullet lines" advice will be off until re-calibrated. Record a
    `TODO(user)` and offer to re-calibrate on the next CV render (the constant is commented
    with how).
+
+### 1.1.0 → 1.2.0
+
+One migration, and it restructures Tier-C data — so it is **shown as its own line item and
+run only after an explicit yes.** If the user declines, the engine refresh still applies; say
+plainly that the archive stays empty and every history check will keep reading only the active
+index until they migrate.
+
+1. **Archive the closed applications** (Golden Rule #14, `CLAUDE.md` §2.5).
+   - *Already migrated?* If `applications/_archive/` exists **and** no row in
+     `applications/_index.md` carries a terminal status, do nothing and say so.
+   - Create `applications/_archive/_index.md` from the 1.2.0 skeleton if it isn't there.
+   - **Identify** every row in `applications/_index.md` whose status is `rejected`,
+     `withdrawn`, or `not applied — skipped`. **List them for the user before moving
+     anything** — company, role, status, date. This is their data changing shape.
+   - **Move each folder with `git mv`** (never copy-and-delete — `git mv` preserves history):
+     `git mv applications/<slug> applications/_archive/<slug>`.
+   - **Move each row verbatim** into the archive table. **Do not condense, re-word, trim or
+     re-order a row** — the row *is* the record. Rows with no folder (applications that
+     pre-date the repo) move too; there is simply nothing to `git mv`.
+   - **Repair links, mechanically only:** bump repo-relative links *inside* a moved row and
+     inside `applications/_archive/_index.md` by one level (`../profile/…` →
+     `../../profile/…`), and repoint inbound links from `profile/`, `interviews/` and the
+     skills (`applications/<slug>/…` → `applications/_archive/<slug>/…`). Do **not** edit any
+     other content of an archived file — it is read-only history from now on.
+   - **Seed the failure-class ledger** at the top of the archive index **only from post-mortems
+     already written**. A rejection with no diagnosis on file is listed as *undiagnosed* —
+     **never guess a class retroactively.**
+   - **Do not mark anything `ghosted` during the migration.** Ghosting is inferred, so it needs
+     the user's confirmation per application; instead, report which live rows are 45+ days
+     silent and offer to close them out afterwards, one at a time.
+2. **Mention the two new/tightened gates** so the user isn't surprised on their next CV or
+   application (no action needed, nothing of theirs changes): `cv.notes.md` must now carry the
+   written #11 squint-test sections or the PDF render is blocked (`tailored-cv` step 6b), and
+   `new-application` gained the core-capability gate (step 6b) before a CV is built.
+3. **Point out that §8/§9 of `sharpness-probes.md` start empty** — the recall card and gap list
+   are per-user and get filled during the next `interview-prep` run. Nothing to do now. If the
+   user is an **IC and targeting IC roles**, say plainly that this file is for management/lead
+   rounds only and will simply never load for them.
 
 ---
 

@@ -51,6 +51,11 @@ Trigger: *"make a CV for this"*.
      Don't collapse a single role into a block either — that's just a worse-formatted entry.
      **After writing any CV, read the dates top-to-bottom and confirm each role starts
      on/before the previous one ends.**
+   🗄️ **Looking up a past CV as precedent?** Closed applications are archived (Golden Rule
+   #14): prior `cv.md` / `cv.notes.md` for **rejected, withdrawn or ghosted** roles live under
+   `applications/_archive/<slug>/`, not `applications/<slug>/`. Search **both** — most of the
+   useful precedent (and every CV that *lost*, which is the more instructive half) is in the
+   archive. Archived CVs and notes are **read-only**; never edit one to "fix" it.
 4. Write the tailored CV to `applications/<...>/cv.md` using `templates/cv-template.md`,
    **following its heading/inline conventions exactly** — they drive `styles/cv.css`, which
    renders the user's chosen theme. Every generated CV must look like that theme. Keep to
@@ -91,6 +96,30 @@ Trigger: *"make a CV for this"*.
      rather than a judgment call. Same gate applies to the cover letter's opening.
 6. Note *why* each big choice was made in `cv.notes.md` (traceability) — including the core
    mandate line, the level-delta verdict, and anything the two gates made you change.
+6b. **`cv.notes.md` must carry the #11 gate's written output — a CV whose notes lack it is NOT
+   BUILT (MANDATORY).** Steps 2 and 5b are the only gates here that can pass *silently*: the
+   JD-echo gate leaves a scrub list and the timeline check leaves a date read-out, but "the
+   squint test looked fine to me" leaves **nothing** — so a CV where #11 was **skipped** is
+   indistinguishable from one where it **passed**. The fix is that the gate must produce an
+   artifact. `cv.notes.md` must contain these **two literal sections**:
+
+   ```markdown
+   ## Core mandate & level-delta (GR#11 pre-write, step 2)
+   Core mandate: This role's core mandate is ___, at ___ level.
+   Level-delta vs. current role: [SAME / TARGET IS NARROWER — RISK / target is broader]
+   → Facet of the current role I will expand FIRST: ___
+
+   ## 15-line squint test (GR#11 read-back, step 5b)
+   First bullet of the current role, quoted verbatim: "___"
+   A stranger reading only the summary + this would classify me as: ___
+   Matches the core mandate? [YES / NO → re-weighted, new first bullet: "___"]
+   ```
+
+   Rules: **quote the first bullet verbatim** — paraphrasing it is how the gate gets
+   rubber-stamped. If the level-delta line says **RISK**, the squint-test verdict must be an
+   explicit YES, never a blank. **Do not render the PDF (step 7) until both sections exist and
+   are filled.** When revising an existing CV, re-run and re-record both — they are per-CV,
+   not per-role.
 7. Offer to render a PDF (→ the pipeline below).
 
 ---

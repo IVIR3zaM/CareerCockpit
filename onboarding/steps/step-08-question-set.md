@@ -8,8 +8,9 @@ list. The shipped `interviews/hiring-manager/question-bank.md` is a **seed, not 
 generation procedure. The skill is the single home for the theme blocks and the
 people-leadership gate; this doc only adds what onboarding needs.
 
-**Inputs:** **Discipline / level** and **Manages people** from `profile/preferences.md` (Step
-2), and `profile/` from Step 4.
+**Inputs:** **Discipline / level**, **Manages people** and the **target-role filter** from
+`profile/preferences.md` (Step 2), the *Target roles* line in `profile/basics.md`, and
+`profile/` from Step 4.
 
 ## What onboarding adds to the generation pass
 
@@ -27,8 +28,18 @@ people-leadership gate; this doc only adds what onboarding needs.
 4. **Mark evidence gaps, don't fill them.** Map each question to a `profile/` story where one
    exists; everything unmapped becomes the **input queue for Step 9**. Do not elicit stories
    here — that's the next step, and it runs one story per re-prompt.
-5. **Respect the people-leadership gate.** If the user doesn't manage people, the
-   ⟨manages-people⟩ blocks are skipped entirely — no hiring/firing/PIP questions.
+5. **Respect the people-leadership gate — and read it off the TARGET roles.** The gate keys on
+   the roles the user is **pursuing**, not the one they hold (`CLAUDE.md` preamble). There's no
+   `application.md` yet, so the target comes from *Target roles* in `profile/basics.md` and the
+   target-role filter in `preferences.md` — if those are unset or ambiguous, **ask once**:
+   > "Are you targeting management/lead roles, individual-contributor roles, or both?"
+   - Targeting **management/lead roles** → generate the ⟨manages-people⟩ blocks **in full**,
+     even if *Manages people* = no. This is exactly the user who needs them most, and skipping
+     them here means Step 9 never elicits a single leadership story.
+   - Targeting **IC roles only** → skip those blocks; no hiring/firing/PIP questions.
+   - **Both** → generate both sets and say which questions belong to which track.
+   Where the user has no management experience to answer a generated question, that is an
+   **evidence gap for Step 9**, not a reason to drop the question (step 4 above).
 
 ## Record
 

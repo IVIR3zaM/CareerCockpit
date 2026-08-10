@@ -6,9 +6,26 @@ and write to the Markdown files described below.
 
 It works for anyone in tech at any level — junior/senior IC, staff, lead, engineering
 manager, head/director — across disciplines (software, design, product, data, infra, and
-adjacent roles). Nothing here assumes a specific job title. Sections about **people
-leadership** apply **only if the user manages people**; treat them as optional and skip them
-for individual contributors.
+adjacent roles). Nothing here assumes a specific job title.
+
+> **⭐ The cockpit serves the role the user is GOING FOR, not the one they hold.** Every
+> level/discipline gate in this repo — the `⟨manages-people⟩` markers on question blocks and
+> checklist rows, the sharpness probes, the prep plan's shape — reads the **target role of the
+> application or round**, taken from `application.md` and the JD. The user's own current
+> status (`profile/preferences.md` → *Manages people*, their level and discipline) decides
+> **what evidence exists**, never **what gets prepared**.
+> - An **IC applying for their first lead/manager role** gets the full leadership preparation.
+>   Skipping it because they don't manage people *today* is the single worst failure this repo
+>   can have — it withholds exactly the help they came for.
+> - A **manager applying for an IC role** does not get the management material; it is
+>   off-target and pulls them toward over-leveling (Golden Rule #11).
+> - **This is preparation, never fabrication.** Prep to the target, but every answer still
+>   traces to real experience (#1, #2, #7). Where the target role expects evidence the user
+>   genuinely doesn't have, **say so plainly, surface it as a gap, and prep the honest
+>   adjacent version** (mentoring and technical leadership instead of headcount and
+>   promotions) — don't quietly skip the topic *or* invent the experience.
+> - Ambiguous target (a "lead" title with no reports and no technical authority in the JD)?
+>   **Ask the user** which it is; don't guess.
 
 Everything is **Markdown files** — no database, no build step required. Git is the source of
 truth and the audit log.
@@ -130,10 +147,15 @@ rules) are set.
     importing what the user did NOT do; #11 forbids **leading with what the user DID do that
     the JD did not ask for.** Fix it by re-weighting **within** the current role (never by
     resequencing the timeline — #3 still holds). Enforced by the **role-fit positioning gate +
-    15-line squint test in the `tailored-cv` skill**.
+    15-line squint test in the `tailored-cv` skill** — **and by §2.2b check 6 on every
+    application answer.** The CV-only version of this gate is not enough: the screener reads
+    the CV **and** the free-text answers in one sitting, so an ungated answers surface leaks
+    the same failure straight through to the same reader.
 12. **Never re-apply into a prior rejection blind.** Before building a CV, drafting answers,
-    or applying to ANY company, check for a prior application/rejection (`applications/_index.md`,
-    plus their email if access was granted). Never assume a clean slate — ATSs key candidates
+    or applying to ANY company, check for a prior application/rejection — in **both**
+    `applications/_index.md` **and `applications/_archive/_index.md`** (where every closed
+    application lives — see #14), plus their email if access was granted. Never assume a clean
+    slate — ATSs key candidates
     by email, so the reader sees a returning applicant. **Same reader + fundamentally the same
     candidate = same no.** A **structural** prior reason (seniority, tenure, domain depth) is
     not beatable by re-tailoring — don't spend a CV on it; a **fixable positioning** reason is
@@ -143,12 +165,41 @@ rules) are set.
 13. **Every rejection triggers a root-cause diagnosis — even with zero feedback.** A rejection
     is never just logged; it is **diagnosed**, so the same *type* of rejection doesn't happen
     twice. Run the **rejection post-mortem in the `interview-debrief` skill**: find the real
-    reason (marked KNOWN vs INFERRED) → **name the failure class** → **check recurrence** (a
-    class that recurs means the previous fix didn't hold — escalate) → **ship a correction,
-    not a note** (a `profile/` fix, a tightened gate, or a proposed new golden rule). The test
+    reason (marked KNOWN vs INFERRED) → **name the failure class** → **check recurrence**
+    against the **failure-class ledger in `applications/_archive/_index.md`** (a class that
+    recurs means the previous fix didn't hold — escalate) → **ship a correction, not a note**
+    (a `profile/` fix, a tightened gate, or a proposed new golden rule). The test
     for every correction: *what mechanical change makes this class hard to repeat?* **A
     principle by itself is not a fix** — #7, #10, and #11 all exist because principles get
     forgotten; prefer a gate, a read-back, or a checklist step.
+14. **A closed application is ARCHIVED — never left in place, never deleted — and every history
+    check reads BOTH indexes.** The moment an application reaches a terminal status —
+    **`rejected`, `withdrawn`, `ghosted`**, or **`not applied — skipped`** — its folder moves to
+    **`applications/_archive/<company>-<role>/`** and its `_index.md` row moves **verbatim** into
+    **`applications/_archive/_index.md`**. `applications/` then holds **only live applications**,
+    so a "status" read is the actual cockpit and not a wall of dead rows. Run it via the
+    close-out procedure in **§2.5**.
+    - **Archived ≠ forgotten. This is the dangerous half of the rule.** Golden Rules **#12**
+      (repeat-applicant gate) and **#13** (recurrence check) are powered *entirely* by past
+      rejections — and after archival **every past rejection is in the archive, not in
+      `applications/_index.md`.** Reading only the active index shows a **clean slate for a
+      company that already said no**, which is precisely the failure #12 exists to stop.
+      Therefore: **any question about application history — "have I applied here before?", the
+      #12 gate, the #13 recurrence check, "how many rejections?", "what happened with X?" —
+      MUST read `applications/_index.md` AND `applications/_archive/_index.md`.** Treat "I
+      scanned the index" as an incomplete scan unless both files were opened.
+    - **Nothing is ever deleted.** Archiving is a move, never a removal or a summarisation; the
+      row is not condensed, re-worded, or trimmed on the way in. The archive is the search's
+      memory.
+    - **Archived content is read-only history**, like a sent `cv.md`. The only permitted writes
+      to an archived application are: (a) **appending** a post-mortem/diagnosis (#13) or a later
+      recruiter reply to its `application.md`, (b) **mechanical path/link repair**, and (c)
+      **un-archiving** — if a closed application reopens (the recruiter comes back, the req
+      reposts), move the folder *and* its row back to `applications/` and set a live status.
+    - **`_archive/_index.md` carries the failure-class ledger** — the class → occurrences table
+      that answers #13's recurrence check. Every post-mortem that names a class adds its
+      occurrence there in the same edit, so recurrence is visible at a glance instead of being
+      reconstructed from dozens of rows.
 
 ---
 
@@ -167,23 +218,33 @@ full step-by-step (including the mandatory read-back gates) lives inside them:
 | wants to get ready for an interview | **`interview-prep`** | company/interviewer research, time-boxed plan, behavioral/STAR prep, coverage gate |
 | is prepping a round and needs the question set | **`interview-question-generator`** | discipline/level/round-aware generation (invoked by `interview-prep`); the bank is a seed, not the ceiling |
 | tells a story, or wants to add / refine one | **`story-elicitation`** | full STAR, quantified, and the **learning** captured after confirmation → `profile/stories/` + `answers.md` |
-| reports how an interview went, OR any rejection (incl. silent CV-screen) | **`interview-debrief`** | interview debrief + rejection post-mortem (#13) |
+| reports how an interview went, OR any rejection (incl. silent CV-screen) | **`interview-debrief`** | interview debrief + rejection post-mortem (#13), then hands off to the §2.5 close-out |
 
-The three workflows below **stay always-on in this file** — they trigger on unpredictable,
+The four workflows below **stay always-on in this file** — they trigger on unpredictable,
 conversational moments a skill description could miss (a stray form question, an offhand "oh,
-I also did X"), and one is a safety-critical gate that must never be a maybe-load.
+I also did X", a passing "yeah, I dropped that one"), and two are safety-critical gates that
+must never be a maybe-load.
 
 ### 2.0 Session start & "status" (user experience)
 Keep the experience **smooth and low-friction**:
 
 - **At the start of every session** (and whenever the user says "status" / "where are we"),
   open with a short **cockpit status** — no preamble, ≤10 lines:
-  1. Active applications + stage + next interview/deadline (from `applications/_index.md`).
+  1. Active applications + stage + next interview/deadline (from `applications/_index.md`,
+     which holds **only** live applications — Golden Rule #14).
   2. Top 3 open `TODO(user)` items, most urgent first (urgent = blocks an upcoming interview
      or CV).
   3. One suggested next action.
   - **If the repo isn't onboarded yet** (see §0), the status is simply that — point the user
     to onboarding instead of showing an empty cockpit.
+- **Two cheap checks while you're in the index** (stay silent unless they fire):
+  - **Archive drift** — any row in `applications/_index.md` whose status is `rejected`,
+    `withdrawn`, `ghosted`, or `not applied — skipped` was never closed out. Run §2.5 on it.
+  - **Ghosting sweep** — any row silent **45+ days** since the last contact, with no scheduled
+    next step, is a `ghosted` candidate. Name them and **ask** before closing (§2.5 step 0).
+- **Any history question reads BOTH indexes** — "have I applied to X?", "how many rejections?"
+  — the active one *and* `applications/_archive/_index.md`. The active file alone will say
+  "never applied" about a company that already rejected the user (Golden Rule #14).
 - **Don't make the user learn the repo.** They speak naturally; you find and route the files.
   Never ask "which file should I put this in".
 - **Batch your questions.** When you need facts, ask them as one grouped list at the end of
@@ -221,9 +282,25 @@ For **each** question, before the set ships, run these five checks and record th
    minute than repeat a rejection.
 5. **Cross-reader check.** If this is a repeat application to the same company/reader, verify
    the answer isn't re-running a pitch shape that already failed (read the status log / prior
-   answers). Same reader + same shape = same no.
+   answers). Same reader + same shape = same no. 🗄️ **The prior application is almost certainly
+   in `applications/_archive/<slug>/` — that is where rejections live (Golden Rule #14)**; a
+   check that only looked in `applications/` did not run.
+6. **Role-fit positioning — Golden Rule #11 applies to ANSWERS, not just the CV.** The screener
+   reads the CV **and** the free-text answers in one sitting; a #11 gate that lives only in the
+   `tailored-cv` skill leaves the answers as an **ungated surface into the same reader**. For
+   every answer ask: **does this lead with a broader or more senior facet than the target role
+   asked for?** Especially the **first** answer, and especially when the role is **narrower or
+   more junior than the user's current scope**:
+   - **Lead with the JD-matching facet** — put the on-target fact in the **first clause**, not
+     buried mid-sentence.
+   - Bigger scope may be **present but not the headline** — the same re-weighting rule as the CV.
+   - A question that *invites* breadth does **not** license leading with the broadest version of
+     the user's scope. Answer the breadth honestly, but frame it from the level the role is
+     hiring at.
+   - **Comp answers:** never quote current total comp; state the user's floor from
+     `profile/preferences.md` and hand the band question back.
 
-Only when all five pass for **every** question is the set ready to submit. Offer the user the
+Only when all **six** pass for **every** question is the set ready to submit. Offer the user the
 one-line signal + evidence rationale per question so they can sanity-check before sending.
 
 ### 2.4 Intake a new experience / project ("router")
@@ -247,6 +324,51 @@ When the user tells a story — or wants to add or refine one — use the **`sto
 skill: it draws out full STAR, quantifies, and captures the **learning** (what they'd do
 differently, even when it went wrong).
 
+### 2.5 Close out an application — the archival step (Golden Rule #14)
+Trigger: an application reaches a terminal status — the user reports (or an email sweep
+surfaces) a **rejection**, the user **withdraws** ("I dropped that one", "not going ahead with
+X", a comp walk-away), a role is **ghosted**, or you decide **not to apply** after the pre-apply
+gates. This stays always-on because most of these arrive as an offhand remark, not a task.
+
+**0. Confirm the terminal status.**
+   - `rejected` — a rejection was actually received. Run the **`interview-debrief` skill first**
+     (the Golden Rule #13 post-mortem): the diagnosis must exist *before* the folder moves,
+     because the folder is read-only afterwards.
+   - `withdrawn` — the user chose to stop. Record the **reason in one line** (comp, culture,
+     deal-breaker, competing process); it is the whole value of the row later.
+   - `ghosted` — **no response for 45+ days** since the last contact, **and** no scheduled next
+     step, **and** nothing pending from the user. **Never mark a booked round as ghosted**, and
+     **always ask the user before closing one** — ghosting is inferred, never received, and a
+     recruiter returning after a holiday is normal.
+   - `not applied — skipped` — a role evaluated and dropped before applying (a #12, comp-floor,
+     or core-capability verdict). Log **which gate stopped it** — that is a gate working, and
+     worth keeping.
+
+**1. Append the close-out to the application's status log** (`application.md`) — date, terminal
+   status, reason (or "boilerplate, no feedback"), and for a rejection the **failure class**
+   from the #13 post-mortem. This is the last write before the folder goes read-only.
+
+**2. Move the folder:** `git mv applications/<slug> applications/_archive/<slug>`.
+
+**3. Move the row VERBATIM** out of `applications/_index.md` into the table in
+   `applications/_archive/_index.md`. Do **not** condense, re-word, or trim it — the row *is*
+   the record (Golden Rule #14). Bump any repo-relative link in that row by one level
+   (`../profile/...` → `../../profile/...`), and fix links **into** the moved folder from
+   elsewhere in the repo (`applications/<slug>/…` → `applications/_archive/<slug>/…`).
+
+**4. Update the failure-class ledger** at the top of `applications/_archive/_index.md` — add
+   this occurrence to its class row, or add a new class row. **If the class already had
+   occurrences, say so out loud to the user**: a class recurring after a shipped correction
+   means the previous fix did not hold, and Golden Rule #13 requires escalating to a more
+   mechanical guard, not just another note.
+
+**5. Rows with no folder are archived too** (applications that pre-date this repo, agency
+   roles, research-only entries). The row moves; there is simply nothing to `git mv`.
+
+**Never** delete an application, a row, or a rejection — closing is always a move. If a closed
+application reopens, **un-archive**: move the folder and its row back to `applications/` and set
+a live status again.
+
 ---
 
 ## 3. CV → PDF pipeline
@@ -265,8 +387,15 @@ CSS to change look, not the content files.**
   ("last year") to absolute before saving. Today's date is available in context.
 - **Slugs:** kebab-case for folders/files (`company-role`, `story-name`).
 - **Frontmatter:** each structured file starts with YAML frontmatter (see templates).
-- **Status values** for applications: `interested`, `applied`, `screening`, `interviewing`,
-  `offer`, `rejected`, `withdrawn`, `accepted`.
+- **Status values** for applications — split into **live** and **terminal**:
+  - **Live** (row + folder stay in `applications/`): `interested`, `applied`, `screening`,
+    `interviewing`, `offer`, `accepted`.
+  - **Terminal** (row + folder move to `applications/_archive/` via §2.5 — Golden Rule #14):
+    `rejected`, `withdrawn`, `ghosted`, `not applied — skipped`.
+  - **`ghosted`** = **45+ days of silence** since the last contact, with no scheduled next step
+    and nothing pending from the user. It is **inferred, never received** — always confirm with
+    the user before setting it, and never apply it while a round is booked. A ghosted
+    application that later replies is **un-archived**, not re-created.
 - **TODO markers:** write `TODO(user): <what's missing>` for facts you need from the user;
   surface these back to them.
 - **Avoid self-claimed trait adjectives in outward-facing text** (CVs, cover letters, prepared
@@ -322,12 +451,17 @@ profile/                 # SOURCE OF TRUTH — the master CV data (populated dur
   decisions.md           # the why/when behind each setting — read on demand, not every session
   stories/               # STAR story bank (behavioral evidence) — see _index.md
 
-applications/            # one folder per job application
-  _index.md              # MASTER TABLE / log of every application
+applications/            # LIVE applications only — one folder each
+  _index.md              # MASTER TABLE of OPEN applications (interested → accepted)
   <company>-<role>/      # created per application (see applications/_TEMPLATE)
+  _archive/              # CLOSED applications (rejected / withdrawn / ghosted) — Golden Rule #14
+    _index.md            # archive table + the FAILURE-CLASS LEDGER (feeds GR #12 and #13)
+    <company>-<role>/    # moved here verbatim on close-out (§2.5); read-only history
 
 interviews/
   hiring-manager/        # behavioral/leadership question bank + answers + prep-checklist.md
+                         # + sharpness-probes.md — short calibration questions,
+                         #   MANAGEMENT/LEAD ROUNDS ONLY (never opened for an IC round)
   technical/             # system design / technical / discipline-specific prep
   company-research/      # per-company research notes (linked from applications)
 
@@ -338,6 +472,11 @@ VERSION                  # the product release this clone is on (semver) — use
 CHANGELOG.md             # what each product release changed (read during an update)
 UPDATE.md                # the flow the agent follows to update the engine (see §6)
 ```
+
+> ⚠️ **`applications/_index.md` is HALF the history.** It lists only what is still open. Every
+> past rejection lives in `applications/_archive/_index.md`. Any lookup of what the user has
+> applied to — above all the Golden Rule **#12** repeat-applicant gate and the **#13**
+> recurrence check — reads **both** files. See Golden Rule #14 and §2.5.
 
 ---
 

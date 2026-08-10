@@ -39,6 +39,16 @@ question → hand off to the `story-elicitation` skill.
    tag, so the bank compounds over time.
 4. **Map each question to evidence** in `profile/` (especially `profile/stories/`). Missing
    story → elicit it via the `story-elicitation` skill.
+4b. **Add the short calibration probes — MANAGEMENT / LEAD ROUNDS ONLY.** If the **target
+   role** is a people-management or lead role, pull the round-relevant probes from
+   `interviews/hiring-manager/sharpness-probes.md`. They are a different species from the STAR
+   questions generated above — 30–90 seconds, testing **a fact, not a narrative** (scope,
+   recency, cycle time, "explain it simply"). A probe with no fact behind it is a `TODO(user)`
+   in that file's §9, not something to write a smoother answer around.
+   ⛔ **For an IC round, skip this step and do not open that file** — its probes assume
+   accountability for a team, so they are off-target at any IC level and drag the user's
+   answers toward management scope (Golden Rule #11). The IC-technical blocks below already
+   cover the equivalent depth checks. Gate on the target role, not on the user's own history.
 5. **Run the coverage gate** (`interviews/hiring-manager/prep-checklist.md`) so no whole area
    is silently skipped.
 
@@ -46,11 +56,22 @@ question → hand off to the `story-elicitation` skill.
 
 ## The people-leadership gate
 
-Blocks marked **⟨manages-people⟩** apply **only if the user manages people** (EM, design/
-product/data lead, head/director — recorded in `profile/preferences.md` → *Manages people*).
-For an IC round, **skip them** and lean on the IC-technical and universal blocks instead.
-Never assume the user is a manager. Conversely, a staff/principal IC still gets *influence*
-and *mentoring* questions — just not *hiring/firing/PIP* ones.
+Blocks marked **⟨manages-people⟩** are gated on **the role being interviewed for**, not on the
+user's current job (`CLAUDE.md` preamble — *the cockpit serves the role the user is going
+for*). Read the target from `application.md` and the JD:
+
+- **Target is a people-management role** (EM, design/product/data lead, head/director) →
+  **generate these blocks in full**, whether or not the user manages people today. An IC
+  interviewing for their first EM role will be asked every one of them.
+- **Target is an IC role** → **skip them.** A staff/principal IC still gets *influence* and
+  *mentoring* questions — just not *hiring/firing/PIP* ones. Never assume a management frame.
+
+**Then check the evidence separately.** If the target expects people-management evidence the
+user doesn't have (`profile/preferences.md` → *Manages people* = no, or no such stories in
+`profile/`), the question still gets generated — but flag it as an **evidence gap**, prep the
+honest adjacent answer (mentoring, tech leadership, leading without authority), and never
+invent a report, a PIP, or a hire (Golden Rules #2/#7). A first-time manager who has thought
+hard about a question they can only answer partially beats one who never saw it coming.
 
 ---
 

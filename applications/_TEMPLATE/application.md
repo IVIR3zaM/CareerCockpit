@@ -39,7 +39,12 @@ TODO
 - TODO
 
 ## Status log
-<!-- Newest first. Every change dated. -->
+<!-- Newest first. Every change dated.
+     Live statuses: interested · applied · screening · interviewing · offer · accepted.
+     TERMINAL statuses (rejected · withdrawn · ghosted · not applied — skipped) close this
+     application out: append the final entry with the reason + failure class here, then run
+     CLAUDE.md §2.5 — this folder moves to applications/_archive/ and becomes read-only
+     history (Golden Rule #14). Diagnose first, archive last. -->
 - YYYY-MM-DD — created (`interested`)
 
 ## Fit notes / open questions

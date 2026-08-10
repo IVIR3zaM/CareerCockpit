@@ -5,11 +5,18 @@ never prepping **metrics/OKRs**, then getting caught flat in the round). Every p
 walk this list: each area is either **covered in the plan** (with a mapped story/answer) or
 **consciously skipped** (with a one-line reason written in the plan). No silent gaps.
 
-**Leadership gate:** rows marked ⟨manages-people⟩ apply only if the user manages people. For
-IC rounds, mark them ⏭ ("IC round — n/a") and add discipline-technical rows from
-the `interview-question-generator` skill instead (system design, coding, design
-critique, product/analytics case). **Always generate the full question list first** (the
-generator) — this checklist covers areas, the generator produces the actual questions.
+**Leadership gate — read the TARGET role, not the current one.** Rows marked ⟨manages-people⟩
+apply whenever the **role being interviewed for** is a people-management role, **including
+when the user doesn't manage people yet**. For **IC target roles**, mark them ⏭ ("IC round —
+n/a") and add discipline-technical rows from the `interview-question-generator` skill instead
+(system design, coding, design critique, product/analytics case).
+
+For a **first-time manager** the row stays ✅-or-gap, never ⏭: cover it with the honest
+adjacent evidence (mentoring, leading without authority, technical leadership) and write the
+missing piece into the plan as a named gap. A row skipped because the user "isn't a manager
+yet" is a silent gap in exactly the round where it will be asked. **Always generate the full
+question list first** (the generator) — this checklist covers areas, the generator produces
+the actual questions.
 
 | # | Area | Typical questions | Evidence source |
 |---|---|---|---|

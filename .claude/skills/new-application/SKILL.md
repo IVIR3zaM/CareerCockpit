@@ -1,6 +1,6 @@
 ---
 name: new-application
-description: Set up a new job application folder from a JD or role description — jd.md, application.md, an _index.md row, a culture-fit check, and a comp-floor check. Use when the user says they are applying to a company, pastes a job description, or describes a role to pursue. Carries the mandatory repeat-applicant / pre-apply gate (Golden Rule #12).
+description: Set up a new job application folder from a JD or role description — jd.md, application.md, an _index.md row, a culture-fit check, a comp-floor check, and a core-capability gap check. Use when the user says they are applying to a company, pastes a job description, or describes a role to pursue. Carries the mandatory repeat-applicant / pre-apply gate (Golden Rule #12, which reads applications/_archive/_index.md where all past rejections live) and the core-capability gate.
 ---
 
 # Create a new application
@@ -12,11 +12,20 @@ is cleared.
 Trigger: *"I'm applying to X"*, the user pastes a JD, or describes a role.
 
 0. **Repeat-applicant gate (MANDATORY — run BEFORE anything else; Golden Rule #12).** Scan
-   `applications/_index.md` for any prior application to this company/role — and, **if email
-   access is granted** (`profile/preferences.md` → Email access), search the user's mail for
-   the company name too, since applications that predate this repo only exist there. If the
-   user was **already rejected** here: pull the prior **date + reason**, tell the user, and
-   decide together whether to proceed —
+   **BOTH** indexes for any prior application to this company/role:
+   - 🗄️ **`applications/_archive/_index.md` — scan this FIRST.** Closed applications are
+     archived (Golden Rule #14), so **every prior rejection lives here, not in the active
+     index.** Its failure-class ledger also names the class the loss was diagnosed as.
+   - `applications/_index.md` — catches a *currently open* application to the same company.
+
+   ⛔ **Scanning only `applications/_index.md` makes this gate report a clean slate for a
+   company that already said no** — exactly the failure #12 was written for. The gate has not
+   run until both files have been opened.
+
+   And, **if email access is granted** (`profile/preferences.md` → Email access), search the
+   user's mail for the company name too, since applications that predate this repo only exist
+   there. If the user was **already rejected** here: pull the prior **date + reason + failure
+   class**, tell the user, and decide together whether to proceed —
    - a **structural** prior reason (seniority, tenure, scope, domain depth — anything
      re-tailoring cannot change) is not beatable by a better-worded CV; don't spend one.
      Re-apply only if something **material** changed (new title/scope, real time elapsed, a
@@ -24,8 +33,13 @@ Trigger: *"I'm applying to X"*, the user pastes a JD, or describes a role.
    - a **fixable positioning** prior reason (led with the wrong facet, echoed the JD, buried
      the match) is worth re-applying **only if the new CV genuinely fixes that exact thing** —
      say how, in `cv.notes.md`, before building.
-   Record the outcome in the status log. If a prior application surfaced that isn't in
-   `_index.md` yet, add its row while you're here.
+   Record the outcome in the status log. If a prior application surfaced that isn't logged
+   yet, add its row while you're here — a closed one goes into
+   `applications/_archive/_index.md`.
+
+   If the decision is **don't apply**, that is still a logged outcome — close it out as
+   `not applied — skipped` per **`CLAUDE.md` §2.5**, so the next pass sees the gate already
+   fired.
 1. Create folder `applications/<company>-<role-slug>/` (kebab-case, e.g.
    `stripe-eng-manager-payments`).
 2. Save the raw JD to `jd.md` (**verbatim** — never edit a `jd.md`). If the user only
@@ -49,4 +63,28 @@ Trigger: *"I'm applying to X"*, the user pastes a JD, or describes a role.
    call"* the next action, rather than sinking a tailored CV and a full loop into a role that
    cannot pay. Apply any **target-role filter** the user recorded in `profile/preferences.md`
    (e.g. a level down-rank, or domains they've ruled out) in the same pass.
+6b. **Core-capability gate (MANDATORY).** Golden Rule #12 stops a re-application into a
+   *known* structural gap — but only when a prior rejection happened to name it. This gate
+   covers the blind twin: an **un-tailorable gap on a first application**. Run it BEFORE
+   building a CV.
+   1. **Name the req's core differentiator in one line** — the thing that makes this posting
+      different from a generic req at this level, i.e. why this team exists. Read the team's
+      mission and the requirements the JD *repeats*, not the boilerplate bullets.
+   2. **Classify the user's evidence for THAT axis** from `profile/` — 🟢 **shipped in
+     production / by a team they led** · 🟡 **hands-on but personal, PoC, or dated** ·
+     🔴 **absent**.
+   3. **🟡 or 🔴 on the differentiator itself → STOP and put it to the user before building
+      anything.** State plainly that **no CV tailoring can close it** — honest labeling is
+      required by Golden Rules #2/#7, and an honestly-labeled PoC *is* the disqualifier a
+      screener needs — and give the odds. Peripheral or "nice to have" requirements at 🟡/🔴
+      are fine; this gate is **only** about the core differentiator.
+   4. **Not an auto-skip** — same shape as the comp-floor 🔴 rule: it is the user's call, made
+      with the cost stated. If they proceed, record the verdict **and their decision** in
+      `application.md` so the eventual post-mortem starts from a known baseline.
+   5. Record the verdict in `application.md` regardless: 🟢 / 🟡 / 🔴 + the one-line
+      differentiator.
+
+   *(Why this is mechanical and not a judgment call: the classic failure is that the gap is
+   spotted, written into `application.md` as "an interview risk to manage" — and never weighed
+   as a reason not to spend the application at all.)*
 7. Ask the user if they want a tailored CV now (→ invoke the `tailored-cv` skill).

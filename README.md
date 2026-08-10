@@ -111,7 +111,8 @@ everything" question never captures what a focused prompt does.
 - **"Get me ready for the upcoming <round> interview."** → a time-boxed prep plan + mocks.
 - **"I got emails about application X — update it and tell me what to do."**
 - **"Here's how the interview went…"** / **"I got rejected."** → a debrief and a root-cause
-  post-mortem that feed every gap back into the system.
+  post-mortem with a named failure class and a mechanical fix so that *class* can't repeat —
+  then the application is archived, never deleted.
 - **"Update CareerCockpit."** → pulls the latest product improvements into your private copy
   **without touching your data** (see below).
 
@@ -142,8 +143,9 @@ until you confirm. The mechanics live in [UPDATE.md](UPDATE.md); the release his
 | Path | Purpose |
 |---|---|
 | `profile/` | Source-of-truth career data (populated during onboarding) |
-| `applications/` | One folder per job application + a master index |
-| `interviews/` | Question banks, prepared answers, company research |
+| `applications/` | One folder per **live** job application + a master index of open ones |
+| `applications/_archive/` | Closed applications (rejected / withdrawn / ghosted) + their own index and failure-class ledger — kept forever, and read by every history check |
+| `interviews/` | Question banks, sharpness probes, prepared answers, company research |
 | `styles/` | CV styling + the Markdown→PDF pipeline |
 | `templates/` | Reusable templates (CV, cover letter, prep plan) |
 | `onboarding/` | The onboarding flow and its checklist/state |

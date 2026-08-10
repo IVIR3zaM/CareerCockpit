@@ -8,6 +8,10 @@ Prep material, organized so it compounds across every application.
 - **`hiring-manager/`** — behavioral / leadership rounds:
   - [`question-bank.md`](hiring-manager/question-bank.md) — seed question bank (leadership rows
     gated to people-managers).
+  - [`sharpness-probes.md`](hiring-manager/sharpness-probes.md) — **management/lead rounds
+    only.** The short calibration questions (30–90 s) that test a **fact**, not a narrative:
+    team scope, recency, cycle time, "explain it simply". Read before every lead round; **skip
+    entirely for IC rounds** — the probes assume accountability for a team.
   - [`answers.md`](hiring-manager/answers.md) — STAR answers, keyed to the bank, cited to
     `profile/stories/`.
   - [`prep-checklist.md`](hiring-manager/prep-checklist.md) — the coverage gate every prep plan

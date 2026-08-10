@@ -1,6 +1,6 @@
 ---
 name: interview-debrief
-description: Close the loop after an interview or a rejection — run the interview debrief and/or the rejection post-mortem, route gaps back into the repo, and diagnose the root-cause failure class. Use whenever the user reports how an interview went, OR reports (or an email sweep surfaces) a rejection — even a silent, no-feedback CV-screen rejection. Carries the mandatory rejection post-mortem (Golden Rule #13).
+description: Close the loop after an interview or a rejection — run the interview debrief and/or the rejection post-mortem, route gaps back into the repo, diagnose the root-cause failure class, then archive the closed application. Use whenever the user reports how an interview went, OR reports (or an email sweep surfaces) a rejection — even a silent, no-feedback CV-screen rejection. Carries the mandatory rejection post-mortem (Golden Rule #13) and the close-out to applications/_archive/ (Golden Rule #14).
 ---
 
 # Interview debrief + rejection post-mortem
@@ -19,6 +19,12 @@ rough one.
    caught unprepared).
 2. **Route every gap back into the system:**
    - New/unexpected questions → `interviews/hiring-manager/question-bank.md`.
+   - A **short calibration probe** that caught the user out in a **management/lead round** — a
+     one-fact question they couldn't answer instantly ("how many reports?", "how long from
+     merge to production?", "when did you last…?") → `interviews/hiring-manager/sharpness-probes.md`:
+     add the probe if it's new, and log the missing fact in its §9 gap list. *(That file is
+     lead-round only — a question from an IC round goes to the question bank instead, even if
+     it has the same short shape.)*
    - A whole missing topic area → `interviews/hiring-manager/prep-checklist.md`.
    - Missing facts/metrics → the right `profile/` file (route per `CLAUDE.md` §2.4).
    - A new anecdote → `profile/stories/` (use the `story-elicitation` skill).
@@ -46,9 +52,13 @@ an interview, run the debrief above as well; this adds the *why-were-we-rejected
    tenure/scope gap*, *repeat-applicant (#12)*, *JD-echo (#7)*, *answer-intent miss (#10)*,
    *coding round*, *comp floor*, *domain mismatch*. The class is what you track, not the
    single company.
-3. **Check recurrence** against `applications/_index.md` and prior debriefs. **A class that
-   recurs after it was already "fixed" means the previous correction did not hold** — don't
-   just re-note it; escalate to a stronger, more mechanical guard.
+3. **Check recurrence** against the **failure-class ledger at the top of
+   `applications/_archive/_index.md`** — that table exists for exactly this step — plus
+   `applications/_index.md` and prior debriefs. 🗄️ **Past rejections are in the archive, not
+   the active index (Golden Rule #14)** — checking only `applications/_index.md` makes a
+   recurring class look brand new. **A class that recurs after it was already "fixed" means
+   the previous correction did not hold** — don't just re-note it; escalate to a stronger,
+   more mechanical guard.
 4. **Route the correction** so the class can't easily repeat:
    - Wrong facts or framing in the profile → the right `profile/` file (`CLAUDE.md` §2.4).
    - A CV/answer/positioning defect → tighten the relevant **gate** (the `tailored-cv`
@@ -57,9 +67,16 @@ an interview, run the debrief above as well; this adds the *why-were-we-rejected
      golden rule** and put it to the user.
    - A sourcing/target-selection defect → `profile/basics.md` "Target roles" or
      `profile/company-fit.md`, and the target-role filter in `profile/preferences.md`.
-5. **Record & surface:** the status log and `_index.md` get the diagnosis, the failure class,
-   and the correction shipped; tell the user what you changed and why. Prefer a **mechanical**
-   fix (gate / read-back / checklist step) over a remembered principle — principles get
-   forgotten.
+5. **Record & surface:** the status log and the `_index.md` row get the diagnosis, the failure
+   class, and the correction shipped; tell the user what you changed and why. Prefer a
+   **mechanical** fix (gate / read-back / checklist step) over a remembered principle —
+   principles get forgotten.
+6. **Close out and archive (MANDATORY — Golden Rule #14).** A rejection is not finished until
+   the application is archived. Run **`CLAUDE.md` §2.5**: `git mv applications/<slug>
+   applications/_archive/<slug>`, move the `_index.md` row **verbatim** into the archive table,
+   fix the row's relative links and any inbound links, and **add this occurrence to the
+   failure-class ledger** at the top of `applications/_archive/_index.md`.
+   ⚠️ **Order matters** — steps 1–5 write into the application folder, and the archive is
+   **read-only history** afterwards. Diagnose first, archive last.
 
 The goal is not to explain a loss; it's to make **that class of loss** hard to repeat.

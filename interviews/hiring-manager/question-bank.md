@@ -9,9 +9,22 @@ from the STAR stories in `profile/stories/`.
 > list for the user's discipline + level + round type first; then fold anything new and
 > reusable back into this file. A fixed list under-serves ICs and non-software disciplines.
 
-**Leadership gate:** questions marked **⟨manages-people⟩** apply only if the user manages
-people. For IC rounds, skip them and prep to the discipline (see the generator's IC-technical
-blocks). Read the user's level/discipline from `profile/basics.md`.
+> 🎯 **Companion file — [`sharpness-probes.md`](sharpness-probes.md) ⟨management/lead rounds
+> only⟩.** This bank holds the **deep STAR questions** (3–5 minute answers). The short
+> **calibration probes** interviewers use to gauge how real a manager or lead is — *"how big
+> is your team?"*, *"what was your last challenging feedback, and when?"*, *"where's your
+> biggest tech debt and why isn't it fixed?"* — live there, with the signal behind each, good
+> vs. bad answer shapes, a recall card, and a list of gaps that wording can't fix. Read it
+> before any **lead** round. ⛔ **It does not apply to IC rounds at any level** — every probe
+> assumes accountability for a team; see the applicability gate at the top of that file.
+
+**Leadership gate — read the TARGET role, not the current one.** Questions marked
+**⟨manages-people⟩** apply whenever the role being interviewed for is a people-management role
+— **including when the user doesn't manage people yet** and is going for their first such job.
+Skip them only for **IC target roles**, and prep to the discipline instead (see the
+generator's IC-technical blocks). The user's own level/discipline (`profile/basics.md`,
+`profile/preferences.md`) decides *what evidence exists* and what has to be flagged as a gap —
+not which questions get prepared. See the ⭐ note in the `CLAUDE.md` preamble.
 
 Each question notes a **theme** (matching the `profile/stories/` theme vocabulary) so a story
 can be mapped to it. Use this to (a) find gaps in the story bank and (b) build a focused prep
