@@ -204,6 +204,43 @@ rules) are set.
       that answers #13's recurrence check. Every post-mortem that names a class adds its
       occurrence there in the same edit, so recurrence is visible at a glance instead of being
       reconstructed from dozens of rows.
+15. **A learning that isn't about THIS user goes upstream — generalized, variabilized, and
+    contributed back (with the user's consent).** Golden Rule #13 says every rejection ships a
+    correction. Most of those corrections are **engine improvements, not personal facts**: a
+    tightened gate in a skill, a new checklist row, a convention in this file, a fix in
+    `styles/`. Left in one clone they help exactly one person, and **the next release
+    overwrites or diverges from them.** So:
+    - **Sort the learning first.** *Personal* (a story, a metric, a preference, a company's
+      real name, a comp figure) → `profile/`, and it stops there. *Engine* (a rule, a gate, a
+      procedure, a template, a stylesheet fix) → generalize it.
+    - **Generalize means: strip the user out of it and keep the force.** The rule states the
+      failure mode and the mechanical fix; the case study is retold as an **anonymous
+      pattern** ("a candidate led a first-line-EM application with manager-of-managers scope
+      and was cut at the screen"). Never drop the evidence to make scrubbing easier — a rule
+      with no evidence is the kind of principle #13 says doesn't hold. If it genuinely cannot
+      be told anonymously, it is a personal learning; keep it local.
+    - **If it needs a user-specific value, that value becomes a VARIABLE in
+      `profile/preferences.md`** and the engine text reads it from there. One fact, one home
+      (#4). A hardcoded number, level, comp floor, or company name in engine text is the tell
+      that this step was skipped.
+    - **Queue it at birth, not at release time.** Add the entry to `upstream-sync/UPSTREAM-QUEUE.md`
+      in the same edit that makes the local change, while the evidence is fresh. Reconstructing
+      *why* a rule exists weeks later is how the rationale gets lost.
+    - **⛔ Contributing requires the user's EXPLICIT, PER-ENTRY CONSENT.** A PR to
+      [`IVIR3zaM/CareerCockpit`](https://github.com/IVIR3zaM/CareerCockpit) is a **public,
+      permanent, outward-facing publication** of something derived from the user's private job
+      search. Never open one — and never push a branch — on your own initiative, on a blanket
+      "yes to upstreaming", or on consent given for a *different* entry. Ask per entry, show
+      the **exact scrubbed text** that would become public, and wait for a yes.
+      The user's standing preference is in `profile/preferences.md` → *Upstream contributions*;
+      **`ask` is the default and even `yes` still means ask before each PR** — it records
+      willingness, not authorization.
+    - **The PR body is written for an AI agent, not a human reviewer.** It must carry
+      everything an agent needs to apply the change to a clone, and the exact `UPDATE.md`
+      migration note for clones updating into the release that contains it. The mandatory
+      seven-section structure is the **PR-body contract in `UPDATE.md` → *Contributing back***.
+      A PR body missing its migration note ships a change that cannot be safely applied to an
+      existing clone.
 
 ---
 
@@ -318,6 +355,7 @@ Decide where it belongs and write it there:
 | A tool/skill they used | `profile/skills.md` |
 | A behavioral anecdote (conflict, failure, growth) | new STAR story in `profile/stories/` |
 | A degree / certification | `profile/education.md` / `certifications.md` |
+| Something they published publicly (post, article, talk) | `profile/published-writing.md` — log it as **spent** |
 | How a company/team was run (OKRs, KPIs, metrics, rituals) | that role's "How success was measured" section in `profile/work-experience/` |
 
 Always: quantify if possible (ask for the number), then confirm where you stored it. A single
@@ -369,6 +407,13 @@ gates. This stays always-on because most of these arrive as an offhand remark, n
 **5. Rows with no folder are archived too** (applications that pre-date this repo, agency
    roles, research-only entries). The row moves; there is simply nothing to `git mv`.
 
+**6. If the user keeps a shortlist, add the company to the ⛔ do-not-source table** in
+   `applications/_shortlist.md`, with the *do-not-source* (structural) vs
+   *pursue-with-eyes-open* (fixable) verdict. **Do this now, not at the next sweep** — the
+   shortlist is rebuilt from job boards and inbox sweeps, which have no memory, and it is
+   read at **sourcing** time, before the Golden Rule #12 gate in `new-application` ever fires.
+   A company missing from that table comes around again unflagged and costs another attempt.
+
 **Never** delete an application, a row, or a rejection — closing is always a move. If a closed
 application reopens, **un-archive**: move the folder and its row back to `applications/` and set
 a live status again.
@@ -400,8 +445,29 @@ CSS to change look, not the content files.**
     and nothing pending from the user. It is **inferred, never received** — always confirm with
     the user before setting it, and never apply it while a round is booked. A ghosted
     application that later replies is **un-archived**, not re-created.
-- **TODO markers:** write `TODO(user): <what's missing>` for facts you need from the user;
-  surface these back to them.
+- **TODO markers:** write `TODO(user): <what's missing>` for facts you need from the user —
+  and **⭐ a `TODO(user)` you write during a live exchange MUST be asked in that same turn's
+  batched question list. Writing one instead of asking is not allowed.** A `TODO(user)` is
+  for a gap you notice when the user *isn't* in the conversation to answer it (a sweep, a
+  background pass, a file you're passing through); it is **never** a way to defer a question
+  you could have asked right now. If you write one while the user is present and don't ask
+  it, you have silently converted a 10-second answer into repo debt — the fact stays missing,
+  and the artifact that needed it (a story, a CV bullet, an application answer) ships
+  incomplete. Weeks later it resurfaces in a cockpit status and the user has to reconstruct
+  context they had instantly at the time.
+  **When you ask an open item that must stay visible in a file, mark it
+  `🔴 OPEN — asked <date>, awaiting answer` rather than `TODO(user)`, so the two are never
+  confused** — one is a question not yet put to the user, the other is a question already
+  put and not yet answered.
+  <!-- The mechanical version of the rule — a bare principle is what this convention used to
+  be, and it did not hold: an agent satisfies "surface these back to them" by writing the
+  marker and moving on. So: before ending any turn, grep your own edits for `TODO(user)`.
+  Every one you just wrote either goes into the reply's question list, or gets a one-line
+  justification for why the user can't answer it now. -->
+  <!-- This pairs with the "batch your questions" rule in §2.0: that one says HOW to ask
+  (one grouped list at the end of the reply), this one says WHEN you must. -->
+- **Surfacing rule:** every `TODO(user)` you did **not** ask in-turn still gets surfaced back
+  to the user in the cockpit status (§2.0) until it's answered or dropped.
 - **Avoid self-claimed trait adjectives in outward-facing text** (CVs, cover letters, prepared
   interview answers). Trait claims like "low ego," "humble," "rockstar," "10x," or "passionate"
   read as unearned self-description — and some, framed as the absence of a flaw, come off
@@ -451,12 +517,16 @@ profile/                 # SOURCE OF TRUTH — the master CV data (populated dur
   education.md           # degrees
   certifications.md      # certifications & courses
   company-fit.md         # what the user WANTS from an employer (culture fit + deal-breakers)
+  published-writing.md   # what they've ALREADY published + per-register voice — read
+                         #   BEFORE drafting any public post, or you'll repeat them
   preferences.md         # SETTINGS TABLE — durable values, read every session (kept small)
   decisions.md           # the why/when behind each setting — read on demand, not every session
   stories/               # STAR story bank (behavioral evidence) — see _index.md
 
 applications/            # LIVE applications only — one folder each
   _index.md              # MASTER TABLE of OPEN applications (interested → accepted)
+  _shortlist.md          # SOURCING stage (pre-application): market sweep, fit scores,
+                         #   + the ⛔ do-not-source table — GR #12 one stage earlier
   <company>-<role>/      # created per application (see applications/_TEMPLATE)
   _archive/              # CLOSED applications (rejected / withdrawn / ghosted) — Golden Rule #14
     _index.md            # archive table + the FAILURE-CLASS LEDGER (feeds GR #12 and #13)

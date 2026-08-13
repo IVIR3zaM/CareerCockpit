@@ -146,5 +146,17 @@ a {
   text-decoration: underline;
 }
 
-/* Keep an entry and its bullets together on a page. */
-h3, h3 + p, h4, h4 + ul { break-inside: avoid; }
+/* Keep a heading attached to the content it introduces, and never split a single
+   bullet across pages — but DO let a long bullet list flow onto the next page.
+
+   Do NOT add `h4 + ul { break-inside: avoid }`. It looks like the right rule and is
+   not: it makes a whole 6–8-bullet list atomic, so a list that starts near the bottom
+   of a page is moved wholesale to the next one. That strands ~8 blank lines and can
+   push an otherwise 2-page CV onto a third, nearly-empty page — the exact failure the
+   page budget in the `tailored-cv` skill then reports as "over budget", sending you
+   trimming real content to fix a stylesheet bug. `break-after: avoid` on the heading
+   plus per-`li` atomicity gives the same visual result without freezing the list. */
+h3, h3 + p, h4 { break-inside: avoid; }
+h3, h4 { break-after: avoid; }
+li { break-inside: avoid; }
+ul { orphans: 2; widows: 2; }

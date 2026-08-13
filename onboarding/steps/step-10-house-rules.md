@@ -107,10 +107,27 @@ The cautionary framing rules (no date gap, don't relabel a team/role to match a 
 Nothing entering `CLAUDE.md` or the records may contain third-party names or
 employer-confidential data — a banned-phrase example is fine, a colleague's name is not.
 
+## One last question — upstream contributions (Golden Rule #15)
+
+Ask it plainly, as its own question:
+
+> *"As we work, some of what we learn won't be about you at all — it'll be a fix to how this
+> toolkit itself works: a tightened rule, a new checklist row, a stylesheet bug. I can offer
+> those back to the open-source CareerCockpit project so other people get them too. They'd be
+> **generalized and scrubbed first** — no company names, no comp figures, no stories, and any
+> value specific to you becomes a setting instead. **I'd show you the exact text and ask
+> before every single one.** Do you want me to (a) ask you each time, (b) treat you as
+> willing in principle — I'd still ask each time — or (c) keep everything local?"*
+
+Record the answer in `profile/preferences.md` → **Upstream contributions** (`ask` / `yes` /
+`no`; default `ask`). Make sure the user hears that **even `yes` still means asking per
+entry** — this setting is willingness, never authorization, because a PR publishes to a
+public repo permanently.
+
 ## Record
 
 - `profile/preferences.md` → any setting the user changed (comp handling, a non-default date
-  format, **Banned phrases** if customized).
+  format, **Banned phrases** if customized, **Upstream contributions**).
 - `profile/decisions.md` → `## House rules (Step 10)`: date, what was kept / customized /
   dropped, which locked clusters were surfaced unchanged, any *declined* relaxation request,
   and the manages-people gate outcome.

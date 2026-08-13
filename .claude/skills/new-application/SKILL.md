@@ -17,6 +17,9 @@ Trigger: *"I'm applying to X"*, the user pastes a JD, or describes a role.
      archived (Golden Rule #14), so **every prior rejection lives here, not in the active
      index.** Its failure-class ledger also names the class the loss was diagnosed as.
    - `applications/_index.md` — catches a *currently open* application to the same company.
+   - `applications/_shortlist.md` → the **⛔ do-not-source table**, if the user keeps a
+     shortlist. It is the same check one stage earlier, and it carries the
+     *do-not-source* vs *pursue-with-eyes-open* verdict already reasoned through.
 
    ⛔ **Scanning only `applications/_index.md` makes this gate report a clean slate for a
    company that already said no** — exactly the failure #12 was written for. The gate has not
@@ -59,6 +62,25 @@ Trigger: *"I'm applying to X"*, the user pastes a JD, or describes a role.
    states one, otherwise public salary data (Levels.fyi / Glassdoor / Ravio) plus any prior
    research in `interviews/company-research/`. Record a verdict in `application.md`:
    🟢 likely clears · 🟡 borderline · 🔴 likely below floor.
+
+   **⚠️ The estimate is not finished until the COMPANY-SPECIFIC lookup has run.**
+   The market-wide bucket (*"Engineering Manager, Germany, 25th pct"*) is the **floor of the
+   method, not the method.** Before writing the verdict, also search **this employer by name** —
+   its own levels.fyi company/role page and its Glassdoor page — and record what you found **as
+   its own line**, including *"nothing company-specific found"*. Note the **sample size** and any
+   self-contradiction on the page; a 1–2-submission figure is a **weak signal quoted as a
+   bracket**, never a band. Then state the verdict from **all** lines together.
+
+   This is a **sequencing rule, not a filter** — it changes nothing about what the user may
+   choose, only that they choose with the complete number in hand.
+
+   *(The pattern, anonymously: a role was scored 🟡 "borderline" from the market-wide bucket
+   alone and the application was submitted. The employer-specific lookup ran hours later and
+   moved the verdict to 🔴 — the highest figure **ever reported** for that role at that company
+   was ~€25k under the floor the candidate had just written on the form. Same conclusion,
+   reached too late to inform the spend. The market bucket describes an industry; a band
+   describes an employer, and only the second one is going to make the offer.)*
+
    **🔴 is not an auto-skip:** surface it and make *"ask the band on the first recruiter
    call"* the next action, rather than sinking a tailored CV and a full loop into a role that
    cannot pay. Apply any **target-role filter** the user recorded in `profile/preferences.md`

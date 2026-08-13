@@ -1,0 +1,158 @@
+/* ============================================================
+   Slide stylesheet — a presentation deck in the CV's visual language.
+   For short decks the user PRESENTS (an interview scenario deck, a
+   take-home walkthrough, a 90-day-plan deck) — not for CVs.
+
+   Rendered by styles/slides-build.mjs onto a LANDSCAPE A4 page, one
+   `.slide` section per page, at presentation type sizes.
+
+   ⚠️ THEME TOKENS ARE DUPLICATED FROM cv.css ON PURPOSE.
+   Unlike cover-letter.css, this is a standalone stylesheet: the deck is
+   plain HTML rendered by Puppeteer, not Markdown rendered through
+   md-to-pdf's cv.css chain, so it cannot inherit anything. The `:root`
+   block below is a COPY of cv.css's. If onboarding's style step replaces
+   the theme in cv.css, copy the same six values here or the deck will
+   still be blue while the CV is not. (Values only — never rename the
+   selectors; slides-build.mjs and the deck HTML both depend on
+   `.slide`, `.eyebrow`, `.headline`, `.footnote`, `.cover`.)
+
+   DEFAULT THEME: Blue — the same neutral theme cv.css ships with.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --text: #000000;
+  --title: #333333;
+  --muted: #666666;
+  --subtitle: #808080;
+  --accent: #1a56db;       /* blue — matches cv.css's default theme */
+  --link: #1155cc;
+  --font-body: 'Roboto', Arial, 'Helvetica Neue', sans-serif;
+}
+
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--text);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* One .slide = one page. The FIXED height is what makes overflow
+   detectable: slides-build.mjs compares scrollHeight to clientHeight and
+   fails the build on any slide whose content does not fit, instead of
+   letting it silently spill onto a second page mid-presentation. */
+.slide {
+  width: 297mm;
+  height: 210mm;
+  padding: 18mm 20mm 14mm 20mm;
+  page-break-after: always;
+  break-after: page;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.slide:last-child { page-break-after: auto; break-after: auto; }
+
+/* Small accent eyebrow above the title — e.g. "Scenario 1", "Part 2". */
+.eyebrow {
+  font-size: 11pt;
+  font-weight: 300;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 4mm 0;
+}
+
+/* Slide title. */
+h2 {
+  font-size: 23pt;
+  font-weight: 700;
+  color: var(--title);
+  margin: 0 0 5mm 0;
+  line-height: 1.15;
+}
+
+/* The headline sentence — the one thing the presenter says FIRST on this
+   slide. Give every slide exactly one; it is the slide's argument, and
+   the bullets below are only its support. */
+.headline {
+  font-size: 16pt;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1.3;
+  margin: 0 0 8mm 0;
+  padding-left: 5mm;
+  border-left: 3pt solid var(--accent);
+}
+.headline em { font-style: italic; color: inherit; }
+
+ul {
+  margin: 0;
+  padding-left: 6mm;
+  font-size: 14.5pt;
+  line-height: 1.4;
+}
+li { margin: 0 0 6mm 0; color: var(--title); }
+li::marker { color: var(--accent); }
+li strong { font-weight: 500; color: var(--text); }
+li em { font-style: italic; color: inherit; }
+
+/* Bottom line — the caveat, the trade-off, the "what I would NOT do".
+   Pinned to the bottom of the slide by `margin-top: auto`. */
+.footnote {
+  margin-top: auto;
+  font-size: 12pt;
+  font-weight: 300;
+  color: var(--muted);
+  border-top: 0.5pt solid #dddddd;
+  padding-top: 3mm;
+}
+.footnote strong { font-weight: 500; color: var(--title); }
+
+/* Running foot, right-aligned. Set per slide with the `data-foot`
+   attribute — e.g. <section class="slide" data-foot="Name · 3/6">. */
+.slide::after {
+  content: attr(data-foot);
+  position: absolute;
+  right: 20mm;
+  bottom: 7mm;
+  font-size: 9pt;
+  color: var(--subtitle);
+}
+
+/* ---- Cover slide: <section class="slide cover"> ---- */
+.cover { justify-content: center; }
+.cover h1 {
+  font-size: 30pt;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 2mm 0;
+}
+.cover h1 em {
+  font-style: normal;
+  color: var(--subtitle);
+  font-weight: 700;
+}
+.cover .meta {
+  font-size: 13pt;
+  color: var(--muted);
+  margin: 0 0 12mm 0;
+}
+.cover ol {
+  font-size: 14pt;
+  color: var(--title);
+  padding-left: 7mm;
+  line-height: 1.9;
+  margin: 0;
+}
+.cover ol li::marker { color: var(--accent); font-weight: 500; }

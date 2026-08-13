@@ -5,6 +5,27 @@ never prepping **metrics/OKRs**, then getting caught flat in the round). Every p
 walk this list: each area is either **covered in the plan** (with a mapped story/answer) or
 **consciously skipped** (with a one-line reason written in the plan). No silent gaps.
 
+> ### 🚫 "It's only round 1" is NOT a reason to skip a row
+> **A ⏭ needs a reason that is true of the AREA, never one that is true only of the ROUND.**
+> *"Deferred to the hiring-manager round"*, *"out of scope for a recruiter screen"* and their
+> variants are **coverage failures wearing the costume of a coverage decision** — they satisfy
+> the letter of this checklist while leaving the plan empty.
+>
+> Round 1 is routinely run by an **EM, a senior director, or a talent partner trained to
+> probe** — not an admin gatekeeper. First-round screens have asked, for real: *"why did you
+> choose to be a manager?"* · *"tell me about an underperformer you handled"* · *"how do you
+> know the team is performing?"* · *"what's the most complex event-driven project you've
+> worked on?"* · *"how is AI being adopted on your team?"* — and in one case spent the **whole
+> hour** on AI-ROI measurement.
+>
+> Legitimate ⏭ reasons: *IC target role, so this people-management row is off-target* ·
+> *the user genuinely lacks this experience — flagged as a named gap* · *already covered in
+> §X of this plan*.
+>
+> **Anything not covered in depth still gets a one-line landing spot** (the question, the best
+> story, a hook). **Depth may be prioritized; coverage may not be skipped.** Enforced by step
+> 5a of the `interview-prep` skill.
+
 **Leadership gate — read the TARGET role, not the current one.** Rows marked ⟨manages-people⟩
 apply whenever the **role being interviewed for** is a people-management role, **including
 when the user doesn't manage people yet**. For **IC target roles**, mark them ⏭ ("IC round —
@@ -45,6 +66,7 @@ the actual questions.
 | 20 | **Discipline-technical round** (per generator): e.g. system design — **API/user-contract FIRST**, then one architecture, data model, multi-tenancy, global-scaling + trade-offs; or coding; or design critique; or product/analytics case | — | `interviews/technical/` · `interview-question-generator` skill |
 | 21 | **⚠️ Delivery predictability — its own area, never folded into metrics (row 9) or the 30/60/90 (row 15).** When a company says *"predictability"*, decode it first: at a scaling, sales-driven or commitment-heavy org it almost never means uptime — it means **they have been missing dates**, which is a delivery-management problem. Order: **(1) measurement before process** — cycle time, **date-hold rate**, where work sits waiting; **(2) then** the process change the data justifies, not a ritual imported on day one; **(3) the two-sided payoff** — stakeholders get dates they can trust, the team gets a defensible *"not this quarter"*; **(4) bridge to tech debt** — pay down the debt that makes **dates** unreliable, not the debt that's merely ugly. End on **evidence, not method** | Q33, Q35–Q41, Q47 | `profile/work-experience/*` → *How success was measured*. 🔴 A method-only answer is articulate and unproven — needs a before/after number on committed-vs-hit dates |
 | 22 | **⚠️ AI ROI & measurement — its own area; row 17 (capability: what AI can automate) does NOT cover it, and this is the half that gets asked.** Any company 12+ months into AI adoption has either measured no movement or is afraid to look. **Decode: this sounds like a tooling question and is a measurement question.** (1) ask **which** KPIs and read the answer — three cases: business flat + output **rose** ⇒ a **prioritization** failure; business flat + output **unmeasured** ⇒ the metric can't see the gain; **output itself flat** ⇒ the gain is consumed before it lands (human review first, then rework and context-setting). ⚠️ **Don't reflexively say "you're measuring the wrong thing"** — if they measure output and output is flat, their metric is working and telling them something true; crediting that earns the right to the real problem. (2) ask the bill's **denominator** — cost per outcome. (3) name the ceiling: while humans review every line, **review is the bottleneck**. (4) *then* the capability ladder. (5) close on the **measure** — outcome over output, the point most often left unmade | **Q47, Q50** · probe §6.6 | `profile/work-experience/*` → AI practice · `profile/skills.md`. ⚠️ **Fact guards:** no productivity percentage unless one was measured; label anything intended-but-not-running as **direction, not shipped**. ⛔ Don't claim a named methodology the user hasn't actually practised (Golden Rule #7) |
+| 22b | **⚠️ Timed cognitive / aptitude screening test** (speed-critical — e.g. 40 questions in 20 minutes across numerical, logical and verbal reasoning). Some companies use one as **round 1**, before any human speaks to the candidate. **This is not a leadership area and no STAR prep touches it** — it is a gate to clear, and it is failed on *speed*, not ability: the questions are individually easy and there is no time to check work. Prep = timed practice on the standard test families until pace is automatic, plus the arithmetic shortcuts (percentages, ratios, unit conversion) the numerical section assumes | — | The test provider is usually named in the invitation email — look it up, the families are standardised. 🔴 If a round type in the process is unclear, **ask the recruiter what format it is** rather than preparing the wrong thing |
 | 23 | **⚠️ Delivery gate — how answers *land*, run in EVERY behavioural round** (this is not about which story). **(a) Headline first** — open with a one-sentence direct answer, *then* situation → action → result → learning; if the point arrives after ~30 seconds of context, restructure. **(b) Say the motivation out loud** — for a lead target, at least half the stories must be told as **leadership** stories (who was coached, what was decided about people, what you wanted for the team), not engineering stories with a manager narrating; never rely on the interviewer inferring that you want the job. **(c) Concern-coverage check** — the moment an interviewer names what they care about, **write the list down live** and confirm every item was addressed before the call ends; a named concern *is* the grading rubric. This binds hardest in a **thin call**: a short, unprobing round is not a pass, it's an empty scorecard the other candidate filled in — supply the evidence unprompted | all behavioural rounds | Related: `CLAUDE.md` §4 — name the observable behaviour, never a self-claimed trait adjective |
 
 **How to use:** when building `applications/<x>/interview-prep/<round>-plan.md`, add a

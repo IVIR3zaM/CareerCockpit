@@ -23,7 +23,17 @@ TODO(user)
 TODO(user)
 
 ## Result
-<!-- Quantified outcome + what you learned / would do differently. -->
+<!-- Quantified outcome. Put the reflection in Learning below. -->
+TODO(user)
+
+## Learning
+<!-- What you'd do differently and what this taught you — capture this even when the story went
+     well, and ESPECIALLY when it went wrong. Only what the user confirmed; never invented.
+
+     This is a FIRST-CLASS section, not a tail on Result, because the `story-elicitation`
+     skill writes here by name and because interviewers ask for it directly ("what would you
+     do differently?"). Folded into Result it gets compressed away, and the story then has no
+     answer to the one follow-up that separates a war story from demonstrated judgment. -->
 TODO(user)
 
 ## Answers well

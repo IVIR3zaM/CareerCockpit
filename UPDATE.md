@@ -43,14 +43,19 @@ one-line summary of what changed and — on confirmation — overwrite with the 
 - `README.md`, `LICENSE`, `.gitignore`
 - `package.json`, `package-lock.json`
 - `VERSION`, `CHANGELOG.md`, `UPDATE.md` *(the flow updates these itself)*
-- `styles/README.md`, `styles/cv-build.mjs`
+- `styles/README.md`, `styles/cv-build.mjs`, `styles/slides-build.mjs`
+- `styles/cover-letter.css` *(theme-neutral prose overrides — carries no colors or fonts, so
+  it is safe to refresh even when `cv.css` is customized)*
 - `.claude/skills/**` (the workflow skills — pure engine; a user who edits one is on
   Tier B terms for that file: preserve their edit and ask)
-- `templates/cv-template.md`, `templates/cover-letter-template.md`
+- `templates/cv-template.md`, `templates/cover-letter-template.md`,
+  `templates/slides-template.html`
 - `applications/_TEMPLATE/**` (all template files)
 - `profile/**/_TEMPLATE.md` (`work-experience`, `projects`, `stories` templates)
 - `interviews/README.md`
 - `interviews/technical/README.md`, `interviews/company-research/_TEMPLATE.md`
+- `interviews/technical/language-warmup-TEMPLATE.md` *(the per-language copies the user makes
+  from it are **Tier C**)*
 - `onboarding/ONBOARDING.md`, `onboarding/CHECKLIST.md` header/protocol *(the tick state is
   Tier B — see below)*, `onboarding/steps/*.md`
 
@@ -83,6 +88,11 @@ and your edit touch the same thing, ask one targeted question.
 > prep plans and debriefs in `applications/` all cite these numbers, and a renumber orphans every
 > one of those references.
 | `applications/_archive/_index.md` | every archived row and every ledger entry | **header/scaffolding only** — refresh the intro, the warning block and the column headers; the rows and the ledger are your data and are never rewritten, reordered, or condensed |
+| `applications/_shortlist.md` | your market-sweep rows and your ⛔ do-not-source rows | **header/scaffolding only** — same treatment as the archive index. Every row is a real company and a real outcome; a refresh never rewrites, reorders or drops one. If the clone doesn't have the file, offer it as a new empty template |
+| `interviews/technical/system-design-checklist.md`, `coding-round-playbook.md` | anything you folded in from your own debriefs (§6 design pockets, extra anti-patterns, domain notes) | **additive** — merge upstream's new method content around your additions; **never delete a section a debrief created.** If untouched since you received it, treat as Tier A |
+| `profile/published-writing.md` | everything in it | **header/scaffolding only.** The "already spent" entries, the unpublished list and the voice calibrations are your data. Refresh the explanatory blocks and the standing-rules list; never touch an entry |
+| `upstream-sync/UPSTREAM-QUEUE.md` | your queued entries | **scaffolding only** — refresh the scrub-gate checklist and the status vocabulary; never touch a queued row |
+| `styles/slides.css` | your theme tokens, if you copied them from a customized `cv.css` | same rule as `cv.css`: still the default Blue → Tier A; customized → do not overwrite, offer structural changes only |
 
 ### Tier C — **Yours** (never touch)
 Everything containing your career data. An update never reads these for overwrite.
@@ -96,6 +106,9 @@ Everything containing your career data. An update never reads these for overwrit
   an update never touches them, not even to repair a link
 - `interviews/company-research/*.md` (real research — every non-`_TEMPLATE` file)
 - `interviews/hiring-manager/answers.md` (your prepared answers)
+- `interviews/technical/<language>-coding-warmup.md` (your filled copies of the warmup
+  template — the `-TEMPLATE` file itself is Tier A)
+- `applications/_shortlist.md` **rows** (the file's scaffolding is Tier B — see above)
 
 > **The overarching rule that resolves any ambiguity:** an update auto-refreshes only a file
 > the user has **not changed since they received it**. Compare the user's file against the
@@ -296,6 +309,82 @@ silently orphans their prepared answer. So:
    changes. If the user declines every optional step above, the engine refresh is still complete
    and correct — bump `VERSION` and say which offers they passed on.
 
+### 1.3.0 → 1.4.0
+
+1.4.0 is mostly **additive** — seven new files and a set of rule/gate additions — so the tier
+rules carry most of it. Four things they cannot express:
+
+> 🚨 **1. `styles/cv.css` has a real BUG FIX that a customized theme will otherwise miss.**
+> Up to 1.3.0 the stylesheet ended with `h3, h3 + p, h4, h4 + ul { break-inside: avoid; }`.
+> The `h4 + ul` clause makes an entire bullet list atomic, so a list starting near the bottom
+> of a page is moved wholesale to the next one — stranding ~8 blank lines and pushing an
+> otherwise 2-page CV onto a nearly-empty third page. The page-budget reporter then calls the
+> CV "over budget" and sends the user trimming real content to fix a stylesheet bug.
+>
+> `cv.css` is **Tier B**, so a clone with an extracted theme is not overwritten — and that is
+> exactly the clone that keeps the bug. **Apply this fix specifically, even to a customized
+> theme.** It is structural, not cosmetic: it touches no color, font or size.
+> ```css
+> /* replace the single old rule with: */
+> h3, h3 + p, h4 { break-inside: avoid; }
+> h3, h4 { break-after: avoid; }
+> li { break-inside: avoid; }
+> ul { orphans: 2; widows: 2; }
+> ```
+> Say plainly that this changes page breaks, so an existing `cv.md` may re-render one line
+> differently. **Never re-render a CV that has already been sent** — sent CVs are read-only.
+
+**2. `profile/preferences.md` gains a row — and it is Tier C, so the update must ASK.**
+1.4.0 introduces Golden Rule #15 (contribute engine learnings upstream), which reads a new
+setting: **Upstream contributions** — `ask` (default) · `yes` · `no`.
+- `preferences.md` is Tier C. **Do not write the row silently.** Ask the onboarding Step-10
+  question (see `onboarding/steps/step-10-house-rules.md` → *upstream contributions*), then
+  record the answer.
+- If the user defers, say the default `ask` is in force — which is the safe behaviour anyway.
+- ⛔ **Make sure the user hears that even `yes` never authorizes a PR on its own.** Every
+  contribution still requires an explicit per-entry yes with the scrubbed text shown first.
+  This is the one place a misunderstanding would publish something private to a public repo.
+
+**3. Seven new files. All are additive; none replaces anything.**
+| New file | Tier | Note |
+|---|---|---|
+| `styles/cover-letter.css` | A | makes `npm run cv:pdf` work on `cover-letter*.md`; theme-neutral |
+| `styles/slides-build.mjs` + `styles/slides.css` | A / B | new `npm run slides:pdf`; `slides.css` duplicates the theme tokens — **if the clone has a customized `cv.css`, offer to copy its `:root` values into `slides.css`**, or decks render blue while the CV doesn't |
+| `templates/slides-template.html` | A | |
+| `applications/_shortlist.md` | B | if absent, offer as an empty template; if the user already keeps a shortlist under another name, **merge into theirs — don't create a second one** |
+| `profile/published-writing.md` | B | if absent, offer as an empty template |
+| `interviews/technical/system-design-checklist.md`, `coding-round-playbook.md`, `language-warmup-TEMPLATE.md` | A/B | 1.3.0's `technical/README.md` listed the first of these as a *"build this over time"* suggestion. **A clone that already built its own is Tier B: merge upstream's method around their content, never overwrite** — theirs encodes real debrief feedback |
+| `upstream-sync/UPSTREAM-QUEUE.md` | B | new; scaffolding only on later updates |
+
+Also add the new `package.json` script (`slides:pdf`). `package.json` is Tier A, so this
+refreshes on its own — but **if the user added their own scripts, merge rather than overwrite.**
+
+**4. Rule and gate additions — no identifier collisions this time.**
+Unlike 1.3.0, nothing here is numbered in a user-extensible file except **one** row:
+- `interviews/hiring-manager/prep-checklist.md` gains **row 22b** (timed cognitive/aptitude
+  screening) and a **banner block** above the table. The row is deliberately suffixed rather
+  than numbered `24` precisely so it cannot collide with a row the user added. **The
+  match-by-meaning rule still applies** — if the clone already has an aptitude-test row under
+  any number, keep theirs and merge upstream's content into it.
+- `CLAUDE.md` (Tier B) gains **Golden Rule #15**, a rewritten **TODO-markers** convention, a
+  **§2.5 step 6** (write the company into the shortlist's do-not-source table), and two repo-map
+  lines. The TODO rewrite **replaces** the old one-line bullet — if the user customized that
+  bullet, ask before replacing.
+- `.claude/skills/interview-prep/SKILL.md` gains **step 1c** (re-read the sent CV) and **step
+  5a** (banned ⏭ justifications). `.claude/skills/new-application/SKILL.md` gains the
+  company-specific comp-lookup rule in step 6 and a shortlist line in step 0.
+- `profile/stories/_TEMPLATE.md` gains a first-class `## Learning` section. **Existing story
+  files are Tier C and are NOT restructured** — but say plainly that stories written before
+  1.4.0 keep their learning folded into `## Result`, and offer to split them **one at a time,
+  with the user confirming each**, since that means re-reading their own words.
+- `profile/stories/_index.md` theme vocabulary gains `product-influence` and
+  `stakeholder-management`. The vocabulary comment is scaffolding; **story rows are Tier C and
+  are never re-tagged automatically.**
+
+**5. Nothing is renamed, split or deleted in 1.4.0**, and no Tier-C value changes. If the user
+declines every optional step above, the engine refresh is still complete and correct — bump
+`VERSION` and say which offers they passed on.
+
 ---
 
 ## The flow
@@ -362,6 +451,90 @@ through it:
 ### 8. Clean up
 - Remove the scratch clone. Tell the user the new version and, if any Tier-B conflicts were
   deferred, what's left as a `TODO(user)`.
+
+---
+
+## Contributing back — the PR-body contract (Golden Rule #15)
+
+This section governs traffic in the **opposite direction**: a clone sending an engine
+improvement **up** to [`IVIR3zaM/CareerCockpit`](https://github.com/IVIR3zaM/CareerCockpit).
+
+### Before anything is written
+
+1. **The entry is in `upstream-sync/UPSTREAM-QUEUE.md` and passes its scrub gate.** No company
+   names, no comp figures, no story contents, no third-party details, no hardcoded
+   user-specific values.
+2. **The user has given an explicit yes to THIS entry**, having seen the exact scrubbed text.
+   `profile/preferences.md` → *Upstream contributions* records willingness, **never
+   authorization** — even `yes` means ask each time. No blanket approval, no consent carried
+   over from a different entry.
+3. **One PR per coherent entry.** Two unrelated fixes in one PR cannot be accepted or rejected
+   independently, and the migration note below becomes unwritable.
+
+### The contract — the PR body is written FOR AN AI AGENT
+
+The reader that matters is not a human reviewer skimming a diff. It is **the agent running
+`UPDATE.md` in someone else's clone**, six months later, that has to apply this change to a
+repo full of a stranger's data without breaking any of it. That agent has the diff and the PR
+body and nothing else. **A PR body that only explains the change to a human is incomplete.**
+
+Every PR body MUST contain all seven sections, in this order:
+
+```markdown
+## What this changes
+One paragraph, plain English. What behaviour is different after this merges.
+
+## Why — the failure it prevents
+The evidence, as an ANONYMOUS PATTERN. What went wrong, what it cost, and why the
+existing rules did not catch it. Never drop this to make the PR shorter: a rule
+with no evidence is the bare principle Golden Rule #13 says will not hold, and the
+next maintainer will not know what they are protecting.
+
+## Files touched, with their TIER
+| File | Tier | Change |
+|---|---|---|
+| path | A / B / C | one line |
+Tier is not decoration — it is the instruction for how a clone must apply this.
+Anything touching a Tier-C path needs an explicit justification here, and Tier-C
+VALUES are never changed by an update under any circumstances.
+
+## New settings / variables
+Any user-specific value this introduces, and the `profile/preferences.md` row that
+holds it: name, allowed values, default. "None" if none. A rule that hardcodes a
+level, a number, a currency or a country instead of reading a variable is not ready.
+
+## Identifier impact
+Does this add a numbered entry to question-bank.md, prep-checklist.md, or
+sharpness-probes.md? If yes: state the ids, and state that the receiving clone must
+match BY MEANING and never renumber the user's entries. If no: say "none" explicitly
+— its absence is otherwise ambiguous.
+
+## UPDATE.md migration note — COPY THIS VERBATIM INTO THE RELEASE
+The exact prose to paste into UPDATE.md's `### X.Y.Z → X.Y.Z+1` block. Write it as
+instructions to the updating agent, covering:
+  - what to do when the target file is UNCHANGED in the clone (usually: refresh);
+  - what to do when the user has CUSTOMIZED it (usually: merge around, ask on conflict);
+  - what to do when the target file DOESN'T EXIST in the clone (offer it, or skip);
+  - anything the agent must ASK the user rather than decide;
+  - anything it must NOT do (never re-render a sent CV, never restructure Tier-C
+    content, never renumber).
+If this section is missing, the change ships into a release that cannot be safely
+applied to an existing clone — which is the whole failure mode this contract exists
+to prevent.
+
+## Verification
+How the change was actually tested, with the real output. For pipeline changes: the
+render command and its result. For rule changes: the artifact that was produced under
+the new rule. "Looks right" is not verification.
+```
+
+### After it merges
+
+Update the queue entry's status to `merged` with the PR link, and — when the change lands in a
+release — confirm the migration note actually made it into that release's `UPDATE.md` block.
+**A merged PR whose migration note was dropped is worse than an unmerged one:** every clone
+that updates into that release now has an engine change with no instructions for reconciling
+it against the user's own layer.
 
 ---
 

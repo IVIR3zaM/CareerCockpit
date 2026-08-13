@@ -19,6 +19,45 @@ Trigger: *"help me get ready for the X interview"*, *"I have Y days"*.
    **Generate the round's question set FIRST** via the `interview-question-generator` skill
    (discipline/level/round-aware) — the saved bank is a seed, not the ceiling — then cut to a
    focused subset for the time available.
+1c. **🔴 RE-READ THE SENT CV AGAINST THE JD'S LEVEL — every round, not just round 1.**
+   Open `applications/<...>/cv.md` beside `jd.md` and run the **15-line squint test** from the
+   `tailored-cv` skill on the CV **as it was actually sent**. Record the verdict as a line in
+   the plan: *"sent CV opens on ⟨facet⟩; JD asks for ⟨level⟩ → ✅ on-target / ⚠️ over-leveled."*
+
+   **Why this is a prep step and not only a build-time step.** The CV is not read once and
+   retired — it is **re-read at every downstream decision point, by people who never met the
+   user**: the hiring manager before their round, a senior leader or panel at an internal
+   shortlist review the candidate does not attend, the debrief that decides whether to advance.
+   A CV built *before* a positioning fix shipped keeps walking into those rooms unchanged,
+   because **a sent `cv.md` is read-only and cannot be corrected** (`CLAUDE.md` §4). The
+   `tailored-cv` gates (Golden Rule #7's JD-echo read-back, #11's role-fit squint test) all run
+   **once, at build time** — they protect the *next* application, and nothing protects the
+   applications already in flight.
+
+   ⇒ When the verdict is ⚠️, it becomes a **prep item, not a note**: the user opens the round by
+   grounding in the on-target facet **in their own words** — *"I directly manage N engineers on
+   one team"* — before the interviewer's read of the CV sets the frame. **Name which phrase in
+   the CV is doing the damage**, so the user knows exactly what they are speaking over. This is
+   the only remedy available; the artifact itself cannot be edited.
+
+   > ⭐ **The general principle, worth applying beyond CVs: a correction shipped into a
+   > build-time gate is retroactive to nothing.** Any repo that learns from rejections
+   > accumulates artifacts built under older, weaker rules. "We fixed it" is only ever true of
+   > future work unless something explicitly reaches back into the live pipeline. So when a
+   > positioning gate is **tightened**, run the second half of this step: **sweep the live
+   > applications in `applications/_index.md` for the pattern the fix targets, and flag any that
+   > are carrying a pre-fix CV into a scheduled round.** Neither half edits anything — both
+   > convert an uncorrectable artifact into something the candidate can speak over.
+
+   <!-- The pattern this rule came from, told anonymously: a candidate cleared a recruiter
+   screen comfortably, then was rejected days later at an internal shortlist review they did
+   not attend, decided by a senior leader who had never met them. The artifacts in front of
+   that decision-maker were the CV exactly as sent, plus a recruiter's write-up of a 30-minute
+   call. The CV had been built before the repo's role-fit positioning fix existed, and opened
+   on a broader scope than the role was hiring for — while the application's own notes had
+   scored the role a bullseye. No gate had missed it: the gate did not yet exist when the CV
+   was built, and once sent the CV could not be corrected. -->
+
 2. **Research** (use web tools): the company (product, mission, recent news, funding, tech
    stack, values), the specific interviewer(s) if named (background, focus areas), the team,
    and any public interview guidelines or review-site signals. Save to
@@ -41,6 +80,40 @@ Trigger: *"help me get ready for the X interview"*, *"I have Y days"*.
    prep, not optional. For a **management/lead round only**, the coverage section also lists
    any **unarmed sharpness probe** (step 1b, §9) — an open one-fact gap is a coverage item,
    not a footnote. For an IC round there is no such row; don't add one.
+
+   ### 🚫 5a. BANNED JUSTIFICATION — "it's only round 1 / the recruiter won't ask that"
+   **The round's POSITION IN THE LOOP IS NEVER a valid reason to mark an area ⏭.** Writing
+   *"deferred to the hiring-manager round"*, *"out of scope for a recruiter screen"*, *"a talent
+   screen rarely probes this"*, or any equivalent is **a coverage failure, not a coverage
+   decision** — delete it and cover the area.
+
+   This exists because the gate above, on its own, does not hold. It accepts *any* one-line
+   reason for a ⏭, and the cheapest passing reason is always "they won't ask it yet" — which
+   produces a round-1 plan that walks the whole checklist, looks fully compliant, and still
+   leaves most areas uncovered, while the interviewer asks them anyway.
+
+   **This is an evidenced failure mode, not a theoretical one.** Questions actually asked in
+   first-round and recruiter screens: full manager-calibration probes; *"why did you choose to
+   be a manager?"*; *"what does product engineering mean to you?"*; *"what's the most complex
+   event-driven project you've worked on?"*; *"tell me about an underperformer you handled"*;
+   *"how is AI being adopted on your team?"*; *"how do you run the team and know they're
+   performing?"*; *"what would you add to us?"*; *"how do you run security-first without
+   blocking engineers?"*; *"what's your experience with distributed teams?"* — plus one screen
+   where **AI-ROI measurement consumed the entire hour**. Round 1 is routinely run by an **EM, a
+   senior director, or a talent partner trained to probe** — not an admin gatekeeper.
+
+   **The two mechanical rules:**
+   1. **Every ⏭ needs a reason that is TRUE OF THE AREA, not of the round.** Legitimate:
+      *"IC target role, so people-management is off-target"* · *"the user genuinely has no such
+      experience — flagged as a gap"* · *"already fully covered in §X of this plan"*.
+      Illegitimate: anything whose reasoning reduces to *"they won't ask it yet."*
+   2. **Anything not covered in depth still gets a ONE-LINE landing spot** — the question, the
+      best story, and a hook to say. A prep artifact must let the user answer **any** checklist
+      area from the page in front of them, even where the deep-dive is genuinely deferred.
+      **Depth may be prioritized; coverage may not be skipped.**
+
+   ⇒ In practice: **every round-1 plan carries a complete question→story lookup**, and the
+   time-box decides how much rehearsal each row gets — never whether the row exists.
 6. Offer **mock interviews** and update the answers based on how the user responds.
 
 ## Behavioral / leadership prep

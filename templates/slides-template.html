@@ -1,0 +1,66 @@
+<!doctype html>
+<!--
+  Presentation-deck template — render with:
+    npm run slides:pdf -- applications/<company-role>/interview-prep/<deck>.html
+
+  For short decks the user PRESENTS in a late-stage round: a scenario walkthrough,
+  a take-home presentation, a 90-day plan.
+
+  ⚠️ THE STYLESHEET PATH IS RELATIVE TO THIS FILE.
+  The href below assumes the deck lives at
+  `applications/<company-role>/interview-prep/<deck>.html` — three levels below the
+  repo root. Move the deck and you must fix the `../` count, or it renders unstyled:
+  every slide loses its fixed height, the whole deck collapses onto one page, and the
+  build fails with "page count != slide count". That message means a BROKEN LINK far
+  more often than it means a real layout problem — check the href first.
+
+  RULES OF THE FORMAT (the design enforces these; don't fight it):
+    - One <section class="slide"> per page. The box is a fixed 297×210mm and
+      slides-build.mjs FAILS the build on any slide whose content overflows it.
+      That is the feature: a clipped slide is caught here, not in the room.
+    - Exactly ONE `.headline` per slide — the single sentence the presenter says
+      first. It is the slide's argument; the bullets below are only its support.
+      A slide with no headline is a slide with no point.
+    - `.footnote` is pinned to the bottom: the trade-off, the caveat, the
+      "what I would NOT do". Interviewers reward the stated trade-off.
+    - Keep bullets to ~4 per slide. If they don't fit, the build will say so.
+
+  CONTENT RULES: Golden Rules #1, #2, #7 and #11 apply to a deck exactly as they do
+  to a CV — every claim traces to `profile/`, nothing is imported from the JD, and
+  the deck is pitched at the level the role is hiring for, not the broadest scope
+  the user can show.
+
+  Delete these comments and every placeholder before rendering.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>[Deck title] — [Company]</title>
+    <link rel="stylesheet" href="../../../styles/slides.css" />
+  </head>
+  <body>
+    <!-- ---- Cover ---- -->
+    <section class="slide cover" data-foot="[Your Name] · 1/[N]">
+      <h1>[The deck's claim in a phrase] <em>— [qualifier]</em></h1>
+      <p class="meta">[Your Name] · [Round name] · [YYYY-MM-DD]</p>
+      <ol>
+        <li>[Section one]</li>
+        <li>[Section two]</li>
+        <li>[Section three]</li>
+      </ol>
+    </section>
+
+    <!-- ---- Body slide — copy this block per slide ---- -->
+    <section class="slide" data-foot="[Your Name] · 2/[N]">
+      <p class="eyebrow">[Section label]</p>
+      <h2>[Slide title — a claim, not a topic]</h2>
+      <p class="headline">[The one sentence you say first on this slide.]</p>
+      <ul>
+        <li><strong>[Verb]</strong> [the concrete action]</li>
+        <li><strong>[Verb]</strong> [the concrete action]</li>
+        <li><strong>[Verb]</strong> [the concrete action]</li>
+      </ul>
+      <p class="footnote"><strong>What I would not do:</strong> [the trade-off you are consciously declining]</p>
+    </section>
+  </body>
+</html>

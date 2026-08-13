@@ -64,6 +64,50 @@ knowing *how much* to cut was. Read the output and make **one** targeted correct
 After rendering, **verify**: Read the PDF and check it's ~1–2 pages with the right
 design (blue headings, gray company names, Roboto — or the user's extracted theme).
 
+### Cover letters — same command, no flags
+
+`cv:pdf` renders cover letters too. It detects them **by filename** (anything matching
+`cover-letter*.md`) and, for those, does two things differently:
+
+- appends [`cover-letter.css`](cover-letter.css) on top of `cv.css`, and
+- budgets **1 page** instead of 2.
+
+```bash
+npm run cv:pdf -- applications/<company-role>/cover-letter.md
+```
+
+`cover-letter.css` is **additive, never a fork** — it overrides only the paragraph-level
+rules that are wrong for prose (`p` spacing, `p em` back to plain italics, sign-off
+spacing). It defines no colours or fonts, so the letterhead matches the CV exactly and
+**any theme carries through unchanged**, including one onboarding extracted. Without it,
+`cv.css`'s CV-tuned `p { margin: 3px 0 }` runs every paragraph of a letter together into
+a single grey block.
+
+The letter's *content* rules — no STAR narratives, ~3 short paragraphs — live in
+`templates/cover-letter-template.md`, not here.
+
+### Presentation decks — `slides:pdf`
+
+Some late-stage rounds ask for a short deck (a scenario walkthrough, a take-home
+presentation, a 90-day plan). [`slides-build.mjs`](slides-build.mjs) renders one to a
+landscape-A4 PDF in the same visual language as the CV:
+
+```bash
+npm run slides:pdf -- applications/<company-role>/interview-prep/<deck>.html
+```
+
+- **Input is HTML, not Markdown** — one `<section class="slide">` per page. Decks need
+  per-slide layout (an eyebrow, one headline, a pinned footnote) that Markdown can't
+  express, so this path uses Puppeteer directly rather than md-to-pdf.
+- **It fails the build on overflow.** Each slide is a fixed 297×210mm box; the script
+  compares `scrollHeight` to `clientHeight` and exits `1` naming any slide that doesn't
+  fit, plus any slide spilling onto a second page. Same principle as the CV page budget —
+  never eyeball a PDF to find out whether it fits.
+- **[`slides.css`](slides.css) duplicates the theme tokens from `cv.css` on purpose** — a
+  standalone HTML page inherits nothing. If the theme in `cv.css` changes (e.g. onboarding
+  extracts the user's own), copy the same `:root` values into `slides.css` or the deck
+  stays blue while the CV isn't.
+
 ### System Chrome path (cross-platform)
 
 Puppeteer is pointed at the **system Chrome** rather than downloading its own (see trap 2).

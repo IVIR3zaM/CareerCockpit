@@ -1,0 +1,49 @@
+/* ============================================================
+   Cover-letter overrides — loaded ON TOP of cv.css, never instead of it.
+
+   WHY THIS FILE EXISTS:
+   cv.css is tuned for a CV, where a <p> is almost always a ONE-LINE
+   company description sitting directly under a role heading — hence
+   `p { margin: 3px 0 }`. A cover letter is the opposite: its body is
+   nothing BUT paragraphs, so 3px collapses them into one another and
+   the salutation, the body paragraphs and the sign-off all run together
+   as a single grey block.
+
+   The fix is additive, not a fork: styles/cv-build.mjs appends this file
+   to the stylesheet array whenever the input is named `cover-letter*.md`,
+   so the name/contact/link/heading design still comes from cv.css and
+   there is still exactly ONE source of truth for the look. Only the
+   paragraph-level rules that are wrong for prose are overridden here.
+
+   Deliberately theme-neutral: no colours, no fonts, no `--variables`.
+   Whatever theme lives in cv.css — the shipped default or the one
+   onboarding extracted from the user's own CV — carries through unchanged.
+
+   Edit here to restyle all cover letters at once.
+   ============================================================ */
+
+/* Real paragraph separation. cv.css's 3px is a CV-only value. */
+p {
+  margin: 0 0 10px 0;
+}
+
+/* The contact block under the name keeps cv.css's tighter spacing so the
+   letterhead still matches the CV exactly. */
+h1 + p {
+  margin: 0 0 12px 0;
+}
+
+/* In a CV, "*Company*" inside a plain paragraph means a company name, so
+   cv.css renders p em as BOLD GRAY. In prose that is wrong — italics in a
+   letter are just emphasis. Restore normal italic emphasis. */
+p em {
+  font-style: italic;
+  font-weight: inherit;
+  color: inherit;
+}
+
+/* Sign-off: "Best regards," / name. Keep the name close to the line above
+   it rather than floating a full paragraph gap away. */
+p:last-of-type {
+  margin-bottom: 0;
+}

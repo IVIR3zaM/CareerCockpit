@@ -16,6 +16,123 @@ Versioning is [semantic](https://semver.org/): `MAJOR.MINOR.PATCH`.
 
 ---
 
+## [1.4.0] — 2026-08-13
+
+**Theme: the gates that only ran once now run again, and the toolkit learns from every clone.**
+
+Two structural gaps close in this release. First, several of the engine's strongest checks were
+**build-time only** — they protected the next artifact while the artifacts already in flight
+carried the pre-fix version into every downstream room. Second, an improvement discovered in one
+clone stayed in that clone; the next release either overwrote it or diverged from it.
+
+### ⭐ New: Golden Rule #15 — contribute engine learnings back upstream
+
+Golden Rule #13 says every rejection ships a correction. Most of those corrections are **engine
+improvements, not personal facts** — a tightened gate, a checklist row, a convention, a
+stylesheet fix. #15 routes them: sort personal from engine, **generalize** the engine ones (the
+case study survives as an anonymous pattern — never dropped, because a rule with no evidence is
+the bare principle #13 says won't hold), turn any user-specific value into a **variable in
+`profile/preferences.md`**, and queue it in `upstream-sync/UPSTREAM-QUEUE.md` **at birth**,
+while the evidence is fresh.
+
+- ⛔ **Contributing requires explicit, per-entry consent.** A PR to the public product repo
+  permanently publishes something derived from a private job search. New preference
+  **Upstream contributions** (`ask` default · `yes` · `no`) records *willingness* — **even
+  `yes` still means asking before each PR**, with the exact scrubbed text shown first.
+  Asked during onboarding Step 10.
+- **New `UPDATE.md` → *Contributing back*: the PR-body contract.** A PR is written **for the AI
+  agent that will apply it to a stranger's clone**, not for a human skimming a diff. Seven
+  mandatory sections, including the file **tiers**, the **identifier impact**, and the exact
+  **`UPDATE.md` migration note to copy verbatim into the release.** A merged PR whose migration
+  note was dropped is worse than an unmerged one.
+
+### New: the sent CV is re-checked before every round
+
+`interview-prep` **step 1c** — open the CV **as sent** beside the JD and re-run the 15-line
+squint test before each round, recording the verdict in the plan. A CV is not read once and
+retired: it is re-read by the hiring manager, by a panel at an internal shortlist review the
+candidate never attends, and at the debrief that decides whether to advance. **A sent CV is
+read-only**, so when it reads over-leveled the remedy is verbal — the round opens by grounding
+in the on-target facet, and the prep names which phrase is doing the damage.
+
+> ⭐ The general principle, now stated in the engine: **a correction shipped into a build-time
+> gate is retroactive to nothing.** When a positioning gate is tightened, sweep the live
+> applications for the pattern it targets.
+
+### New: "it's only round 1" is a banned reason to skip prep
+
+`interview-prep` **step 5a** + a banner on `prep-checklist.md`. The coverage gate accepted any
+one-line reason for a ⏭, and the cheapest passing reason was always *"they won't ask it yet"* —
+producing round-1 plans that walk the whole checklist, look compliant, and leave most areas
+uncovered while the interviewer asks them anyway. Now: **a ⏭ needs a reason true of the AREA,
+never of the ROUND**, and anything not covered in depth still gets a **one-line landing spot**.
+*Depth may be prioritized; coverage may not be skipped.*
+
+### New: sourcing-stage and public-writing memory
+
+- **`applications/_shortlist.md`** — the market-sweep stage *before* an application exists,
+  carrying a **⛔ do-not-source table that fires one stage earlier than Golden Rule #12**. Wired
+  into `new-application` step 0 and into the §2.5 close-out, because a company missing from that
+  table comes around again unflagged.
+- **`profile/published-writing.md`** — what the user has **already published**, with each piece's
+  core argument marked **spent**. An agent has perfect access to the user's *experience* and zero
+  access to their *published output*, and will otherwise re-publish their own thesis back at
+  them. Carries the ⭐ **voice-is-per-register** rule: a dictated form-answer voice and a written
+  long-form voice are different registers, and one calibration used for the other is wrong half
+  the time.
+
+### New: technical-round prep ships with the product
+
+`interviews/technical/` was a "build this over time" stub. It now ships three files:
+**`system-design-checklist.md`** (the 60-minute clock, numbers on the board by minute 12,
+API contract before any service box, *never let a noun stand alone*, and a **mandatory timed
+dry-run gate** — reading it is provably not the fix), **`coding-round-playbook.md`** (rehearse
+the hardest level **first**, run code at every level boundary, plus hard rules binding the agent:
+never tell the user a topic won't come up), and **`language-warmup-TEMPLATE.md`** (per-language
+morning-of de-rust for engineers who are language-agnostic in practice).
+
+### New: cover letters and presentation decks render
+
+- **`styles/cover-letter.css`** — `npm run cv:pdf` now detects `cover-letter*.md` by filename,
+  appends prose-tuned overrides and drops the budget to 1 page. **No flags.** Theme-neutral, so
+  any extracted theme carries through. Previously the product shipped a cover-letter *template*
+  with no way to render it, and `cv.css`'s CV-tuned `p { margin: 3px 0 }` ran every paragraph
+  together into one grey block.
+- **`npm run slides:pdf`** (`styles/slides-build.mjs` + `slides.css` +
+  `templates/slides-template.html`) — landscape-A4 presentation decks in the CV's visual
+  language, for late-stage rounds that ask for one. **Fails the build on any slide whose content
+  overflows its fixed box**, naming the slide and the pixel overflow, so a clipped slide is caught
+  before the room and not in it.
+
+### Fixed
+
+- 🚨 **`styles/cv.css` page-break bug.** `h4 + ul { break-inside: avoid }` made whole bullet lists
+  atomic, stranding ~8 blank lines and pushing 2-page CVs onto a nearly-empty third page — which
+  the page budget then reported as "over budget", sending users trimming real content to fix a
+  stylesheet bug. Replaced with `break-after: avoid` on headings plus per-`li` atomicity.
+  **`cv.css` is Tier B, so `UPDATE.md` applies this one specifically even to a customized theme.**
+- **`profile/stories/_TEMPLATE.md` had no `## Learning` section** — while `story-elicitation`
+  writes to one by name. An internal contradiction; learning is now first-class instead of folded
+  into Result, where it got compressed away.
+- **`TODO(user)` was being used as a substitute for asking.** The old convention said only
+  *"surface these back to them"* — which an agent satisfies by writing the marker and moving on,
+  shipping the artifact incomplete and converting a 10-second answer into repo debt. Now: a gap
+  found **during a live exchange** goes into that turn's batched question list; `TODO(user)` is
+  for gaps found when the user isn't there. A question already asked is marked
+  `🔴 OPEN — asked <date>` so the two never blur.
+- **Comp-floor check now requires the company-specific lookup** before the verdict
+  (`new-application` step 6). Market-wide buckets alone produce false 🟡 "borderline" calls; a
+  band describes an employer, not an industry.
+- **Story theme vocabulary** gains `product-influence` and `stakeholder-management` — referenced
+  by prep-checklist row 18b since 1.3.0 but missing from the vocabulary itself.
+- **New prep-checklist row 22b** — timed cognitive/aptitude screens, a round type no STAR prep
+  touches, used by some companies as round 1. Suffixed rather than numbered `24` so it cannot
+  collide with a row a user added.
+- **`slides-build.mjs` counts slides from the DOM**, not by matching `class="slide"` in the raw
+  file — which also matched the word inside HTML comments, so a deck started from the template
+  reported phantom slides. Its page-count mismatch error now names the usual cause (a wrong
+  stylesheet path).
+
 ## [1.3.0] — 2026-08-10
 
 **New capabilities** — questions that showed up in real rounds and weren't in the engine yet.

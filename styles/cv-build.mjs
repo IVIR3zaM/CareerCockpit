@@ -82,7 +82,6 @@ const args = process.argv.slice(2);
 const mdPath = args.find((a) => !a.startsWith('--') && a.endsWith('.md'));
 const dryRun = args.includes('--dry');
 const pagesIdx = args.indexOf('--pages');
-const targetPages = pagesIdx !== -1 ? Number(args[pagesIdx + 1]) : 2;
 
 if (!mdPath) {
   console.error('usage: npm run cv:pdf -- <path/to/cv.md> [--pages 2] [--dry]');
@@ -91,7 +90,22 @@ if (!mdPath) {
 
 const absMd = path.resolve(mdPath);
 const dest = absMd.replace(/\.md$/, '.pdf');
+
+// A cover letter is prose; a CV is a dense list. They need different paragraph
+// spacing and they have different natural lengths. Detect by filename and adjust
+// BOTH, so `npm run cv:pdf -- <path>/cover-letter.md` just works with no extra flags.
+// Without this, cv.css's CV-tuned `p { margin: 3px 0 }` runs every paragraph of a
+// letter together into one grey block, and the report measures the letter against a
+// 2-page budget it was never meant to fill.
+const isCoverLetter = /(^|\/)cover-letter[^/]*\.md$/.test(absMd);
+const targetPages = pagesIdx !== -1 ? Number(args[pagesIdx + 1]) : isCoverLetter ? 1 : 2;
+
+// Overrides are APPENDED to cv.css, never substituted for it — the letterhead,
+// fonts and colours stay defined in exactly one place, so a theme change (or the
+// theme onboarding extracts) reaches the cover letter for free.
 const stylesheet = [path.join(repoRoot, 'styles/cv.css')];
+if (isCoverLetter) stylesheet.push(path.join(repoRoot, 'styles/cover-letter.css'));
+
 const launch_options = { executablePath: CHROME };
 
 // --- 1. Render through the real pipeline (identical to the raw cv:pdf command) --
