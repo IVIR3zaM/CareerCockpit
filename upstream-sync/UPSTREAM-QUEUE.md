@@ -45,7 +45,24 @@ at PR time; an entry that can't pass is either rewritten now or reclassified as 
 ## Statuses
 
 `candidate` · `approved` (user said yes to *this* entry) · `scrubbed` · `pr-open (<link>)` ·
-`merged` · `declined (why)`
+`merged (unreleased)` · `released <X.Y.Z>` · `declined (why)`
+
+⛔ **Never record a version you don't know yet.** When a PR is opened you know the **PR
+number**; you do **not** know which release will carry it — it may be the next minor, a patch,
+something months away, or nothing at all. So a freshly opened entry stops at
+`pr-open (<link>)`, and `released <X.Y.Z>` is written **only by the update flow**, which is the
+first actor that can actually see the change in a shipped release
+(`../UPDATE.md` → *Reconciling provenance markers*).
+
+⭐ **Shipping an entry also means adopting it locally in the same edit** — switch this repo to
+the generalized text, move the personal evidence into a marked customization block beneath it,
+and add the PR-keyed provenance marker (Golden Rule #15). An entry marked shipped but not
+adopted locally leaves a personalized twin of a rule the product now also ships, and the next
+update has to match them by prose alone.
+
+> **Local ids are local.** `U13` means something different in every clone, so it is fine as a
+> row label here and **useless as a cross-repo identifier**. Anything that has to survive
+> outside this repo — provenance markers above all — is keyed on the **PR URL**.
 
 ## Queue
 

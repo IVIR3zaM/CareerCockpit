@@ -251,6 +251,28 @@ rules) are set.
       seven-section structure is the **PR-body contract in `UPDATE.md` → *Contributing back***.
       A PR body missing its migration note ships a change that cannot be safely applied to an
       existing clone.
+    - **⭐ ADOPT THE GENERALIZED VERSION LOCALLY, IN THE SAME EDIT.** Contributing is not the
+      end of the job. Once the generalized text exists, **this clone switches to it** and the
+      personal evidence moves into a marked customization block underneath. Otherwise the
+      clone keeps a private, personalized twin of a rule the product now also ships — and at
+      the next update the flow has to work out, from prose alone, that the incoming rule and
+      the local one are **the same rule**. There is no identifier to match on, so it either
+      asks a pile of unanswerable conflict questions or writes the rule twice.
+      Record the link with a **provenance marker** directly above the adopted block:
+      ```
+      <!-- upstream: IVIR3zaM/CareerCockpit#<PR> · status: proposed
+           Generalized text above is upstream's. Personal evidence is the marked block below
+           and never ships. -->
+      ```
+      ⛔ **NEVER write a version number in that marker.** At contribution time you know the
+      **PR**; you do **not** know the release — the PR may land in the next minor, a patch,
+      much later, or never. Guessing produces a marker that is confidently wrong forever.
+      The status vocabulary is `proposed` → `merged (unreleased)` → `released <X.Y.Z>` →
+      `declined`, and **only the update flow advances it**, because only the update flow
+      actually sees which release contains the change (`UPDATE.md` → *Reconciling provenance
+      markers*). Until then `proposed` is the honest and sufficient value: the marker's real
+      job is to say **"this text is upstream's, not mine"**, which is what makes the next
+      merge safe. The version is bookkeeping that gets filled in later.
 
 ---
 

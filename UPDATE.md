@@ -423,6 +423,18 @@ where they expect it.
 - If a migration can't complete, **stop and say so** — leave the clone on its old version
   rather than half-migrated, and don't bump `VERSION`.
 
+### 4b. Reconcile provenance markers — BEFORE the tier pass
+If this clone has ever contributed upstream (Golden Rule #15), it carries
+`<!-- upstream: …#<PR> · status: … -->` markers on the blocks it contributed. **Resolve them
+now, before the tier pass**, because the outcome decides how each of those blocks is treated:
+one that resolves to `released` is upstream-owned and should refresh as a **no-op**, while one
+that resolves to `declined` is purely local and must not be touched.
+
+Full procedure — including the reworded-by-review case, which is the one that rots silently —
+is in **[*Contributing back* → *Reconciling provenance markers*](#reconciling-provenance-markers-runs-during-every-update)**.
+Report the resolutions in the step-5 summary as their own line items: the user contributed
+these, and *"your PR shipped in this release"* / *"your PR was declined"* is news.
+
 ### 5. Apply per tier (one confirmation summary, then reconcile)
 Build a single plain-English summary of the whole plan — migrations included — then work
 through it:
@@ -510,8 +522,13 @@ match BY MEANING and never renumber the user's entries. If no: say "none" explic
 — its absence is otherwise ambiguous.
 
 ## UPDATE.md migration note — COPY THIS VERBATIM INTO THE RELEASE
-The exact prose to paste into UPDATE.md's `### X.Y.Z → X.Y.Z+1` block. Write it as
-instructions to the updating agent, covering:
+⛔ Do NOT invent a version header. You are opening a PR; you do not know which
+release will carry it (next minor? a patch? months later? never?). Write the note
+body only, under the heading `## Migration note (release TBD)`. Whoever cuts the
+release files it under the right `### X.Y.Z → X.Y.Z+1` block — they are the first
+actor who actually knows the number.
+
+Write it as instructions to the updating agent, covering:
   - what to do when the target file is UNCHANGED in the clone (usually: refresh);
   - what to do when the user has CUSTOMIZED it (usually: merge around, ask on conflict);
   - what to do when the target file DOESN'T EXIST in the clone (offer it, or skip);
@@ -528,6 +545,19 @@ render command and its result. For rule changes: the artifact that was produced 
 the new rule. "Looks right" is not verification.
 ```
 
+### Adopt it locally too — immediately, not when it merges
+
+**A contribution that isn't adopted locally leaves the clone holding a private, personalized
+twin of a rule the product now also ships.** At the next update the flow must then work out
+from prose alone that the incoming rule and the local one are the same rule — with no
+identifier to match on — so it either asks unanswerable conflict questions or writes the rule
+twice. Do it in the same edit as the PR: switch the local file to the generalized text, move
+the personal evidence into a marked customization block under it, and add the provenance
+marker described in Golden Rule #15.
+
+⛔ **The marker names the PR, never a version.** A contributing clone knows its PR number the
+moment it opens one; it cannot know the release, and a guessed version is wrong forever.
+
 ### After it merges
 
 Update the queue entry's status to `merged` with the PR link, and — when the change lands in a
@@ -535,6 +565,37 @@ release — confirm the migration note actually made it into that release's `UPD
 **A merged PR whose migration note was dropped is worse than an unmerged one:** every clone
 that updates into that release now has an engine change with no instructions for reconciling
 it against the user's own layer.
+
+### Reconciling provenance markers (runs during every update)
+
+**The update flow is the only actor that knows which release contains a given change** — it
+has the clone's `VERSION`, the upstream tree, and the `CHANGELOG`. So advancing a provenance
+marker is its job, not the contributor's. During step 4, for every `<!-- upstream: …#<PR> -->`
+marker in the clone whose status is not yet `released`:
+
+1. **Look for the block in the fetched upstream tree.**
+   - **Present** → the change shipped. Advance the status to **`released <the version being
+     updated to>`**, and treat the block as **upstream-owned from now on**: it refreshes like
+     any other engine text, and the marked customization block below it is the only part the
+     user owns. This is the case that makes the whole scheme pay off — an adopted-and-marked
+     block reconciles to a **no-op**, instead of a conflict prompt.
+   - **Absent, PR still open** → still `proposed`. Leave it alone and say so; the user may
+     want to chase the PR.
+   - **Absent, PR closed unmerged** → the contribution was **declined**. Say so plainly, set
+     the status to `declined`, and point out that the block is now **purely local** — the
+     generalized wording has no upstream home, so the user may prefer to fold their personal
+     evidence back into it. **Never delete it**; a declined contribution is still a rule the
+     user relies on.
+2. **Upstream took the idea but reworded it** — the common review outcome, and the one that
+   silently rots. The local text no longer matches what shipped. **Adopt upstream's wording**
+   (that is the one the next release will keep merging against), preserve the customization
+   block untouched, and tell the user their wording was revised.
+
+> **Why the marker is keyed on the PR and not the version:** the PR is the only identifier
+> that exists at the moment the link is created, is globally unique across every clone, and
+> stays resolvable whatever happens to the change afterwards — including "nothing ever
+> happened to it." Local queue ids (`U13`) are *not* usable here: every clone numbers its own
+> queue, so two users' `U13` are unrelated.
 
 ---
 
