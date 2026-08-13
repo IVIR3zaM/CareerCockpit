@@ -59,10 +59,12 @@ about what is already consuming attention.
 **This table is the highest-value part of the file.** It fires at *sourcing* time, one stage
 earlier than Golden Rule #12.
 
-⚠️ **It only works if closed applications are written into it.** A company that is missing
-here comes around again unflagged and costs another rejected attempt — which is exactly how
-this table earned its place. **Add the row as part of the §2.5 close-out**, at the same time
-the application is archived; do not leave it to the next sweep to notice.
+⚠️ **It only works if closed applications are written into it**, and the failure is silent: a
+company missing from this table is **indistinguishable from a company that was never
+considered**, so the next sweep re-lists it as a fresh prospect and the research is spent again
+before anything catches it. **Add the row as part of the §2.5 close-out**, while the archive
+edit is already open — a table that depends on someone noticing later is a table that is
+already out of date.
 
 Not every row is a permanent no. Mark the distinction explicitly, because it decides whether
 the name may ever be revived:

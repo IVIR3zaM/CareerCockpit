@@ -11,10 +11,14 @@ talks, newsletters, README/spec write-ups. **Log it here when it goes out.**
 
 > ### ⚠️ Why this file exists — read before drafting ANY post
 > **An agent that cannot see what the user has already published will re-publish the user's own
-> thesis back at them.** The originating failure: a drafted post whose entire payoff paragraph
-> restated the argument of a post published two months earlier — caught only because *the user*
-> happened to remember. Nothing in the repo could have caught it, because the repo had no record
-> of what had been said in public.
+> thesis back at them.** The mechanism is not carelessness, it is structural: an agent drafting
+> a post reasons from `profile/` and reaches for the strongest available argument — and the
+> strongest argument is *also* the one most likely to have been published already, precisely
+> because it was strongest. So the repeat is the **most probable** draft, not an unlucky one.
+>
+> It is also nearly uncatchable at review time. A repeat reads as *good* — familiar, confident,
+> well-argued — because it is the user's own thinking returned to them. Without a written record
+> the only detector is the user personally remembering, months later, that they already said it.
 >
 > An agent has perfect access to the user's *experience* (`profile/`) and zero access to their
 > **published output**. Those are different corpora, and the second one is the one the audience

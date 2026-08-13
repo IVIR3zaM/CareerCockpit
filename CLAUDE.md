@@ -213,12 +213,22 @@ rules) are set.
     - **Sort the learning first.** *Personal* (a story, a metric, a preference, a company's
       real name, a comp figure) → `profile/`, and it stops there. *Engine* (a rule, a gate, a
       procedure, a template, a stylesheet fix) → generalize it.
-    - **Generalize means: strip the user out of it and keep the force.** The rule states the
-      failure mode and the mechanical fix; the case study is retold as an **anonymous
-      pattern** ("a candidate led a first-line-EM application with manager-of-managers scope
-      and was cut at the screen"). Never drop the evidence to make scrubbing easier — a rule
-      with no evidence is the kind of principle #13 says doesn't hold. If it genuinely cannot
-      be told anonymously, it is a personal learning; keep it local.
+    - **Generalize means: convert the incident into a CLAIM ABOUT THE WORLD.** Not "strip the
+      names out of the story" — **stop telling a story at all.** A product file must not carry
+      anyone's biography, however anonymized: a stranger reading it should learn *how this
+      failure works*, never *what happened to the person who found it*.
+      - ❌ *"A candidate led a first-line-EM application with manager-of-managers scope and was
+        cut at the screen."* — still one person's history. "A candidate", "once", "in one
+        case", "the originating failure was…" are all tells that a narrative survived the
+        scrub.
+      - ✅ *"A screener reads the first ~15 lines. Scope broader than the role asks for reads
+        as over-leveled, and the matching evidence below is never reached."* — the same force,
+        stated as a mechanism, true for every reader of the file.
+      **Keep the evidence, change its grammar.** The rule still has to say *why* it exists — a
+      rule with no reasoning is the kind of principle #13 says doesn't hold — but the reason is
+      a property of the process, not an anecdote. Ask: *would this sentence be equally true if
+      it had never happened to this user?* If no, it isn't generalized yet. If the insight
+      genuinely cannot survive that conversion, it is a personal learning; keep it local.
     - **If it needs a user-specific value, that value becomes a VARIABLE in
       `profile/preferences.md`** and the engine text reads it from there. One fact, one home
       (#4). A hardcoded number, level, comp floor, or company name in engine text is the tell

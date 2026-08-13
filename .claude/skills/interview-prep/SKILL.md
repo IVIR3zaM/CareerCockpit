@@ -49,14 +49,15 @@ Trigger: *"help me get ready for the X interview"*, *"I have Y days"*.
    > are carrying a pre-fix CV into a scheduled round.** Neither half edits anything — both
    > convert an uncorrectable artifact into something the candidate can speak over.
 
-   <!-- The pattern this rule came from, told anonymously: a candidate cleared a recruiter
-   screen comfortably, then was rejected days later at an internal shortlist review they did
-   not attend, decided by a senior leader who had never met them. The artifacts in front of
-   that decision-maker were the CV exactly as sent, plus a recruiter's write-up of a 30-minute
-   call. The CV had been built before the repo's role-fit positioning fix existed, and opened
-   on a broader scope than the role was hiring for — while the application's own notes had
-   scored the role a bullseye. No gate had missed it: the gate did not yet exist when the CV
-   was built, and once sent the CV could not be corrected. -->
+   <!-- Why the internal review is the dangerous read, mechanically: between the recruiter
+   screen and the next scheduled round, most loops run a shortlist/panel review that the
+   candidate does not attend and is not told about. The artifacts in that room are the CV
+   exactly as sent plus a recruiter's write-up of a 30-minute call — no live person to correct
+   a misread. So the CV is doing its heaviest work at the moment the candidate has the least
+   influence over it, and a positioning problem that a live conversation would have defused
+   goes unchallenged. This is also why "the application notes scored this role a good fit" is
+   not reassurance: the fit assessment and the artifact carrying it into the room are two
+   different things, and only the second one is read. -->
 
 2. **Research** (use web tools): the company (product, mission, recent news, funding, tech
    stack, values), the specific interviewer(s) if named (background, focus areas), the team,
@@ -92,15 +93,22 @@ Trigger: *"help me get ready for the X interview"*, *"I have Y days"*.
    produces a round-1 plan that walks the whole checklist, looks fully compliant, and still
    leaves most areas uncovered, while the interviewer asks them anyway.
 
-   **This is an evidenced failure mode, not a theoretical one.** Questions actually asked in
-   first-round and recruiter screens: full manager-calibration probes; *"why did you choose to
-   be a manager?"*; *"what does product engineering mean to you?"*; *"what's the most complex
-   event-driven project you've worked on?"*; *"tell me about an underperformer you handled"*;
-   *"how is AI being adopted on your team?"*; *"how do you run the team and know they're
-   performing?"*; *"what would you add to us?"*; *"how do you run security-first without
-   blocking engineers?"*; *"what's your experience with distributed teams?"* — plus one screen
-   where **AI-ROI measurement consumed the entire hour**. Round 1 is routinely run by an **EM, a
-   senior director, or a talent partner trained to probe** — not an admin gatekeeper.
+   **The premise the skip rests on is false.** Round 1 is routinely run by an **EM, a senior
+   director, or a talent partner trained to probe** — not an admin gatekeeper — and at that
+   stage the screen's job is to *deselect*, which it does with depth questions, not logistics.
+   Questions of this weight are standard in a first round:
+   full manager-calibration probes · *"why did you choose to be a manager?"* · *"what does
+   product engineering mean to you?"* · *"what's the most complex event-driven project you've
+   worked on?"* · *"tell me about an underperformer you handled"* · *"how is AI being adopted on
+   your team?"* · *"how do you run the team and know they're performing?"* · *"what would you
+   add to us?"* · *"how do you run security-first without blocking engineers?"* · *"what's your
+   experience with distributed teams?"*
+
+   Two structural facts make the skip worse than it looks: a screener with **one hour and a
+   deselect mandate** can spend the *entire* slot on a single topic they care about, so
+   "unlikely to come up" and "unlikely to matter" are unrelated; and a round-1 answer is
+   **written up and forwarded** to people the candidate never meets, so a thin answer keeps
+   costing after the call ends.
 
    **The two mechanical rules:**
    1. **Every ⏭ needs a reason that is TRUE OF THE AREA, not of the round.** Legitimate:

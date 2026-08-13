@@ -204,8 +204,10 @@ Never let the round end without all four. Their absence reads as a shallow desig
 ## ⚠️ Rehearsal gate — MANDATORY before any design round
 
 **Reading this file is not the fix.** This round is lost to *habit under time pressure*, and a
-habit only changes by repetition. A candidate who has read the method and not rehearsed it
-performs like a candidate who has not read it. Before any scheduled design round:
+habit only changes by repetition — so having read the method and having rehearsed it produce
+the same performance under a running clock, while feeling completely different beforehand.
+That gap is the trap: familiarity with the framework reads as readiness right up to the moment
+the timer starts. Before any scheduled design round:
 
 - [ ] **One full 60-minute timed dry run**, out loud, on a prompt in the target's domain —
       not a read-through, not a skim

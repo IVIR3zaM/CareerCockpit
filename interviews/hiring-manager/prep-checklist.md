@@ -12,11 +12,14 @@ walk this list: each area is either **covered in the plan** (with a mapped story
 > the letter of this checklist while leaving the plan empty.
 >
 > Round 1 is routinely run by an **EM, a senior director, or a talent partner trained to
-> probe** — not an admin gatekeeper. First-round screens have asked, for real: *"why did you
-> choose to be a manager?"* · *"tell me about an underperformer you handled"* · *"how do you
-> know the team is performing?"* · *"what's the most complex event-driven project you've
-> worked on?"* · *"how is AI being adopted on your team?"* — and in one case spent the **whole
-> hour** on AI-ROI measurement.
+> probe** — not an admin gatekeeper — and its job is to **deselect**, which it does with depth
+> questions rather than logistics. Questions of this weight are standard at that stage:
+> *"why did you choose to be a manager?"* · *"tell me about an underperformer you handled"* ·
+> *"how do you know the team is performing?"* · *"what's the most complex event-driven project
+> you've worked on?"* · *"how is AI being adopted on your team?"*
+>
+> And a screener with one hour and a deselect mandate can spend the **whole slot** on the one
+> topic they care about — so *"unlikely to come up"* and *"unlikely to matter"* are unrelated.
 >
 > Legitimate ⏭ reasons: *IC target role, so this people-management row is off-target* ·
 > *the user genuinely lacks this experience — flagged as a named gap* · *already covered in

@@ -25,11 +25,18 @@ at PR time; an entry that can't pass is either rewritten now or reclassified as 
       with full force — a public PR is the widest possible disclosure).
 - [ ] **No user-specific values hardcoded in the engine text.** If the rule needs one, it is a
       row in `profile/preferences.md` and the text reads it from there.
-- [ ] **The case study survives as an anonymous pattern** — *"a candidate led a first-line-EM
-      application with manager-of-managers scope and was cut at the screen"*. ⚠️ **Do not drop
-      the evidence to make scrubbing easier.** A rule with no evidence behind it is exactly the
-      bare principle Golden Rule #13 says will not hold. If it can't be told anonymously **and**
-      keep its force, it is a personal learning — keep it local and delete the entry.
+- [ ] **The incident became a CLAIM ABOUT THE WORLD — not an anonymized story.** Removing names
+      is not enough; a product file must carry no one's biography. Tells that a narrative
+      survived: *"a candidate…"*, *"once"*, *"in one case"*, *"the originating failure was…"*,
+      *"asked, for real:"*, past-tense verbs with a person as subject.
+      - ❌ *"A candidate led a first-line-EM application with manager-of-managers scope and was
+        cut at the screen."*
+      - ✅ *"A screener reads the first ~15 lines; scope broader than the role asks for reads as
+        over-leveled, and the evidence below is never reached."*
+      ⚠️ **Keep the reasoning, change its grammar** — a rule with no *why* is the bare principle
+      Golden Rule #13 says will not hold. **The test: would this sentence be equally true if it
+      had never happened to this user?** If no, it isn't ready. If the insight can't survive the
+      conversion, it is a personal learning — keep it local and delete the entry.
 - [ ] **It is genuinely general** — would this help someone in a different discipline, level, or
       country? If it only helps this user, it belongs in `profile/`.
 

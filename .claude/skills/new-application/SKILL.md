@@ -74,12 +74,14 @@ Trigger: *"I'm applying to X"*, the user pastes a JD, or describes a role.
    This is a **sequencing rule, not a filter** — it changes nothing about what the user may
    choose, only that they choose with the complete number in hand.
 
-   *(The pattern, anonymously: a role was scored 🟡 "borderline" from the market-wide bucket
-   alone and the application was submitted. The employer-specific lookup ran hours later and
-   moved the verdict to 🔴 — the highest figure **ever reported** for that role at that company
-   was ~€25k under the floor the candidate had just written on the form. Same conclusion,
-   reached too late to inform the spend. The market bucket describes an industry; a band
-   describes an employer, and only the second one is going to make the offer.)*
+   *(Why the market bucket alone is not enough: it describes an **industry**, while an offer
+   comes from an **employer** — and the spread between employers at the same level, in the same
+   city, routinely exceeds the spread between levels. A percentile band is therefore wide enough
+   to contain both "clears the floor comfortably" and "has never once paid the floor", which is
+   exactly how a market-wide read produces a confident 🟡 for a role that is really 🔴. The
+   employer-specific page can also disagree with the bucket by more than the entire band, so it
+   is not a refinement of the estimate — it is the estimate. Running it **after** submitting
+   reaches the same verdict at the one moment it can no longer inform the decision.)*
 
    **🔴 is not an auto-skip:** surface it and make *"ask the band on the first recruiter
    call"* the next action, rather than sinking a tailored CV and a full loop into a role that

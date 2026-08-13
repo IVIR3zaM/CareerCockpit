@@ -29,11 +29,18 @@ clone stayed in that clone; the next release either overwrote it or diverged fro
 
 Golden Rule #13 says every rejection ships a correction. Most of those corrections are **engine
 improvements, not personal facts** — a tightened gate, a checklist row, a convention, a
-stylesheet fix. #15 routes them: sort personal from engine, **generalize** the engine ones (the
-case study survives as an anonymous pattern — never dropped, because a rule with no evidence is
-the bare principle #13 says won't hold), turn any user-specific value into a **variable in
-`profile/preferences.md`**, and queue it in `upstream-sync/UPSTREAM-QUEUE.md` **at birth**,
-while the evidence is fresh.
+stylesheet fix. #15 routes them: sort personal from engine, **generalize** the engine ones,
+turn any user-specific value into a **variable in `profile/preferences.md`**, and queue it in
+`upstream-sync/UPSTREAM-QUEUE.md` **at birth**, while the reasoning is fresh.
+
+> ⭐ **Generalizing means converting the incident into a claim about the world — not
+> anonymizing a story.** Removing names is not enough: a product file must carry no one's
+> biography. *"A candidate led a first-line-EM application with manager-of-managers scope and
+> was cut at the screen"* is still one person's history; *"a screener reads the first ~15 lines,
+> and scope broader than the role asks for reads as over-leveled"* is the same force stated as a
+> mechanism. **Keep the reasoning, change its grammar** — a rule with no *why* is the bare
+> principle #13 says won't hold. The test: **would this sentence be equally true if it had never
+> happened to this user?**
 
 - ⛔ **Contributing requires explicit, per-entry consent.** A PR to the public product repo
   permanently publishes something derived from a private job search. New preference
