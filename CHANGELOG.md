@@ -53,6 +53,35 @@ turn any user-specific value into a **variable in `profile/preferences.md`**, an
   **`UPDATE.md` migration note to copy verbatim into the release.** A merged PR whose migration
   note was dropped is worse than an unmerged one.
 
+### New: `UPDATE.md` rule reconciliation — one failure mode, one rule
+
+An update used to have no answer for the most ordinary collision there is: **the user wrote a
+rule from their own experience, and the product later shipped one about the same failure.**
+A 3-way merge sees only text, and a user-written rule and a product-written rule about the same
+thing share almost no wording — so they merge *cleanly*, as two rules, and the file now says the
+same thing twice under two numbers.
+
+> **"Keep both" is the default and it is always wrong.** Two rules covering the same ground
+> subtract safety: an agent can't tell which is authoritative, so enforcement fragments exactly
+> where the user cared enough to write a rule. In `CLAUDE.md` it compounds — the duplicate takes
+> a new number, and every `#7`/`#11` citation in the skills and checklists points at the wrong
+> half.
+
+The new section makes it mechanical: **detect by the failure, not the wording** → classify as
+**duplicate / overlap / conflict / genuinely new** → merge into the user's number, union the
+remedies, or ask with the consequences spelled out. Conflicts default to **the user's rule**
+(theirs is backed by a real event; upstream's is an aggregate) **unless upstream's is strictly
+stricter**. Golden Rules get the same never-renumber protection the question bank has had since
+1.3.0, plus a recorded mapping line when a number is already taken.
+
+⚠️ **This applies whether or not the rule was ever contributed upstream** — provenance markers
+are the fast path for contributors; meaning-matching is the fallback that always runs, and it is
+what protects the majority of users, who have contributed nothing.
+
+The PR contract gains a matching section — *"Does an existing rule already cover this?"* — so the
+product stops accreting duplicates at the source, which a human reviewer cannot catch because the
+near-duplicate is usually in another file and shares no wording.
+
 ### New: the sent CV is re-checked before every round
 
 `interview-prep` **step 1c** — open the CV **as sent** beside the JD and re-run the 15-line

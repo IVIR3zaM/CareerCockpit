@@ -71,7 +71,7 @@ and your edit touch the same thing, ask one targeted question.
 
 | Path | Your layer (preserve) | How to merge |
 |---|---|---|
-| `CLAUDE.md` | your house-rule keep/drop/customize edits (onboarding Step 10), banned-phrase / date / comp tweaks | apply new/changed engine rules; keep every user customization; if a new engine rule contradicts a user customization, ask |
+| `CLAUDE.md` | your house-rule keep/drop/customize edits (onboarding Step 10), banned-phrase / date / comp tweaks, **and any Golden Rule you wrote yourself** | apply new/changed engine rules; keep every user customization. ⚠️ **Run [Rule reconciliation](#rule-reconciliation--never-let-an-update-duplicate-a-rule-the-user-already-has) first** — an incoming rule and a rule you wrote about the same failure share no wording, so they merge "cleanly" as duplicates under two numbers, and every `#N` citation elsewhere then points at the wrong half. **Never renumber a rule you wrote** |
 | `styles/cv.css` | your extracted theme, if you chose "extract from my CV" (Step 3) | if still the default Blue → treat as Tier A; if customized → **do not overwrite**; only offer structural fixes (e.g. a heading→CSS contract change) and let the user accept |
 | `onboarding/CHECKLIST.md` | your tick state | **re-key by step number**, not by row text — the table's columns can change between releases. Carry each step's tick **and** its notes cell onto the new row; append genuinely new steps as unchecked; never re-open a completed box |
 | `interviews/hiring-manager/question-bank.md` | questions you added | **additive** — add new upstream seed questions that aren't present; keep all of yours. **Exception:** pointer/reference lines a release rewrites (e.g. a renamed file) are updated in place, or they dangle — see *Migrations* |
@@ -116,6 +116,105 @@ Everything containing your career data. An update never reads these for overwrit
 > the user never touched it → safe to refresh (Tier A behavior). If they differ, the user
 > edited it → preserve it and merge/ask (Tier B behavior) or leave it (Tier C). This is why
 > the flow fetches the upstream tree at **both** the current and the latest version.
+
+---
+
+## Rule reconciliation — never let an update duplicate a rule the user already has
+
+**The tiers say WHICH files to merge. This says what to do when an incoming rule and a rule the
+user already wrote are about the same thing.**
+
+A user who has been running this cockpit for a while writes rules from their own experience: a
+Golden Rule after a rejection, a gate in a skill, a convention, a checklist row. The product
+independently ships rules for the same failures — that is what the product is. So collisions
+between "a rule you invented" and "a rule we shipped" are **normal and expected**, not an edge
+case.
+
+> ### ⛔ The default failure is "keep both." It is always wrong.
+> Two rules covering the same ground do not add up to more safety — they **subtract** it.
+> An agent reading two overlapping rules cannot tell which is authoritative, so it follows the
+> nearer one, or averages them, or follows whichever it read last. Enforcement fragments
+> exactly where the user cared enough to write a rule twice. And in `CLAUDE.md` the cost
+> compounds: a duplicated Golden Rule takes a **new number**, and every `#7` / `#11` reference
+> in the skills, the checklists and the case-study comments now points at the wrong half.
+>
+> **One failure mode ⇒ one rule.** Merging is the goal; appending is the thing to avoid.
+
+⚠️ **This runs whether or not the user's rule was ever contributed upstream.** Provenance
+markers (Golden Rule #15) are the *fast path* — an adopted, marked block is already known to be
+upstream's and reconciles to a no-op. Everything **without** a marker still has to be matched
+the slow way, below. Most users will never have contributed anything, and they are the ones
+this section protects.
+
+### 1. Detect — match on the FAILURE, not the wording
+
+For every incoming rule, gate, convention or checklist row, first ask: **what does this stop
+from happening?** Then scan the user's file for a rule that stops the *same* thing.
+
+**Do not match on vocabulary.** A rule the user wrote after a real rejection and a rule the
+product wrote from aggregate experience will describe the same failure in almost no shared
+words — the user's says *"never lead with manager-of-managers scope on a first-line req"*, the
+product's says *"lead with the facet the role is hiring for."* Same failure, no overlapping
+phrase. A text diff sees two unrelated additions and appends both. **The diff is not the check;
+reading for meaning is.**
+
+Cheap way in: for each incoming rule, name its failure in one sentence, then grep the user's
+file for the *situation* (a CV screen, a comp estimate, a skipped prep area), not the phrasing.
+
+### 2. Classify — four outcomes, four different resolutions
+
+| | What it looks like | What to do |
+|---|---|---|
+| **Duplicate** | same failure, same remedy | **Merge into ONE rule.** Keep the **user's position and number**; take whichever wording is more **mechanical** (a gate beats a principle — Golden Rule #13); keep the user's evidence. Never add a second rule. |
+| **Overlap** | same failure, each covers part of it | **One rule, union of the remedies.** Usually the user's rule is narrower (born of one incident) and upstream's is broader — keep the broad statement and fold the user's specific trigger in as the sharp edge. |
+| **Conflict** | same situation, **different required action** | **Never resolve silently — ask.** See below. |
+| **Genuinely new** | a failure the user has no rule for | Adopt normally. This is the common case; don't over-think the other three into existence. |
+
+### 3. Conflicts — ask, with the consequences spelled out
+
+Do not present a conflict as *"keep yours or take theirs?"* — the user cannot answer that
+without re-deriving both. Present: **what upstream requires · what your rule requires · what
+actually happens differently under each.** One conflict per question.
+
+Two defaults for when the user shrugs:
+- **The user's rule wins**, because it is backed by a real event in *their* search while
+  upstream's is an aggregate. Their evidence is the more specific evidence.
+- **Unless upstream's is strictly stricter** — if upstream forbids a superset of what the
+  user's rule forbids, take upstream's; nothing the user relied on is lost.
+
+⛔ **Never weaken a user's rule to make it merge.** If the merged wording would permit something
+their rule forbade, that is not a merge — say so and ask.
+
+### 4. Golden Rules are NUMBERED — treat them like the question bank
+
+`CLAUDE.md`'s Golden Rules have exactly the identifier problem as `question-bank.md`, and the
+same fix applies:
+
+- **Never renumber a user's Golden Rule.** The skills, the checklists and the inline
+  `<!-- customized -->` comments all cite them by number; renumbering orphans every reference.
+- **An incoming rule that duplicates a local one is merged into the local one's number** — not
+  appended under a fresh number.
+- **If the user has their own rule at the number an incoming rule wants** (e.g. they wrote
+  their own `#15` and this release also ships a `#15`), and the two are about **different**
+  things: keep theirs at `#15`, add upstream's at the next free number, and **record the
+  mapping in one line** so a later release can still find it:
+  `<!-- upstream 1.4.0 GR #15 (upstream contributions) lives here as #16 — #15 was taken -->`
+- Then **sweep for stale cross-references** — if anything moved, `#N` citations elsewhere in
+  the repo must be re-pointed. A dangling rule reference is worse than a missing rule: it reads
+  as authoritative and points at the wrong thing.
+
+### 5. Record every merge, in one line
+
+A merge you don't record has to be re-derived at the *next* update, from prose that has since
+drifted further apart. Leave the note where the merge happened:
+
+```
+<!-- merged 1.4.0: upstream's "lead with the JD-matching facet" folded into this rule;
+     the manager-of-managers trigger below is the local layer. -->
+```
+
+That line is what makes the next reconciliation a lookup instead of another judgment call — the
+same reason provenance markers exist, applied to rules the user never contributed.
 
 ---
 
@@ -359,8 +458,25 @@ setting: **Upstream contributions** — `ask` (default) · `yes` · `no`.
 Also add the new `package.json` script (`slides:pdf`). `package.json` is Tier A, so this
 refreshes on its own — but **if the user added their own scripts, merge rather than overwrite.**
 
-**4. Rule and gate additions — no identifier collisions this time.**
-Unlike 1.3.0, nothing here is numbered in a user-extensible file except **one** row:
+**4. Rule and gate additions — one identifier collision, and it is in `CLAUDE.md`.**
+
+> 🚨 **1.4.0 ships Golden Rule #15, and `#15` is the next free number a user would have taken.**
+> Any clone that added its own fifteenth Golden Rule from experience — which is exactly what a
+> well-used cockpit does — already has a `#15` about something else. Appending upstream's as a
+> second `#15`, or renumbering the user's to `#16`, both break things: duplicate numbers make
+> every `#15` citation ambiguous, and renumbering orphans the user's own cross-references.
+>
+> **Run [Rule reconciliation](#rule-reconciliation--never-let-an-update-duplicate-a-rule-the-user-already-has) on it:**
+> - **Their #15 is about contributing improvements upstream too** → it is a **duplicate**.
+>   Merge into **their** number, take whichever wording is more mechanical, keep their evidence.
+>   Do not add a second rule.
+> - **Their #15 is about something else** → keep theirs at `#15`, add upstream's at the next
+>   free number, and record the mapping:
+>   `<!-- upstream 1.4.0 GR #15 (upstream contributions) lives here as #16 — #15 was taken -->`
+>   Then sweep the repo for `#15` citations that now mean the wrong rule.
+> - Either way, **never renumber the user's rule.**
+
+The rest of this release is additive with no identifier collisions except **one** checklist row:
 - `interviews/hiring-manager/prep-checklist.md` gains **row 22b** (timed cognitive/aptitude
   screening) and a **banner block** above the table. The row is deliberately suffixed rather
   than numbered `24` precisely so it cannot collide with a row the user added. **The
@@ -444,6 +560,13 @@ through it:
   file). Apply cleanly-mergeable engine changes; for any true conflict, **ask one targeted
   question at a time** ("Upstream changed the date-format rule to X; you'd customized it to
   Y — keep yours, take theirs, or combine?"). Write only after the answer.
+  - ⚠️ **A clean 3-way merge is NOT the end of the check.** The 3-way merge only sees text.
+    An incoming rule and a rule the user wrote themselves about the **same failure** usually
+    share no wording at all, so they merge "cleanly" — as two rules — and the file now says
+    the same thing twice, under two numbers. Before writing, run
+    **[Rule reconciliation](#rule-reconciliation--never-let-an-update-duplicate-a-rule-the-user-already-has)**
+    over every incoming rule, gate, convention or checklist row: match on the **failure**, then
+    merge / union / ask / adopt. **One failure mode ⇒ one rule.**
 - **Tier C:** skip entirely — **except** for a migration that explicitly restructures one
   (see above), which still never changes a value. If an upstream *skeleton* improved (e.g. a
   new field in `basics.md`'s template), you may **mention** it as an optional manual
@@ -516,10 +639,20 @@ holds it: name, allowed values, default. "None" if none. A rule that hardcodes a
 level, a number, a currency or a country instead of reading a variable is not ready.
 
 ## Identifier impact
-Does this add a numbered entry to question-bank.md, prep-checklist.md, or
-sharpness-probes.md? If yes: state the ids, and state that the receiving clone must
-match BY MEANING and never renumber the user's entries. If no: say "none" explicitly
-— its absence is otherwise ambiguous.
+Does this add a numbered entry anywhere users also number their own — a Golden Rule
+in CLAUDE.md, question-bank.md, prep-checklist.md, sharpness-probes.md? If yes:
+state the ids, and state that the receiving clone must match BY MEANING and never
+renumber the user's entries. If no: say "none" explicitly — its absence is
+otherwise ambiguous.
+
+## Does an existing rule already cover this?
+Name the rule(s) in the current release that address the same failure, and say
+whether this REPLACES, NARROWS, or is GENUINELY NEW alongside them. If you cannot
+name any, say you looked.
+This is the section that stops the product accreting two rules for one failure —
+the same defect Rule reconciliation exists to keep out of user clones. A reviewer
+cannot catch it, because the near-duplicate is usually in a different file and
+shares no wording with what you wrote.
 
 ## UPDATE.md migration note — COPY THIS VERBATIM INTO THE RELEASE
 ⛔ Do NOT invent a version header. You are opening a PR; you do not know which
