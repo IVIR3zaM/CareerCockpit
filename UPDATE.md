@@ -194,11 +194,31 @@ same fix applies:
   `<!-- customized -->` comments all cite them by number; renumbering orphans every reference.
 - **An incoming rule that duplicates a local one is merged into the local one's number** — not
   appended under a fresh number.
-- **If the user has their own rule at the number an incoming rule wants** (e.g. they wrote
-  their own `#15` and this release also ships a `#15`), and the two are about **different**
+- **`L`-numbered rules are the user's own namespace** (`L1, L2, …`; see `CLAUDE.md` §1). They
+  **can never collide** with an incoming `#N`, so adopt upstream's rule at its own number
+  without a second thought about identifiers.
+  ⚠️ **But still meaning-match it against every `L…` rule.** The namespace removes the
+  *number* collision, not the *duplication* — and it removes the accidental tripwire that a
+  colliding number used to provide, so a duplicate now appends **silently**. `L` rules are
+  exactly the rules most likely to duplicate an incoming one, because both were written from
+  the same real failures. Treat "no number collision" as **no information at all** about
+  whether the rule is new.
+  - If an `L` rule and an incoming `#N` are duplicates, **merge into the `L` rule** and keep
+    its number — the user's citations point there. Record the alias:
+    `<!-- merged 1.5.0: upstream #17 folded into L2; L2 is authoritative here -->`
+  - If the user **contributed** that rule and upstream shipped it as `#N`, the provenance
+    marker already carries `local L2 ⇄ upstream #N`. **Use the alias — don't re-derive it**,
+    and re-point any stale citations mechanically.
+- **If the user has their own rule at the number an incoming rule wants** — the legacy case,
+  for clones that numbered their own rules before the `L` convention existed (e.g. they wrote
+  their own `#15` and this release also ships a `#15`) — and the two are about **different**
   things: keep theirs at `#15`, add upstream's at the next free number, and **record the
   mapping in one line** so a later release can still find it:
   `<!-- upstream 1.4.0 GR #15 (upstream contributions) lives here as #16 — #15 was taken -->`
+  **Do not "fix" this by renumbering their rule into `L`** — the convention is for *new* rules;
+  re-pointing hundreds of existing citations is a large cosmetic change with real breakage
+  risk. Freeze the past, namespace the future. You may **offer** it, once, as an optional
+  cleanup and take no for an answer.
 - Then **sweep for stale cross-references** — if anything moved, `#N` citations elsewhere in
   the repo must be re-pointed. A dangling rule reference is worse than a missing rule: it reads
   as authoritative and points at the wrong thing.

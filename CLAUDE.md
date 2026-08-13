@@ -260,10 +260,16 @@ rules) are set.
       asks a pile of unanswerable conflict questions or writes the rule twice.
       Record the link with a **provenance marker** directly above the adopted block:
       ```
-      <!-- upstream: IVIR3zaM/CareerCockpit#<PR> · status: proposed
+      <!-- upstream: IVIR3zaM/CareerCockpit#<PR> · status: proposed · local L2 ⇄ upstream #?
            Generalized text above is upstream's. Personal evidence is the marked block below
            and never ships. -->
       ```
+      The **alias field** (`local L2 ⇄ upstream #17`) matters for anything the product also
+      numbers — a Golden Rule, a bank question, a checklist row. Your rule **keeps its `L`
+      number here**; the alias records which upstream number it became, so a later update can
+      re-point citations **mechanically**. Leave the upstream side as `#?` until it is known —
+      it is assigned on acceptance, not by you. Omit the field entirely for unnumbered
+      contributions (a stylesheet fix, a template).
       ⛔ **NEVER write a version number in that marker.** At contribution time you know the
       **PR**; you do **not** know the release — the PR may land in the next minor, a patch,
       much later, or never. Guessing produces a marker that is confidently wrong forever.
@@ -273,6 +279,32 @@ rules) are set.
       markers*). Until then `proposed` is the honest and sufficient value: the marker's real
       job is to say **"this text is upstream's, not mine"**, which is what makes the next
       merge safe. The version is bookkeeping that gets filled in later.
+
+---
+
+> ### ✍️ Adding your own Golden Rule? Number it `L1`, `L2`, … — never `#16`.
+> **`#1`–`#15` are the product's namespace; `L…` is yours, and upstream will never use it.**
+> Continuing the shared sequence means the next release that ships a `#16` collides with your
+> rule, and the fix is always bad: a duplicate number makes every `#16` citation ambiguous,
+> while renumbering yours orphans every reference to it in your skills, checklists and
+> `<!-- customized -->` notes.
+>
+> The `L` namespace makes that collision **impossible by construction** — an update can add
+> `#16`, `#17`, even renumber its own rules, and never touch yours.
+>
+> - **Cite them the same way everywhere:** *"Golden Rule L2"*, `GR L2`.
+> - **A rule you contribute upstream keeps its `L` number here**, and the provenance marker
+>   carries the alias — `local L2 ⇄ upstream #17`. That is what lets an update re-point
+>   citations **mechanically** instead of guessing; without it, your `L2` and the incoming
+>   `#17` look like two unrelated rules.
+> - ⚠️ **An `L` number prevents number collisions, NOT duplication.** Two rules about the same
+>   failure hurt exactly as much numbered `L2` and `#17` as they would numbered `#16` twice —
+>   an agent still cannot tell which is authoritative. Every incoming rule is still
+>   **meaning-matched** against your `L…` rules (`UPDATE.md` → *Rule reconciliation*). The
+>   namespace buys clean identifiers; it buys nothing about substance.
+> - **Don't retro-renumber existing rules to `L`.** If some of `#1`–`#15` are really yours,
+>   leave them: hundreds of citations point at those numbers, and re-pointing them is a large
+>   cosmetic change with real breakage risk. Freeze the past, namespace the future.
 
 ---
 
@@ -467,6 +499,11 @@ CSS to change look, not the content files.**
 - **Dates:** `YYYY-MM` (use `Present` for current). Convert relative dates the user gives
   ("last year") to absolute before saving. Today's date is available in context.
 - **Slugs:** kebab-case for folders/files (`company-role`, `story-name`).
+- **Rule numbering:** the product owns `#1, #2, …`; **rules you add yourself are `L1, L2, …`**
+  and are cited as *"Golden Rule L2"* / `GR L2`. See the note at the end of §1 — the short
+  version is that the `L` namespace makes number collisions with a future release impossible,
+  and that it does **not** protect against two rules covering the same failure (that is
+  `UPDATE.md` → *Rule reconciliation*). Never retro-renumber existing rules into `L`.
 - **Frontmatter:** each structured file starts with YAML frontmatter (see templates).
 - **Status values** for applications — split into **live** and **terminal**:
   - **Live** (row + folder stay in `applications/`): `interested`, `applied`, `screening`,

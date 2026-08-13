@@ -82,6 +82,30 @@ The PR contract gains a matching section — *"Does an existing rule already cov
 product stops accreting duplicates at the source, which a human reviewer cannot catch because the
 near-duplicate is usually in another file and shares no wording.
 
+### New: `L1, L2, …` — your own Golden Rules get their own namespace
+
+`#1…#15` is the product's numbering. A rule you write yourself now takes an **`L` number** and
+is cited as *"Golden Rule L2"*. Continuing the shared sequence meant the next release shipping
+a `#16` collided with your rule, and both repairs were bad: a duplicate number makes every
+`#16` citation ambiguous, and renumbering yours orphans every reference to it. `L` makes the
+collision **impossible by construction** — a release can add `#16`, `#17`, or renumber its own
+rules, and never touch yours.
+
+It also makes contribution survivable: a rule you send upstream **keeps its `L` number
+locally**, and the provenance marker carries the alias (`local L2 ⇄ upstream #17`), so an update
+re-points citations mechanically instead of guessing. Without it, your `L2` and the incoming
+`#17` look like two unrelated rules.
+
+> ⚠️ **An `L` number prevents number collisions, not duplication** — two rules about the same
+> failure hurt exactly as much numbered `L2` and `#17`. It also removes the accidental tripwire
+> a colliding number used to give, so a duplicate now appends *silently*. Rule reconciliation
+> therefore treats "no number collision" as **no information**, and meaning-matches every
+> incoming rule against the `L` set regardless.
+
+**Existing rules are not renumbered.** If some of your `#1…#15` are really yours, they stay —
+hundreds of citations point at those numbers. Freeze the past, namespace the future; the legacy
+collision case is still handled in Rule reconciliation.
+
 ### New: the sent CV is re-checked before every round
 
 `interview-prep` **step 1c** — open the CV **as sent** beside the JD and re-run the 15-line
