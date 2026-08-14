@@ -16,6 +16,63 @@ Versioning is [semantic](https://semver.org/): `MAJOR.MINOR.PATCH`.
 
 ---
 
+## [1.4.1] — 2026-08-13
+
+**Fixes to the update flow itself, found by running it.** Two cold agents were pointed at
+throwaway clones — one already on 1.4.0, one a 1.3.0 clone with a real user layer — and told
+only *"update CareerCockpit"*. Every defect below came out of that exercise. **None would have
+been visible by reading the file.**
+
+### 🚨 "Not now" silently became "never"
+
+Step 1 stopped the moment `VERSION` matched upstream. Step 6 bumped `VERSION` even when the
+user **declined** optional items — which the flow explicitly permits. Chained: *decline →
+version bumps → every later run short-circuits on equality → the declined item is never
+re-offered.* The clone stayed permanently half-applied and nothing was left to notice.
+
+- Version equality is **no longer a stopping condition**. On a match the flow now re-offers
+  anything still open and runs a **content-drift check** — with `local == latest`, `base` and
+  `new` are the same tree, so it is cheap and unambiguous.
+- New **`upstream-sync/DEFERRED.md`**: every declined, deferred or unanswered offer is recorded
+  and re-offered by step 1. *"Unanswered"* is tracked separately from *"declined"* — one is a
+  decision, the other is a decision not yet made.
+- **The version string records what was OFFERED; only content records what was APPLIED.**
+
+### 🚨 Step 4 told you to read a migration block that cannot exist
+
+*"Read the Migrations section above"* resolved to the **clone's own** `UPDATE.md` — the *old*
+release's copy, which by definition has no block for the release being moved to. A literal
+reading **skipped every migration, on every update, forever.** It now says explicitly: read the
+Migrations section from the **fetched upstream** tree.
+
+### Other contradictions the run surfaced
+
+- **`profile/stories/_index.md` was listed as Tier C "never touch" *and* refreshed by the 1.4.0
+  migration.** Upstream's copy has an empty table, so a wholesale refresh would **delete every
+  story row** the moment a user had one. Now: rows are Tier C; only the theme-vocabulary comment
+  is editable, in place. Never byte-refresh it.
+- **The cross-reference sweep told you to edit Tier A files.** Re-pointing `#N` citations in
+  shipped engine files is wrong twice over — they cite the *product's* numbering, and editing
+  them makes the file differ from `new`, so the next update treats it as user-customized and
+  stops auto-refreshing it forever. The sweep is now scoped to the **user's own layer**.
+- **`styles/cv.css` branched on `preferences.md` → *CV theme*.** The table and the file drift
+  apart in practice, and trusting the table **overwrites a real custom theme**. Now decided from
+  the file's own `:root` values, with an offer to correct the table when they disagree.
+- **The worked example hardcoded `#16`** as "the next free number". In a well-used clone it
+  isn't — the test clone had `#16` taken too. Now says: take the next *actually free* number.
+- **"Offer a new file" was undefined when the file doesn't exist yet.** Now split: standalone
+  templates are offered; a file the same release **links to** is created as an empty scaffold
+  during the refresh, because declining would ship dangling references — a worse outcome than an
+  unused empty file.
+
+### Verified
+
+The 1.3.0 → 1.4.0 migration passed every must-pass check on a clone with its own customizations:
+the user's Golden Rules `#15`/`#16` kept their numbers with upstream's landing at `#17` plus a
+mapping comment, their cross-reference still resolved, the green extracted theme survived **while
+the page-break fix was still applied**, all Tier-C data was untouched, and the `Upstream
+contributions` preference row was **not** written silently — it was raised as a question.
+
 ## [1.4.0] — 2026-08-13
 
 **Theme: the gates that only ran once now run again, and the toolkit learns from every clone.**

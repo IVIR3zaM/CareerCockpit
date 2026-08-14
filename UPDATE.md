@@ -43,6 +43,8 @@ one-line summary of what changed and — on confirmation — overwrite with the 
 - `README.md`, `LICENSE`, `.gitignore`
 - `package.json`, `package-lock.json`
 - `VERSION`, `CHANGELOG.md`, `UPDATE.md` *(the flow updates these itself)*
+- `upstream-sync/DEFERRED.md` — **scaffolding only.** Its rows are the user's answers and are
+  never rewritten by a refresh; step 6 appends to them
 - `styles/README.md`, `styles/cv-build.mjs`, `styles/slides-build.mjs`
 - `styles/cover-letter.css` *(theme-neutral prose overrides — carries no colors or fonts, so
   it is safe to refresh even when `cv.css` is customized)*
@@ -72,7 +74,7 @@ and your edit touch the same thing, ask one targeted question.
 | Path | Your layer (preserve) | How to merge |
 |---|---|---|
 | `CLAUDE.md` | your house-rule keep/drop/customize edits (onboarding Step 10), banned-phrase / date / comp tweaks, **and any Golden Rule you wrote yourself** | apply new/changed engine rules; keep every user customization. ⚠️ **Run [Rule reconciliation](#rule-reconciliation--never-let-an-update-duplicate-a-rule-the-user-already-has) first** — an incoming rule and a rule you wrote about the same failure share no wording, so they merge "cleanly" as duplicates under two numbers, and every `#N` citation elsewhere then points at the wrong half. **Never renumber a rule you wrote** |
-| `styles/cv.css` | your extracted theme, if you chose "extract from my CV" (Step 3) | if still the default Blue → treat as Tier A; if customized → **do not overwrite**; only offer structural fixes (e.g. a heading→CSS contract change) and let the user accept |
+| `styles/cv.css` | your extracted theme, if you chose "extract from my CV" (Step 3) | ⚠️ **Decide from the FILE'S CONTENT, never from `preferences.md` → CV theme.** The two disagree in practice (a theme extracted after onboarding, or a hand-edit, leaves the table stale), and trusting the table **overwrites a real custom theme**. Compare the `:root` values against `base`: unchanged → treat as Tier A; changed → **do not overwrite**, only offer structural fixes (a heading→CSS contract change, a page-break fix) and let the user accept. If the table and the file disagree, say so and offer to correct the table |
 | `onboarding/CHECKLIST.md` | your tick state | **re-key by step number**, not by row text — the table's columns can change between releases. Carry each step's tick **and** its notes cell onto the new row; append genuinely new steps as unchecked; never re-open a completed box |
 | `interviews/hiring-manager/question-bank.md` | questions you added | **additive** — add new upstream seed questions that aren't present; keep all of yours. **Exception:** pointer/reference lines a release rewrites (e.g. a renamed file) are updated in place, or they dangle — see *Migrations* |
 | `interviews/hiring-manager/prep-checklist.md` | rows you added from debriefs | **additive** — same as above, same pointer-line exception |
@@ -100,7 +102,12 @@ Everything containing your career data. An update never reads these for overwrit
 - `profile/basics.md`, `summary.md`, `skills.md`, `education.md`, `certifications.md`,
   `company-fit.md`, `preferences.md`, `decisions.md`
 - `profile/work-experience/*.md` (real roles — every non-`_TEMPLATE` file)
-- `profile/projects/*.md`, `profile/stories/*.md`, `profile/stories/_index.md`
+- `profile/projects/*.md`, `profile/stories/*.md`
+- `profile/stories/_index.md` — **the story ROWS are Tier C and are never rewritten.** Its
+  theme-vocabulary comment is engine scaffolding and may be edited **in place**. ⛔ Never
+  byte-refresh this file from upstream, even when it currently matches: upstream's copy has an
+  empty table, so a wholesale refresh **deletes every story row** the moment the user has one.
+  Edit the vocabulary comment; leave everything else alone.
 - `applications/_index.md` and every real `applications/<company-role>/**`
 - `applications/_archive/<company-role>/**` — archived applications are **read-only history**;
   an update never touches them, not even to repair a link
@@ -214,14 +221,22 @@ same fix applies:
   their own `#15` and this release also ships a `#15`) — and the two are about **different**
   things: keep theirs at `#15`, add upstream's at the next free number, and **record the
   mapping in one line** so a later release can still find it:
-  `<!-- upstream 1.4.0 GR #15 (upstream contributions) lives here as #16 — #15 was taken -->`
+  `<!-- upstream 1.4.0 GR #15 (upstream contributions) lives here as #17 — #15 AND #16 were both taken -->`
+  (the example uses `#17` on purpose: take the next **actually free** number, which is often not
+  the next integer — a well-used clone has several of its own rules.)
   **Do not "fix" this by renumbering their rule into `L`** — the convention is for *new* rules;
   re-pointing hundreds of existing citations is a large cosmetic change with real breakage
   risk. Freeze the past, namespace the future. You may **offer** it, once, as an optional
   cleanup and take no for an answer.
-- Then **sweep for stale cross-references** — if anything moved, `#N` citations elsewhere in
-  the repo must be re-pointed. A dangling rule reference is worse than a missing rule: it reads
-  as authoritative and points at the wrong thing.
+- Then **sweep for stale cross-references — IN THE USER'S OWN LAYER ONLY.** Re-point `#N`
+  citations in their `<!-- customized -->` notes, their added checklist rows, their prep plans
+  and debriefs. A dangling rule reference is worse than a missing rule: it reads as
+  authoritative and points at the wrong thing.
+  ⛔ **Do NOT edit Tier A engine files to re-point them.** `UPDATE.md`, the skills and the
+  shipped checklists cite the **product's** numbering, which is correct for them and wrong to
+  localize — and editing a Tier A file makes it differ from `new`, so the next update sees it
+  as user-customized and stops auto-refreshing it forever. Instead record the alias once, in
+  `CLAUDE.md` next to the moved rule, and read engine `#N` references through it.
 
 ### 5. Record every merge, in one line
 
@@ -492,7 +507,9 @@ refreshes on its own — but **if the user added their own scripts, merge rather
 >   Do not add a second rule.
 > - **Their #15 is about something else** → keep theirs at `#15`, add upstream's at the next
 >   free number, and record the mapping:
->   `<!-- upstream 1.4.0 GR #15 (upstream contributions) lives here as #16 — #15 was taken -->`
+>   `<!-- upstream 1.4.0 GR #15 (upstream contributions) lives here as #17 — #15 AND #16 were both taken -->`
+  (the example uses `#17` on purpose: take the next **actually free** number, which is often not
+  the next integer — a well-used clone has several of its own rules.)
 >   Then sweep the repo for `#15` citations that now mean the wrong rule.
 > - Either way, **never renumber the user's rule.**
 
@@ -529,8 +546,23 @@ declines every optional step above, the engine refresh is still complete and cor
 - Read the local [`VERSION`](VERSION).
 - Fetch the upstream `VERSION` from the canonical repo (e.g. shallow-fetch or read the raw
   file at the default branch).
-- If they're equal → tell the user **"You're on the latest version (`X.Y.Z`)."** and stop.
 - If local is newer than upstream → say so and stop (nothing to do).
+- If they're equal → **do NOT stop yet.** A matching `VERSION` means the clone was *offered*
+  that release; it does not mean the release was fully *applied*. Run the two cheap checks
+  below, then say **"You're on the latest version (`X.Y.Z`)"** and stop:
+  1. **Re-offer deferred items.** Read `upstream-sync/DEFERRED.md` (if present) and surface
+     anything still open, exactly as it was offered before.
+  2. **Content-drift check.** With `local == latest`, `base` and `new` are the same tree, so
+     this is cheap and unambiguous: any **Tier A** file differing from `new` is either stale
+     (an earlier update didn't finish) or user-edited. List them and offer to refresh. Do not
+     touch Tier B or C here.
+
+> 🚨 **Why equality is not a stopping condition.** `VERSION` is bumped in step 6 even when the
+> user declines optional items — which the flow explicitly allows. Without the checks above,
+> the sequence is: *decline → `VERSION` bumps → every future run short-circuits on equality →
+> the declined item is never re-offered.* **"Not now" silently becomes "never,"** and the clone
+> stays permanently half-applied with nothing left to notice it. The version string records
+> **what was offered**; only the content records **what was applied.**
 
 ### 2. Show what changed (plain English)
 - Read the upstream [`CHANGELOG.md`](CHANGELOG.md) and summarize the entries **between** the
@@ -544,8 +576,15 @@ declines every optional step above, the engine refresh is still complete and cor
   matching commits. Never add the product as a permanent remote of the user's private repo.
 
 ### 4. Check for migrations — BEFORE the tier pass
-Read the **Migrations** section above for every release between the local version and the
-latest. A release with a migration block has **structural** changes the tiers can't express
+🚨 **Read the Migrations section from the UPSTREAM `UPDATE.md` you fetched in step 3 — NOT the
+one in the clone you are updating.** The clone's copy is the *old* release's, so it cannot
+contain the block for the release you are moving to: a clone on 1.3.0 has no `1.3.0 → 1.4.0`
+section, and following "the Migrations section above" literally means **skipping every
+migration, on every update, forever.** The instructions for a release always ship *with* that
+release.
+
+Read the **Migrations** section of the fetched `new` tree for every release between the local
+version and the latest. A release with a migration block has **structural** changes the tiers can't express
 (a file that splits, a rename that leaves pointers dangling, an ordering dependency). Skipping
 them leaves the clone in a broken half-state: refreshed engine files reading data that isn't
 where they expect it.
@@ -587,6 +626,16 @@ through it:
     **[Rule reconciliation](#rule-reconciliation--never-let-an-update-duplicate-a-rule-the-user-already-has)**
     over every incoming rule, gate, convention or checklist row: match on the **failure**, then
     merge / union / ask / adopt. **One failure mode ⇒ one rule.**
+- **A release that adds a NEW file — what "offer it" means.** Two cases, and they differ:
+  - **Nothing else in the release references it** (a standalone template) → *offer*: describe
+    it, create it only on a yes.
+  - **The same release adds links TO it** from files you are refreshing — `CLAUDE.md`'s repo
+    map, a skill step, another template → **create the scaffold as part of the refresh, and
+    say so.** Declining would ship a `CLAUDE.md` with dangling references, which is a worse
+    outcome than an unused empty file. An empty scaffold carries no user data and costs
+    nothing; a broken pointer costs the next agent a wrong turn.
+  - Either way it is an **empty scaffold**, never populated content — the same rule as a
+    Tier-C restructure: create the shape, never infer a value.
 - **Tier C:** skip entirely — **except** for a migration that explicitly restructures one
   (see above), which still never changes a value. If an upstream *skeleton* improved (e.g. a
   new field in `basics.md`'s template), you may **mention** it as an optional manual
@@ -596,6 +645,15 @@ through it:
 - Set local `VERSION` to the new version.
 - The upstream `CHANGELOG.md` is adopted as part of Tier A (so the user's log now shows the
   release they moved to).
+- 🚨 **Write every declined or deferred item to `upstream-sync/DEFERRED.md`** — one line each:
+  the release it came from, what was offered, and the user's answer (*declined* / *not now* /
+  *unanswered because the flow couldn't reach them*). Create the file if absent.
+  **This is what stops `VERSION` from lying.** The bump says the release was *offered*, not
+  that it was fully applied, and every future run re-offers what is listed here (step 1).
+  Without it, a "not now" is indistinguishable from "done" the moment the version matches.
+  - Remove a line only when the item is actually applied, or the user declines it a second
+    time and says to stop asking — then record *that*, so it isn't re-offered forever
+    (`CLAUDE.md` §2.0: drop TODOs the user has declined twice; don't nag).
 
 ### 7. Save per the user's git-save preference
 - Read the mode from `profile/preferences.md` (auto-commit-and-push vs manual).
